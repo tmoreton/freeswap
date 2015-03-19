@@ -1,8 +1,16 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var unique = require('mongoose-unique-validator');
+
 
 var schema = new mongoose.Schema({
+    first: {
+        type: String
+    },
+    last: {
+        type: String
+    },
     email: {
         type: String
     },
@@ -57,4 +65,5 @@ schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
-mongoose.model('User', schema);
+var User = mongoose.model('User', schema);
+module.exports = {User: User};
