@@ -10,7 +10,7 @@ var UserModel = mongoose.model('User');
 var ENABLED_AUTH_STRATEGIES = [
     'local',
     //'twitter',
-    //'facebook',
+    'facebook'
     //'google'
 ];
 
@@ -58,6 +58,11 @@ module.exports = function (app) {
         req.logout();
         res.status(200).end();
     });
+
+    app.use(function(req,res,next) {
+        console.log('1. working???')
+        next();
+    })
 
     // Each strategy enabled gets registered.
     ENABLED_AUTH_STRATEGIES.forEach(function (strategyName) {

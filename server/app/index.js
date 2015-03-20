@@ -4,6 +4,13 @@ var express = require('express');
 var app = express();
 module.exports = app;
 
+console.log("iasfasfd")
+
+app.use(function(req,res,next) {
+    console.log('2. working???')
+    next();
+})
+
 require('./configure')(app);
 
 app.use('/api', require('./routes'));
@@ -26,3 +33,4 @@ app.get('/*', function (req, res) {
 app.use(function (err, req, res, next) {
     res.status(err.status).send(err.message);
 });
+
