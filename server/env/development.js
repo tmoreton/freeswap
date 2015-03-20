@@ -7,8 +7,8 @@ module.exports = {
     "callbackUrl": "INSERT_TWITTER_CALLBACK_HERE"
   },
   "FACEBOOK": {
-    "clientID": "896303763765180",
-    "clientSecret": "883dd23d0ad4c9baaa03e94257791219",
+    "clientID": "616779285135529",
+    "clientSecret": "ae69254f106132303c7e0229a13d8903",
     "callbackURL": "http://localhost:1337"
   },
   "GOOGLE": {
