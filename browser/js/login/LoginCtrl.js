@@ -1,11 +1,9 @@
-angular.module('starter.controllers', [])
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $window, $location) {
+app.controller('LoginCtrl', function($scope, $ionicModal, $timeout, $state) {
   // Form data for the login modal
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $ionicModal.fromTemplateUrl('js/login/login.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
@@ -24,6 +22,11 @@ angular.module('starter.controllers', [])
   $scope.loginFacebook = function() {
     $window.location.href = '/auth/facebook';
     console("1. this is working")
+  }
+
+  $scope.showSignup = function() {
+    console.log("this is working")
+    $state.go("signup")
   };
 
   // Perform the login action when the user submits the login form
@@ -38,16 +41,16 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+app.config(function($stateProvider, $urlRouterProvider) {
+  // $stateProvider
 
-// .controller('PlaylistCtrl', function($scope, $stateParams) {
-// });
+  // .state('login', {
+  //   url: "/login",
+  //   abstract: true,
+  //   templateUrl: "login.html",
+  //   controller: 'LoginCtrl'
+  // })
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/chat');
+});
