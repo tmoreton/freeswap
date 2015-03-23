@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, $ionicModal, $timeout, $state) {
+app.controller('mainCtrl', function($scope, $ionicModal, $timeout, $state) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -28,6 +28,11 @@ app.controller('LoginCtrl', function($scope, $ionicModal, $timeout, $state) {
     console.log("this is working")
     $state.go("signup")
   };
+
+  //  $scope.showPost = function() {
+  //   console.log("this is working!!!")
+  //   $state.go("post")
+  // };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
