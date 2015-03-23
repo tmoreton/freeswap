@@ -3,8 +3,8 @@ var router = require('express').Router();
 module.exports = router;
 var User = require('../../db/models/user.js').User;
 
-// router.use('/tutorial', require('./tutorial'));
-// router.use('/members', require('./members'));
+router.use('/users', require('./users.js'));
+router.use('/products', require('./products.js'));
 
 // Make sure this is after all of
 // the registered routes!
