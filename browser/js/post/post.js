@@ -1,16 +1,21 @@
 app.config(function($stateProvider) {
-  $stateProvider.state('post', {
+  $stateProvider.state('app.post', {
     url: '/post',
     controller: 'postCtrl',
-    templateUrl: 'js/post/post.html'
+    views: {
+      'menuContent': {
+        templateUrl: "js/post/post.html"
+        // controller: 'PlaylistsCtrl'
+      }
+    }
   });
 });
 
 
 app.controller('postCtrl', function ($scope, $cordovaCamera, $ionicLoading, $localstorage) {
-  
 
-  // camera 
+
+  // camera
   $scope.data = { "ImageURI" :  "Select Image" };
     $scope.takePicture = function() {
     var options = {
@@ -31,7 +36,7 @@ app.controller('postCtrl', function ($scope, $cordovaCamera, $ionicLoading, $loc
       })
     }
 
-    $scope.selectPicture = function() { 
+    $scope.selectPicture = function() {
     var options = {
       quality: 50,
       destinationType: Camera.DestinationType.FILE_URI,
@@ -80,7 +85,7 @@ app.controller('postCtrl', function ($scope, $cordovaCamera, $ionicLoading, $loc
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange=function(){
             if(xmlhttp.readyState === 4){
-                    if (xmlhttp.status === 200) {          
+                    if (xmlhttp.status === 200) {
                 document.getElementById('server_images').innerHTML = xmlhttp.responseText;
                     }
                     else { $ionicLoading.show({template: 'Errore durante il caricamento...', duration: 1000});
@@ -100,7 +105,7 @@ app.controller('postCtrl', function ($scope, $cordovaCamera, $ionicLoading, $loc
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange=function(){
             if(xmlhttp.readyState === 4){
-                    if (xmlhttp.status === 200) {          
+                    if (xmlhttp.status === 200) {
                 document.getElementById('server_images').innerHTML = xmlhttp.responseText;
                     }
                     else { $ionicLoading.show({template: 'Errore durante il caricamento...', duration: 1000});

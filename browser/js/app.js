@@ -17,22 +17,17 @@ app.run(function($ionicPlatform) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-  });
+  })
 })
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('app', {
     url: "/app",
     abstract: true,
-    controller: 'MainCtrl'
-    views: {
-      'menuContent': {
-        templateUrl: "js/common/directives/menu.html",
-        // controller: 'PlaylistsCtrl'
-      }
-    }
+    controller: 'MainCtrl',
+    templateUrl: "js/common/directives/menu.html"
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/front-page');
+  // $urlRouterProvider.otherwise('/app/swap');
 });
