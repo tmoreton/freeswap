@@ -41,16 +41,16 @@ app.controller('LoginCtrl', function($scope, $ionicModal, $timeout, $state) {
   };
 })
 
-app.config(function($stateProvider, $urlRouterProvider) {
-  // $stateProvider
+// app.config(function($stateProvider, $urlRouterProvider) {
+//   // $stateProvider
 
-  // .state('login', {
-  //   url: "/login",
-  //   abstract: true,
-  //   templateUrl: "login.html",
-  //   controller: 'LoginCtrl'
-  // })
+//   // .state('login', {
+//   //   url: "/login",
+//   //   abstract: true,
+//   //   templateUrl: "login.html",
+//   //   controller: 'LoginCtrl'
+//   // })
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/chat');
-});
+//   // if none of the above states are matched, use this as the fallback
+//   $urlRouterProvider.otherwise('/app/chat');
+// });
