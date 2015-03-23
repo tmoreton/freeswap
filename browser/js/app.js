@@ -34,7 +34,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/swap",
     views: {
       'menuContent': {
-        templateUrl: "js/tinderCards.html",
+        templateUrl: "js/tinderCards/tinderCards.html",
         // controller: 'PlaylistsCtrl'
       }
     }
