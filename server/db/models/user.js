@@ -5,11 +5,9 @@ var mongoose = require('mongoose');
 
 
 var schema = new mongoose.Schema({
-    first: {
-        type: String
-    },
-    last: {
-        type: String
+    username: {
+        type: String,
+        unique: true
     },
     email: {
         type: String
