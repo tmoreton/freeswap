@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/app",
     abstract: true,
     templateUrl: "templates/menu.html",
-    controller: 'LoginCtrl'
+    controller: 'MainCtrl'
   })
 
   .state('app.chat', {
