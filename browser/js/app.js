@@ -25,9 +25,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/app",
     abstract: true,
     controller: 'MainCtrl',
-    templateUrl: "js/common/directives/menu.html"
+    templateUrl: "js/common/directives/menu/menu.html"
   })
 
   // if none of the above states are matched, use this as the fallback
-  // $urlRouterProvider.otherwise('/app/swap');
+  $urlRouterProvider.otherwise('/app/swap');
 });
