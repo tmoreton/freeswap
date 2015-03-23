@@ -1,9 +1,14 @@
-// angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards'])
-
-
-// app.config(function($stateProvider, $urlRouterProvider) {
-
-// })
+app.config(function($stateProvider) {
+  $stateProvider.state('app.swap', {
+    url: "/swap",
+    views: {
+      'menuContent': {
+        templateUrl: "js/tinderCards/tinderCards.html",
+        // controller: 'PlaylistsCtrl'
+      }
+    }
+  })
+});
 
 app.directive('noScroll', function($document) {
 

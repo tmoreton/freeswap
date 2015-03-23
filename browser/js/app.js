@@ -26,18 +26,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('app', {
     url: "/app",
     abstract: true,
-    templateUrl: "templates/menu.html",
-    controller: 'LoginCtrl'
-  })
-
-  .state('app.chat', {
-    url: "/swap",
-    views: {
-      'menuContent': {
-        templateUrl: "js/tinderCards/tinderCards.html",
-        // controller: 'PlaylistsCtrl'
-      }
-    }
+    templateUrl: "js/common/directives/menu.html",
+    controller: 'MainCtrl'
   })
 
   // if none of the above states are matched, use this as the fallback
