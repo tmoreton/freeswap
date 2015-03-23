@@ -21,13 +21,16 @@ app.run(function($ionicPlatform) {
 })
 
 app.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-
-  .state('app', {
+  $stateProvider.state('app', {
     url: "/app",
     abstract: true,
-    templateUrl: "js/common/directives/menu.html",
     controller: 'MainCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: "js/common/directives/menu.html",
+        // controller: 'PlaylistsCtrl'
+      }
+    }
   })
 
   // if none of the above states are matched, use this as the fallback

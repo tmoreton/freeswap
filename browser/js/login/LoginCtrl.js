@@ -29,6 +29,11 @@ app.controller('MainCtrl', function($scope, $ionicModal, $timeout, $state) {
     $state.go("signup")
   };
 
+  //  $scope.showPost = function() {
+  //   console.log("this is working!!!")
+  //   $state.go("post")
+  // };
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
