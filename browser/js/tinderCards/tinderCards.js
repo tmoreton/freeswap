@@ -1,12 +1,13 @@
-
-$stateProvider.state('app.swap', {
+app.config(function($stateProvider) {
+  $stateProvider.state('app.swap', {
     url: "/swap",
     views: {
       'menuContent': {
         templateUrl: "js/tinderCards/tinderCards.html",
         // controller: 'PlaylistsCtrl'
+      }
     }
-  }
+  })
 })
 
 app.directive('noScroll', function($document) {

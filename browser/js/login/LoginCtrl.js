@@ -1,4 +1,4 @@
-app.controller('mainCtrl', function($scope, $ionicModal, $timeout, $state) {
+app.controller('MainCtrl', function($scope, $ionicModal, $timeout, $state) {
   // Form data for the login modal
   $scope.loginData = {};
 
