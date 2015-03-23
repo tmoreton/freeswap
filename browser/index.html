@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title>FreeSwap</title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -32,6 +32,14 @@
     <script src="js/chat/ChatCtrl.js"></script>
     <script src="js/common/directives/menu/menu.js"></script>
     <script src="js/common/directives/front-page/front-page.js"></script>
+    <script src="js/common/factories/ChatsFactory.js"></script>
+    <script src="js/common/factories/RoomsFactory.js"></script>
+    <script src="js/common/factories/AddUserFactory.js"></script>
+
+    <!-- firebase & angularfire libraries -->
+    <script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
   </head>
 
   <body ng-app="myApp" ng-controller="MainCtrl" no-scroll>
