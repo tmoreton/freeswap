@@ -20,7 +20,9 @@ var schema = new mongoose.Schema({
     },
     facebook: {
         id: String
-    }
+    },
+    // Is there a better way to do this?
+    dislikes: [{mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
