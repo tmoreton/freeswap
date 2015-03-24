@@ -9,7 +9,7 @@ var firebaseUrl = "https://freeswap.firebaseio.com";
 
 var app = angular.module('myApp', ['ionic', 'ionic.contrib.ui.tinderCards', 'firebase'])
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, $state, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +19,13 @@ app.run(function($ionicPlatform) {
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+  })
+
+  $rootScope.$on('$stateChangeStart', function(event, toState) {
+    if (!$rootScope.isAuthenticated) {
+        event.preventDefault();
+        $state.go('front-page');
     }
   })
 })
@@ -32,7 +39,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/swap');
+  $urlRouterProvider.otherwise('/app/swap');
 });
 
 // FSG Generate - FSA Pre-built
