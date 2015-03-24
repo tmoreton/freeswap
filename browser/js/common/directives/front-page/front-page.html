@@ -7,7 +7,7 @@
       <div class="list">
 
         <label class="item item-input">
-          <span class="input-label">Username</span>
+          <span class="input-label">Email</span>
           <input type="text" ng-model="user.email">
         </label>
 
@@ -24,6 +24,25 @@
         <button ng-click="loginFacebook()">Facebook Login</button>
       </div>
     </form>
-    <button class="button button-negative" type="submit" ng-click="showSignup()">Sign Up</button>
+
+    <h1>Sign Up</h1>
+
+    <form show-validation novalidate>
+      <label class="item item-input">
+        <span class="input-label">Username<span>
+        <input type="text" ng-model="newUser.username" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Email<span>
+        <input type="text" ng-model="newUser.email" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password<span>
+        <input type="text" ng-model="newUser.password" required>
+      </label>
+      <label class="item">
+        <button class="button button-block button-positive" ng-click="signUp(newUser)">Sign Up</button>
+      </label>
+    </form>
   </ion-content>
 </ion-view>
