@@ -8,6 +8,7 @@ app.config(function($stateProvider) {
       }
     }
   })
+
 })
 
 app.directive('noScroll', function($document) {
