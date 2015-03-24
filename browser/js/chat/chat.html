@@ -4,44 +4,25 @@
       </ion-header-bar>
 <br>
 <br>
-<!--     <ion-content>
-        <ion-list ng-show="roomName">
-            <ion-item class="item item-input-inset">
-                <label class="item-input-wrapper">
-                    <input type="text" ng-model="IM.textMessage" placeholder="Type in your message...">
-                </label>
-                <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
-                    Send
-                </button>
-            </ion-item>
-            <ion-item ng-hide="chats" class="textCenter">
-                <i class="icon ion-loading-c"></i> Loading Chats
-            </ion-item>
-            <ion-item ng-if="chats.length == 0" class="textCenter">
-                <h4>No messages in this room. Send message to start.</h4>
-            </ion-item>
-            <ion-item class="" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
-                <h4>{{chat.from}} :</h4>
-                <span am-time-ago="chat.createdAt" class="item-note">
-                </span>
-                <p>{{chat.message}}</p>
-                <ion-option-button class="button-assertive" ng-click="remove(chat)">
-                    Delete
-                </ion-option-button>
-            </ion-item>
-        </ion-list>
-        <ion-list ng-hide="roomName">
-            <ion-item class="textCenter">
-                <h4>Please select a room to chat first.</h4>
-            </ion-item>
-        </ion-list>
+    <ul class="chatbox">
+        <div class="chat-bubble left">
+            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
+        </div>
+<!--         <div class="chat-bubble right">
+            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
+        </div> -->
 
-    </ion-content> -->
+    </ul>
 
-<div class="bar bar-footer">
-    <input type="text" placeholder="Enter Message">
-    <button class="button">   Send   </button>
-</div>
-
+    <div class="bar bar-footer">
+        <div class="bar bar-header item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" ng-model="message" placeholder="Enter Message">
+          </label>
+          <button class="button button-clear" type="submit" ng-click="addMessage()">
+            Send
+          </button>
+        </div>
+    </div>
 </ion-view>
 

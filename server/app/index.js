@@ -4,7 +4,6 @@ var express = require('express');
 var app = express();
 var Firebase = require("firebase");
 
-var firebaseUrl = new Firebase("https://freeswap.firebaseio.com");
 
 module.exports = app;
 

@@ -11,31 +11,24 @@ app.config(function($stateProvider) {
 });
 
 
-app.controller('ChatCtrl', function($scope, Chats) {
-  console.log("Chat Controller initialized");
+app.controller('ChatCtrl', function($scope, chatFactory) {
 
-  $scope.IM = {
-      textMessage: ""
-  };
+    $scope.user = "Guest"+Math.round(Math.random() *100);
+    // $scope.room = Math.round(Math.random() *10000000);
 
-  Chats.selectRoom($state.params.roomId);
+    // we add chatMessages array to the scope to be used in our ng-repeat
+    $scope.messages = chatFactory;
 
-  var roomName = Chats.getSelectedRoomName();
+    // a method to create new messages; called by ng-submit
+    $scope.addMessage = function() {
+      // calling $add on a synchronized array is like Array.push(),
+      // except that it saves the changes to Firebase!
+      $scope.messages.$add({
+        from: $scope.user,
+        content: $scope.message
+      });
 
-  // Fetching Chat Records only if a Room is Selected
-  if (roomName) {
-      $scope.roomName = " - " + roomName;
-      $scope.chats = Chats.all();
-  }
-
-  $scope.sendMessage = function (msg) {
-      console.log(msg);
-      Chats.send($scope.displayName, msg);
-      $scope.IM.textMessage = "";
-  }
-
-  $scope.remove = function (chat) {
-      Chats.remove(chat);
-  }
-
+      // reset the message input
+      $scope.message = "";
+    };
 });
