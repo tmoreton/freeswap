@@ -22,7 +22,7 @@ var schema = new mongoose.Schema({
         id: String
     },
     // Is there a better way to do this?
-    dislikes: [{mongoose.Schema.Types.ObjectId, ref: 'Product'}]
+    dislikes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
