@@ -7,7 +7,7 @@ var schema = new mongoose.Schema({
         type: String
     },
     photo: {
-        data: Buffer, // should come back
+        data: Buffer, // maybe we can upload to server and grab imageUrl
         contentType: String
     },
     description: {
@@ -15,10 +15,14 @@ var schema = new mongoose.Schema({
     },
     expiration: {
         type: Date,
-        default: new Date()
+        default: new Date() // if older than 30 days, delete from db
     },
     location: {
         type: String
+    },
+    sellerId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User"
     }
 });
 

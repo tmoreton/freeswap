@@ -2,6 +2,7 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
+// route: /api/routes
 router.route('/')
 .post(function(req,res,next) {
 	console.log('Creating new User', req.body);

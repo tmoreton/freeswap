@@ -9,11 +9,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 app.controller('FrontPageCtrl', function($scope, AuthService, Session, AUTH_EVENTS, $rootScope, $window, $location, $http, $state) {
+
   $scope.signUp = function(newUser) {
 
-  	console.log($rootScope.isAuthenticated);
+    console.log('User authenticated?', $rootScope.isAuthenticated);
 
-    console.log(newUser);
     $http.post('api/users', newUser).then(function(data) {
       AuthService.login(newUser).then(function() {
         $rootScope.isAuthenticated = AuthService.isAuthenticated();
@@ -21,5 +21,15 @@ app.controller('FrontPageCtrl', function($scope, AuthService, Session, AUTH_EVEN
         $state.go('app.swap');
       });
     });
+  }
+
+  $scope.login = function(credentials) {
+    AuthService.login(credentials).then(function(response) {
+      console.log('Logged in user',response);
+      $state.go('app.swap');
+    }).catch(function() {
+    	alert('Try again mhfkr')
+    })
   };
+
 })

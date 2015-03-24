@@ -24,7 +24,7 @@ app.directive('noScroll', function($document) {
   }
 })
 
-app.controller('CardsCtrl', function($scope, TDCardDelegate) {
+app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
   // console.log('CARDS CTRL');
   var cardTypes = [
     { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg' },
