@@ -24,8 +24,15 @@ app.directive('noScroll', function($document) {
   }
 })
 
-app.controller('CardsCtrl', function($scope, TDCardDelegate) {
+app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
   // console.log('CARDS CTRL');
+
+  AuthService.getLoggedInUser().then(
+    function(data) {
+      console.log("Auth service", data);
+      $scope.userData = data;
+  });
+
   var cardTypes = [
     { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg' },
     { image: 'http://2k13.konaworld.com/images/bikes/hires/lanai.jpg' },
@@ -47,10 +54,13 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate) {
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.addCard();
+    $scope.userData.dislikes.push(cardTypes[0]);
+    console.log($scope.userData);
   };
 
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
     $scope.addCard();
   };
+
 })
