@@ -25,7 +25,7 @@ app.directive('noScroll', function($document) {
 })
 
 app.controller('CardsCtrl', function($scope, TDCardDelegate) {
-  console.log('CARDS CTRL');
+  // console.log('CARDS CTRL');
   var cardTypes = [
     { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg' },
     { image: 'http://2k13.konaworld.com/images/bikes/hires/lanai.jpg' },
@@ -46,7 +46,7 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate) {
 })
 
 app.controller('CardCtrl', function($scope, TDCardDelegate) {
-  console.log('single CARD CTRL');
+  // console.log('single CARD CTRL');
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.addCard();
