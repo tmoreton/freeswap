@@ -4,10 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var firebaseUrl = "https://freeswap.firebaseio.com";
 
-
-var app = angular.module('myApp', ['ionic', 'ionic.contrib.ui.tinderCards', 'firebase'])
+var app = angular.module('myApp', ['ionic', 'ionic.contrib.ui.tinderCards', 'firebase']);
 
 app.run(function($ionicPlatform, $state, $rootScope) {
   $ionicPlatform.ready(function() {
@@ -22,12 +20,12 @@ app.run(function($ionicPlatform, $state, $rootScope) {
     }
   })
 
-  $rootScope.$on('$stateChangeStart', function(event, toState) {
-    if (!$rootScope.isAuthenticated) {
-        event.preventDefault();
-        $state.go('front-page');
-    }
-  })
+  // $rootScope.$on('$stateChangeStart', function(event, toState) {
+  //   if (!$rootScope.isAuthenticated) {
+  //       event.preventDefault();
+  //       $state.go('front-page');
+  //   }
+  // })
 })
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -85,7 +83,7 @@ app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q
         return data.user;
     };
 
-  
+
 
     this.getLoggedInUser = function () {
 
