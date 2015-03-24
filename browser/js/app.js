@@ -28,7 +28,9 @@ app.run(function($ionicPlatform, $state, $rootScope) {
   // })
 })
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $urlRouterProvider.otherwise('/');
+
   $stateProvider.state('app', {
     url: "/app",
     abstract: true,
@@ -37,7 +39,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/swap');
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false
+  // });
 });
 
 // FSG Generate - FSA Pre-built

@@ -24,7 +24,7 @@ app.directive('noScroll', function($document) {
   }
 })
 
-app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
+app.controller('CardsCtrl', function($scope, TDCardDelegate) {
   // console.log('CARDS CTRL');
   var cardTypes = [
     { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg' },
@@ -41,18 +41,16 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
   $scope.addCard = function() {
     var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
     newCard.id = Math.random();
-    $scope.cards.push(angular.extend({}, newCard));
-  }
-})
-
-app.controller('CardCtrl', function($scope, TDCardDelegate) {
-  // console.log('single CARD CTRL');
+    // $scope.cards.push(angular.extend({}, newCard));
+  };
+    // console.log('single CARD CTRL');
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.addCard();
   };
+
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
     $scope.addCard();
   };
-});
+})
