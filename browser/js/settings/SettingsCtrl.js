@@ -11,8 +11,12 @@ app.config(function($stateProvider) {
 })
 
 
-app.controller('SettingsCtrl', function($scope) {
+app.controller('SettingsCtrl', function($scope, AuthService, $state) {
 
+	$scope.logout = function() {
+		AuthService.logout().then();
+		$state.go('front-page');
+	};
 
 })
 
