@@ -1,35 +1,47 @@
+<ion-view view-title="Chat Room">
+      <ion-header-bar class="bar-default">
+        <h1 class="title">Chat Room</h1>
+      </ion-header-bar>
+<br>
+<br>
+<!--     <ion-content>
+        <ion-list ng-show="roomName">
+            <ion-item class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" ng-model="IM.textMessage" placeholder="Type in your message...">
+                </label>
+                <button ng-click="sendMessage(IM.textMessage)" class="button button-small button-balanced">
+                    Send
+                </button>
+            </ion-item>
+            <ion-item ng-hide="chats" class="textCenter">
+                <i class="icon ion-loading-c"></i> Loading Chats
+            </ion-item>
+            <ion-item ng-if="chats.length == 0" class="textCenter">
+                <h4>No messages in this room. Send message to start.</h4>
+            </ion-item>
+            <ion-item class="" ng-repeat="chat in chats | orderBy:'createdAt':true" type="item-text-wrap">
+                <h4>{{chat.from}} :</h4>
+                <span am-time-ago="chat.createdAt" class="item-note">
+                </span>
+                <p>{{chat.message}}</p>
+                <ion-option-button class="button-assertive" ng-click="remove(chat)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-list ng-hide="roomName">
+            <ion-item class="textCenter">
+                <h4>Please select a room to chat first.</h4>
+            </ion-item>
+        </ion-list>
 
-<ion-pane class="messaging-view">
-<ion-header-bar class="bar-calm">
-  <h1 class="title">Ioinc Chat</h1>
-</ion-header-bar>
+    </ion-content> -->
 
-<ion-content class="content-stable"
-             on-swipe-left="hideTime = false"
-             on-swipe-right="hideTime = true">
+<div class="bar bar-footer">
+    <input type="text" placeholder="Enter Message">
+    <button class="button">   Send   </button>
+</div>
 
-  <div ng-repeat="message in messages"
-       ng-class="{other: message.userId != myId}"
-       class="messages">
-
-    <div class="message" ng-class="{'slide-right': hideTime, '': !hideTime}">
-      <span>{{ message.text }}</span>
-    </div>
-
-    <div class="time" ng-class="{'slide-right': hideTime, '': !hideTime}">{{message.time}}</div>
-
-
-  </div>
-
-</ion-content>
-
-<ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
-  <label class="item-input-wrapper">
-    <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
-  </label>
-  <button class="button button-clear" ng-click="sendMessage()">
-    Send
-  </button>
-</ion-footer-bar>
-</ion-pane>
+</ion-view>
 
