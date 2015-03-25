@@ -7,7 +7,7 @@ var schema = new mongoose.Schema({
         type: String
     },
     photo: {
-        data: Buffer, // maybe we can upload to server and grab imageUrl
+        data: Buffer, // maybe we can upload to seperate server and grab imageUrl
         contentType: String
     },
     description: {
@@ -23,6 +23,9 @@ var schema = new mongoose.Schema({
     sellerId: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: "User"
+    },
+    swapStatus: {
+        type: Boolean
     }
 });
 

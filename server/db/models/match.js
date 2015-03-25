@@ -11,11 +11,11 @@ var matchSchema = new mongoose.Schema({
     	type: mongoose.Schema.Types.ObjectId, 
     	ref: "User"
     },
-    SellerId: {
+    sellerId: {
     	type: mongoose.Schema.Types.ObjectId, 
     	ref: "Product" // This references the seller Id from product... how do we do this?
     },
-    FirebaseId: {
+    firebaseId: {
     	type: String
     }
 });
