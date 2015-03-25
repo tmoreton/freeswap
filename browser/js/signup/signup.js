@@ -12,8 +12,8 @@ app.config(function ($stateProvider) {
             }
         },
         url: '/signup',
-        controller: 'signupCtrl',
-        templateUrl: 'js/signup/signupTemplate.html'
+        controller: 'SignupCtrl',
+        templateUrl: 'js/signup/signup.html'
     });
 
 });

@@ -3,8 +3,8 @@ app.config(function($stateProvider) {
     url: "/swap",
     views: {
       'menuContent': {
-        templateUrl: "js/tinderCards/tinderCards.html",
-        // controller: 'PlaylistsCtrl'
+        templateUrl: "js/tindercards/tindercards.html",
+        controller: 'CardsCtrl'
       }
     }
   })
