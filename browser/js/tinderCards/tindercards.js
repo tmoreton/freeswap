@@ -54,7 +54,7 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.addCard();
-    $scope.userData.dislikes.push(cardTypes[0]);
+    // $scope.userData.dislikes.push(cardTypes[0]);
     console.log($scope.userData);
   };
 
