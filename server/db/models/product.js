@@ -18,15 +18,14 @@ var schema = new mongoose.Schema({
         default: new Date() // if older than 30 days, delete from db
     },
     location: {
-        type: String
+        type: Array
     },
-    sellerId: {
-        type: mongoose.Schema.Types.ObjectId, 
+    seller: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
     swapped: {
-        type: Boolean,
-        default: false
+        type: String
     }
 });
 
