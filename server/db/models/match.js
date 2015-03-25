@@ -13,7 +13,7 @@ var matchSchema = new mongoose.Schema({
     },
     sellerId: {
     	type: mongoose.Schema.Types.ObjectId, 
-    	ref: "Product" // This references the seller Id from product... how do we do this?
+    	ref: "User"
     },
     firebaseId: {
     	type: String
