@@ -28,6 +28,8 @@ var items;
 // User email is not available 
 
 
+// get RSS feed and update DB with new itemes (every 1 min)
+
 router.get('/rss', function(req, res){
 	url = 'http://newyork.craigslist.org/search/zip?format=rss';
 
@@ -101,8 +103,33 @@ router.get('/rss', function(req, res){
 				} // else 
 			} // end of else 
 		}) // getData function 
-	}, 15000) // end of setInterval function 
+	}, 60000) // end of setInterval function 
 })
+
+
+// product 
+
+router.post('/addproduct', function(req, res, next){
+	var title = req.body.title;
+	var description = req.body.description;
+	var location = req.body.location;
+
+	console.log("title: ", title);
+	console.log("description: ", description);
+
+	mongoose.model('Product').create({
+		title: title,
+		description: description,
+		location: location
+	}, function (err, product){
+		console.log("Product registered", product);
+		res.sendStatus(200);
+	})
+});
+
+
+
+
 
 
 
