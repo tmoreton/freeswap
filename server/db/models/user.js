@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 // var unique = require('mongoose-unique-validator');
 
 
+
+// need method  
+
 var schema = new mongoose.Schema({
     username: {
         type: String,

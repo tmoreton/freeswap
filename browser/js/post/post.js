@@ -15,7 +15,8 @@ app.config(function($stateProvider) {
 app.controller('postCtrl', function ($scope, $cordovaCamera, $ionicLoading, $localstorage) {
 
 
-  // camera
+  // camera -> should be a factory 
+  
   $scope.data = { "ImageURI" :  "Select Image" };
     $scope.takePicture = function() {
     var options = {
