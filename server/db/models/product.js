@@ -19,16 +19,14 @@ var schema = new mongoose.Schema({
         default: new Date() // if older than 30 days, delete from db
     },
     location: {
-        type: String
+        type: Array
     },
-    // store cordinate as number [longitude, legitude]
-    // can use index based on radius 
     seller: {
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    swapStatus: {
-        type: Boolean
+    swapped: {
+        type: String
     }
 });
 

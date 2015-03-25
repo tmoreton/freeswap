@@ -1,11 +1,10 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.post', {
     url: '/post',
-    controller: 'postCtrl',
     views: {
       'menuContent': {
-        templateUrl: "js/post/post.html"
-        // controller: 'PlaylistsCtrl'
+        templateUrl: "js/post/post.html",
+        controller: 'postCtrl'
       }
     }
   });

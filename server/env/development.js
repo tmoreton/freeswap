@@ -1,5 +1,5 @@
 module.exports = {
-  "DATABASE_URI": "mongodb://localhost:27017/free-swap",
+  "DATABASE_URI": "mongodb://heroku_app35223447:dj4tk54k4jr35rk0alrin0sn1v@ds035517.mongolab.com:35517/heroku_app35223447",
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
     "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
