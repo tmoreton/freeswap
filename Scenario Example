@@ -18,8 +18,9 @@ POSTING AN ITEM FOR TRADE
 SWIPING
 	Buyer's Perspective
 		1. Retrieve all product cards
-			- GET to ALL PRODUCTS
-				- Filter all products based on location proximity on front end
+			- GET to ALL PRODUCTS where swapStatus is FALSE
+				- ***GoogleAPI/GEO?: Filter all products based on location proximity on front end
+				-
 
 		2. Accepting a product from seller (buyer swipes right)
 			- POST to MATCH
@@ -29,7 +30,9 @@ SWIPING
 
 		*** 3. Rejecting a product from seller (buy swipes left) *** (NEED A BETTER APPROACH)
 			- PUT to USER
-				- update "dislikes array" 
+				- update "dislikes array"
+
+				** Find a better way to GET all cards that are NOT disliked
 
 
 
@@ -38,38 +41,40 @@ MATCHES / CHATS
 	Seller's Perspective
 		1. Retrieving all product matches for Seller
 			- GET by Seller ID in MATCHES populate product Id and Buyer Id
+			- Retrieve Firebase Id to open chat
 			- Sort chats by Product being sold. (example below)
 
 			Products Giving/Selling
 				Chair
-					1. Susan
+					1. Susan (traded)
 					2. Sue
 				Table
 					1. Allen
 					2. Dave
 
-		2. 
+	Buyer's Perspective
+		1. Retrieving all matches products with different sellers
+			- GET by Buyer ID in MATCHES populate productId and seller Id
 
-		3. Opening respective chatroom between Buyer and Seller
+	General
+		1. Opening respective chatroom between Buyer and Seller
 			- GET MATCH by Buyer ID and Seller ID
 			- Obtain FirechatID from Mongo to be retrieve from Firebase
 			- Open Chat Room
 
-		4. Logging Chat Messages
+		2. Logging Chat Messages
 			- Firebase chat Updates
 
-		5. Buyer and Seller confirm Swap
+		3. Buyer and Seller confirm Swap
 			- PUT to MATCH status
 				- Applies check mark and moved to successful history Swaps
 				- Sends
 
-	Buyer's Perspective
-		1. Retrieving all matches for Buyer
-			- GET by Buyer ID in MATCHES
-
-		2. 
 
 
-What happens when..
-1. Multiple buyers want an item
-2. When item has been successfully traded and there are multiple chats going
+
+What happens when...
+
+- item has been successfully traded and there are multiple chats going
+		-sends message to all other users that item successfully traded, change PRODUCTS status to TRUE
+			-if messages past a certain period, delete messages from database
