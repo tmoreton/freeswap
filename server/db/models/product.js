@@ -10,6 +10,7 @@ var schema = new mongoose.Schema({
         data: Buffer, // maybe we can upload to seperate server and grab imageUrl
         contentType: String
     },
+    // store image s3 ->
     description: {
         type: String
     },
