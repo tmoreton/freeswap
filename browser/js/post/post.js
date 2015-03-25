@@ -12,7 +12,7 @@ app.config(function($stateProvider) {
 
 // removed $cordovaCamera, $localstorage, $ionicLoading from controller 
 
-app.controller('postCtrl', function ($scope, productFactory) {
+app.controller('postCtrl', function ($scope, $state, productFactory) {
 
   $scope.newItem = function(product){
     productFactory.addProduct(product).then(function(data){
