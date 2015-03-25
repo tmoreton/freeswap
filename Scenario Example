@@ -78,3 +78,11 @@ What happens when...
 - item has been successfully traded and there are multiple chats going
 		-sends message to all other users that item successfully traded, change PRODUCTS status to TRUE
 			-if messages past a certain period, delete messages from database
+
+
+
+
+Questions
+1. Better way to store dislikes?
+2. MATCHES: SellerID needs to refer to seller from Products. Should we just populate the products to obtain the seller id from there? 
+3. Uploading photos?

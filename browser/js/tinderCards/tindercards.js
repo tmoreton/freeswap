@@ -3,7 +3,7 @@ app.config(function($stateProvider) {
     url: "/swap",
     views: {
       'menuContent': {
-        templateUrl: "js/tindercards/tindercards.html",
+        templateUrl: "js/tinderCards/tindercards.html",
         controller: 'CardsCtrl'
       }
     }
@@ -55,7 +55,7 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.addCard();
-    $scope.userData.dislikes.push(cardTypes[0]);
+    // $scope.userData.dislikes.push(cardTypes[0]);
     console.log($scope.userData);
   };
 

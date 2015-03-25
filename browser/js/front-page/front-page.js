@@ -28,7 +28,7 @@ app.controller('FrontPageCtrl', function($scope, AuthService, Session, AUTH_EVEN
       console.log('Logged in user',response);
       $state.go('app.swap');
     }).catch(function() {
-    	alert('Try again mhfkr')
+    	alert('Try again')
     })
   };
 })

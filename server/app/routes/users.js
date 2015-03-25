@@ -11,6 +11,11 @@ router.route('/')
 		console.log("New User Created", user)
 		res.sendStatus(200);
 	})
-});
+})
+
+// router.route('/:productId')
+// .put(function(req,res,next) {
+// 	User.find
+// })
 
 module.exports = router;
