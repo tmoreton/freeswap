@@ -31,5 +31,4 @@ app.controller('FrontPageCtrl', function($scope, AuthService, Session, AUTH_EVEN
     	alert('Try again mhfkr')
     })
   };
-
 })

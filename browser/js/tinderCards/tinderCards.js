@@ -50,6 +50,7 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
     newCard.id = Math.random();
     // $scope.cards.push(angular.extend({}, newCard));
   };
+  
     // console.log('single CARD CTRL');
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
