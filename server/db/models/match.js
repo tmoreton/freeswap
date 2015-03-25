@@ -3,19 +3,19 @@ var mongoose = require('mongoose');
 // var unique = require('mongoose-unique-validator');
 
 var matchSchema = new mongoose.Schema({
-    productId: {
-    	type: mongoose.Schema.Types.ObjectId, 
+    product: {
+    	type: mongoose.Schema.Types.ObjectId,
     	ref: "Product"
     },
-    buyerId: {
-    	type: mongoose.Schema.Types.ObjectId, 
+    buyer: {
+    	type: mongoose.Schema.Types.ObjectId,
     	ref: "User"
     },
-    sellerId: {
-    	type: mongoose.Schema.Types.ObjectId, 
+    seller: {
+    	type: mongoose.Schema.Types.ObjectId,
     	ref: "User"
     },
-    firebaseId: {
+    firebase: {
     	type: String
     }
 });

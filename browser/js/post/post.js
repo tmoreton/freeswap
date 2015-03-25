@@ -1,11 +1,10 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.post', {
     url: '/post',
-    controller: 'postCtrl',
     views: {
       'menuContent': {
-        templateUrl: "js/post/post.html"
-        // controller: 'PlaylistsCtrl'
+        templateUrl: "js/post/post.html",
+        controller: 'postCtrl'
       }
     }
   });
@@ -15,7 +14,8 @@ app.config(function($stateProvider) {
 app.controller('postCtrl', function ($scope, $cordovaCamera, $ionicLoading, $localstorage) {
 
 
-  // camera
+  // camera -> should be a factory 
+  
   $scope.data = { "ImageURI" :  "Select Image" };
     $scope.takePicture = function() {
     var options = {
