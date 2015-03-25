@@ -1,0 +1,75 @@
+Scenario Example
+
+POSTING AN ITEM FOR TRADE
+	Seller's Perspective
+		1. Uploading an item
+			- POST to PRODUCT
+				-	photoUrl, photo, description, expiration date, location, sellerId
+
+		2. Deleting an Item
+			- DELETE to PRODUCT
+
+		3. Updating an Item
+			- PUT to PRODUCT
+
+
+
+
+SWIPING
+	Buyer's Perspective
+		1. Retrieve all product cards
+			- GET to ALL PRODUCTS
+				- Filter all products based on location proximity on front end
+
+		2. Accepting a product from seller (buyer swipes right)
+			- POST to MATCH
+				- Product's Id from PRODUCT
+				- Buyer's Id from Session's User info
+				- Seller's Id from PRODUCT's Seller Id field
+
+		*** 3. Rejecting a product from seller (buy swipes left) *** (NEED A BETTER APPROACH)
+			- PUT to USER
+				- update "dislikes array" 
+
+
+
+
+MATCHES / CHATS
+	Seller's Perspective
+		1. Retrieving all product matches for Seller
+			- GET by Seller ID in MATCHES populate product Id and Buyer Id
+			- Sort chats by Product being sold. (example below)
+
+			Products Giving/Selling
+				Chair
+					1. Susan
+					2. Sue
+				Table
+					1. Allen
+					2. Dave
+
+		2. 
+
+		3. Opening respective chatroom between Buyer and Seller
+			- GET MATCH by Buyer ID and Seller ID
+			- Obtain FirechatID from Mongo to be retrieve from Firebase
+			- Open Chat Room
+
+		4. Logging Chat Messages
+			- Firebase chat Updates
+
+		5. Buyer and Seller confirm Swap
+			- PUT to MATCH status
+				- Applies check mark and moved to successful history Swaps
+				- Sends
+
+	Buyer's Perspective
+		1. Retrieving all matches for Buyer
+			- GET by Buyer ID in MATCHES
+
+		2. 
+
+
+What happens when..
+1. Multiple buyers want an item
+2. When item has been successfully traded and there are multiple chats going
