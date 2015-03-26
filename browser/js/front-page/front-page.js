@@ -8,27 +8,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 });
 
-app.controller('FrontPageCtrl', function($scope, AuthService, Session, AUTH_EVENTS, $rootScope, $window, $location, $http, $state) {
+app.controller('FrontPageCtrl', function($scope, $window, $location, $state, user) {
 
   $scope.signUp = function(newUser) {
-
-    console.log('User authenticated?', $rootScope.isAuthenticated);
-
-    $http.post('api/users', newUser).then(function(data) {
-      AuthService.login(newUser).then(function() {
-        $rootScope.isAuthenticated = AuthService.isAuthenticated();
-        console.log($rootScope.isAuthenticated);
-        $state.go('app.swap');
-      });
+    user.createUser(newUser).then(function() {
+      $state.go('app.swap');
     });
   }
 
+  // Login not working... get this fixed
   $scope.login = function(credentials) {
-    AuthService.login(credentials).then(function(response) {
-      console.log('Logged in user',response);
-      $state.go('app.swap');
-    }).catch(function() {
-    	alert('Try again')
+    user.login(credentials).then(function(user) {
+      console.log('Logged in user',user);
+      // $state.go('app.swap'); // Make this route only work if login is validated...
     })
   };
 })
