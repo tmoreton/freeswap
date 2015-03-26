@@ -5,7 +5,7 @@ var chalk = require('chalk');
 var util = require('util');
 
 var rootPath = path.join(__dirname, '../../../');
-var indexPath = path.join(rootPath, './browser/index.html');
+var indexPath = path.join(rootPath, './www/index.html');
 var env = require(path.join(rootPath, './server/env'));
 
 var logMiddleware = function (req, res, next) {
