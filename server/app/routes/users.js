@@ -2,7 +2,8 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-// route: /api/users
+// users route: /api/users
+
 router.route('/')
 .post(function(req,res,next) {
 	console.log('Creating new User', req.body);
@@ -13,12 +14,15 @@ router.route('/')
 	})
 })
 
-router.route('/:userId')
-.put(function(req,res,next) {
-	console.log(req.body);
-	console.log(req.params.userId);
-	console.log('userId', req.params.userId);
-	res.sendStatus(200);
+// Left Swipe - Dislike
+router.put('/:userId', function(req,res,next) {
+	console.log('productId',req.body);
+	console.log('UserId',req.params.userId);
+	User.
+		findByIdAndUpdate(req.params.userId, { $push: { dislikes: req.body.productId } }, function(err, user) {
+			console.log(user);
+			res.json(user);
+		})
 })
 
 module.exports = router;

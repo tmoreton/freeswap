@@ -4,7 +4,6 @@ var express = require('express');
 var app = express();
 var Firebase = require("firebase");
 
-
 module.exports = app;
 
 require('./configure')(app);
