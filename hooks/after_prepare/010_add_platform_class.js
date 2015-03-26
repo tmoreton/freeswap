@@ -13,6 +13,11 @@ var path = require('path');
 
 var rootdir = process.argv[2];
 
+var config = {
+    oneSvc: "http://www.freeswap.herokuapp.com/#/"
+    // anotherSvc: "http://www.example.com/ws/YourService.svc/YourService"
+};
+
 function addPlatformBodyTag(indexPath, platform) {
   // add the platform class to the body tag
   try {

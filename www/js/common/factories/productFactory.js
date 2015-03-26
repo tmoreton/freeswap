@@ -9,7 +9,7 @@ app.factory('productFactory', function($http){
 		},
 
 		addProduct: function (item){
-			return $http.post('/api/products/addproduct', item).then(function(response){
+			return $http.post('api/products/addproduct', item).then(function(response){
 				return response.data;
 			});
 		}

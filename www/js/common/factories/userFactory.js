@@ -6,7 +6,7 @@ app.factory('user', function(AuthService, $http) {
 			});
 		},
 		createUser: function(newUser) {
-			return $http.post('api/users', newUser).then(function(data) {
+			return $http.post('/api/users', newUser).then(function(data) {
 	      return AuthService.login(newUser).then()
 	    });
 		},
