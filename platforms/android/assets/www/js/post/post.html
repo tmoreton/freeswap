@@ -1,0 +1,78 @@
+<ion-view title="PHOTO">
+
+
+  <ion-header-bar class="bar-default">
+    <h1 class="title">Post</h1>
+  </ion-header-bar>
+
+  <ion-nav-buttons side="left" >
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+<!--   <ion-nav-buttons side="right" >
+    <button menu-toggle="right" class="button button-icon icon ion-chatboxes"></button>
+  </ion-nav-buttons> -->
+
+
+  <ion-content class="has-header has-bottom" padding="true">
+
+   <!--  <div class="button-bar"> <a class="button" ng-click="takePicture();">Take photo</a> <a class="button" ng-click="selectPicture()">Choice photo</a> <a class="button" ng-click="viewPictures();">View loaded</a> </div>
+
+    <div ng-show="picData" class="item item-image">When pics loaded click to upload!<img id="myImage" class="item" ng-src="{{picData}}" ng-click="uploadPicture()" style="height:200px;"/></div>
+
+    <div class="home-sq" ng-show=photos><p><i class="icon ion-alert-circled" style="color:#F60"></i> Click to set photo like avatar, or lon click to delete!<p>
+
+      <div ng-repeat="photo in photos track by $index" ng-click="setPhoto($index, photo.name, profilo.user_id)" on-hold="delPhoto($index, photo.name)" style="background-image:url({{photo.file}});background-size:120% auto"> </div>
+
+    </div>
+ -->
+    <form show-validation novalidate>
+      <label class="item item-input">
+        <span class="input-label">title<span>
+        <input type="text" ng-model="product.title" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">description<span>
+        <input type="text" ng-model="product.description" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">location<span>
+        <input type="text" ng-model="product.location" required>
+      </label>
+      <label class="item">
+        <button class="button button-block button-positive" ng-click="newItem(product)">submit</button>
+      </label>
+    </form>
+
+  </ion-content>
+</ion-view>
+
+<!-- <ion-view view-title="Post" >
+
+      <ion-header-bar class="bar-default">
+        <h1 class="title">Post</h1>
+      </ion-header-bar>
+
+      <ion-content>
+        <form>
+          <div class="post">
+
+            <label class="item item-input">
+              <span class="input-label"></span>
+              <input type="text" ng-model="user.email">
+            </label>
+
+
+            <label class="item item-input">
+              <span class="input-label">Password</span>
+              <input type="password" ng-model="user.password">
+            </label>
+
+            <label class ="item">
+              <button class="button button-block button-positive" type="submit" ng-click="takePic()">Take a Picture</button>
+            </lable>
+          </div>
+        </form>
+      </ion-content>
+
+</ion-view>
+ -->

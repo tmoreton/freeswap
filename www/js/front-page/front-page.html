@@ -1,0 +1,48 @@
+<ion-view>
+  <ion-header-bar>
+    <h1 class="title">Sign-In</h1>
+  </ion-header-bar>
+  <ion-content>
+    <form>
+      <div class="list">
+
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="user.username">
+        </label>
+
+
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="user.password">
+        </label>
+
+
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="login(user)">Log in</button>
+        </label>
+        <button ng-click="loginFacebook()">Facebook Login</button>
+      </div>
+    </form>
+
+    <h1>Sign Up</h1>
+
+    <form show-validation novalidate>
+      <label class="item item-input">
+        <span class="input-label">Username<span>
+        <input type="text" ng-model="newUser.username" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Email<span>
+        <input type="text" ng-model="newUser.email" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password<span>
+        <input type="text" ng-model="newUser.password" required>
+      </label>
+      <label class="item">
+        <button class="button button-block button-positive" ng-click="signUp(newUser)">Sign Up</button>
+      </label>
+    </form>
+  </ion-content>
+</ion-view>
