@@ -2,7 +2,7 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-// route: /api/routes
+// route: /api/users
 router.route('/')
 .post(function(req,res,next) {
 	console.log('Creating new User', req.body);
@@ -13,9 +13,12 @@ router.route('/')
 	})
 })
 
-// router.route('/:productId')
-// .put(function(req,res,next) {
-// 	User.find
-// })
+router.route('/:userId')
+.put(function(req,res,next) {
+	console.log(req.body);
+	console.log(req.params.userId);
+	console.log('userId', req.params.userId);
+	res.sendStatus(200);
+})
 
 module.exports = router;

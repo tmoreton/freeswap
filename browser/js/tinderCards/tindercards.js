@@ -1,37 +1,26 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.swap', {
     url: "/swap",
+    controller: 'CardsCtrl',
     views: {
       'menuContent': {
-        templateUrl: "js/tinderCards/tindercards.html",
-        controller: 'CardsCtrl'
+        templateUrl: "js/tinderCards/tindercards.html"
       }
     }
+    // resolve: {
+    //   user: function(user) {
+
+    //   }
+    // }
   })
-
 })
 
-app.directive('noScroll', function($document) {
+app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe, user) {
 
-  return {
-    restrict: 'A',
-    link: function($scope, $element, $attr) {
-
-      $document.on('touchmove', function(e) {
-        e.preventDefault();
-      });
-    }
-  }
-})
-
-app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
-  // console.log('CARDS CTRL');
-
-  AuthService.getLoggedInUser().then(
-    function(data) {
-      console.log("Auth service", data);
-      $scope.userData = data;
-  });
+  user.info().then(function(user) {
+    $scope.userInfo = user;
+    console.log(user);
+  })
 
   var cardTypes = [
     { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg' },
@@ -47,20 +36,24 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService) {
 
   $scope.addCard = function() {
     var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-    newCard.id = Math.random();
+    newCard.id = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
+    newCard.sellerId = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
+    return newCard;
     // $scope.cards.push(angular.extend({}, newCard));
   };
     // console.log('single CARD CTRL');
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
-    $scope.addCard();
-    // $scope.userData.dislikes.push(cardTypes[0]);
-    console.log($scope.userData);
+    $scope.currentCard = $scope.addCard();
+    swipe.dislike($scope.currentCard.id,$scope.userInfo._id)
   };
 
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
-    $scope.addCard();
+    $scope.currentCard = $scope.addCard();
+    swipe.like($scope.currentCard.id, $scope.currentCard.sellerId, $scope.userInfo._id).then(function(response) {
+      console.log(response);
+    })
   };
 
 })
