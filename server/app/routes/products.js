@@ -33,7 +33,7 @@ var items;
 router.get('/rss', function(req, res){
 	url = 'http://newyork.craigslist.org/search/zip?format=rss';
 
-	function getData(){
+	function getData(next){
 		var object = [];
 		var freeItems = [];
 
@@ -47,13 +47,20 @@ router.get('/rss', function(req, res){
 			parser.parseString(body, function(err, result){
 		
 				items = result['rdf:RDF'].item;
-				res.json(items)
+				// res.json(items)
 				
 				items.forEach(function(item){
-					title.push(item.title);
-					description.push(item.description);
-					date.push(item['dc:date']);
-					// photoUrls.push(item['enc:enclosure']['$'].resource)
+					if (item['enc:enclosure'] !== undefined){
+						title.push(item.title[0]);
+						description.push(item.description[0]);
+						date.push(item['dc:date']);
+						photoUrls.push(item['enc:enclosure'][0]['$'].resource);
+					} else {
+						title.push(item.title[0]);
+						description.push(item.description[0]);
+						date.push(item['dc:date']);	
+						photoUrls.push(null);
+					}
 				})
 
 				freeItems.push(title);
@@ -61,25 +68,47 @@ router.get('/rss', function(req, res){
 				freeItems.push(date);
 				// freeItems.push(photoUrls);
 			})
+
 			for (var i = 0; i < freeItems.length; i++){
-				var freeItemObj = {
-					title: title[i],
-					description: description[i],
-					date: date[i],
-					location: regExp.exec(title[i])[1]
+				if (regExp.exec(title[i]) !== null){
+					var freeItemObj = {
+						title: title[i],
+						description: description[i],
+						date: date[i][0],
+						location: regExp.exec(title[i])[1],
+						photoUrls: photoUrls[i]
+					}
+				} else {
+					var freeItemObj = {
+						title: title[i],
+						description: description[i],
+						date: date[i][0],
+						location: "not set",
+						photoUrls: photoUrls[i]
+					}
 				}
 				object.push(freeItemObj);
-			}
-			res.json(object);
+			} // end of for 
+
+			next(null, object);
 		}) // end of request 
 	}; // end of getData function 
+
+	getData(function(err, object){
+		if(err){
+			console.log(err)
+		} else {
+			console.log("data: ", object);
+			res.json(object);
+		}
+	})
 
 	var dataInterval = setInterval(function(){
 		getData(function(err, newData){
 			if(err){
 				console.log(err)
 			} else {
-				console.log("-------------------new Data", Date.now());
+				console.log("-------------------new Data", newData);
 
 				if (newData.length < 1){
 					console.log("there is no change")
@@ -87,14 +116,16 @@ router.get('/rss', function(req, res){
 					for (var i = 0; i < newData.length; i++){
 						mongoose.model('Product').find({title: newData[i].title}, function(err, product){
 							if (product !== null){
-								console.log('product already saved in DB')
+								console.log('product already in DB')
 							} else {
 								mongoose.model('Product').create({
-									title: title,
-									description: description,
-									location: location,
-									date: date
+									title: newData[i].title,
+									description: newData[i].description,
+									date: newData[i].date,
+									location: newData[i].location,
+									photoUrls: newData[i].photoUrls
 								}, function (err, product){
+									console.log("saved in DB")
 									res.json(product);
 								});
 							} // end of nested else 
@@ -103,12 +134,12 @@ router.get('/rss', function(req, res){
 				} // else 
 			} // end of else 
 		}) // getData function 
-	}, 60000) // end of setInterval function 
+	}, 600000) // end of setInterval function 
 })
 
 
-// product 
 
+// product 
 router.post('/addproduct', function(req, res, next){
 	var title = req.body.title;
 	var description = req.body.description;
