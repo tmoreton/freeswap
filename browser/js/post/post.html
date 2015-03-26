@@ -15,7 +15,7 @@
 
   <ion-content class="has-header has-bottom" padding="true">
 
-    <div class="button-bar"> <a class="button" ng-click="takePicture();">Take photo</a> <a class="button" ng-click="selectPicture()">Choice photo</a> <a class="button" ng-click="viewPictures();">View loaded</a> </div>
+   <!--  <div class="button-bar"> <a class="button" ng-click="takePicture();">Take photo</a> <a class="button" ng-click="selectPicture()">Choice photo</a> <a class="button" ng-click="viewPictures();">View loaded</a> </div>
 
     <div ng-show="picData" class="item item-image">When pics loaded click to upload!<img id="myImage" class="item" ng-src="{{picData}}" ng-click="uploadPicture()" style="height:200px;"/></div>
 
@@ -24,6 +24,26 @@
       <div ng-repeat="photo in photos track by $index" ng-click="setPhoto($index, photo.name, profilo.user_id)" on-hold="delPhoto($index, photo.name)" style="background-image:url({{photo.file}});background-size:120% auto"> </div>
 
     </div>
+ -->
+    <form show-validation novalidate>
+      <label class="item item-input">
+        <span class="input-label">title<span>
+        <input type="text" ng-model="product.title" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">description<span>
+        <input type="text" ng-model="product.description" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">location<span>
+        <input type="text" ng-model="product.location" required>
+      </label>
+      <label class="item">
+        <button class="button button-block button-positive" ng-click="newItem(product)">submit</button>
+      </label>
+    </form>
+
+
 
   </ion-content>
 </ion-view>
