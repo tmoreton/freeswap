@@ -15,7 +15,7 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe, user) {
+app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe, user, productFactory) {
 
   user.info().then(function(user) {
     $scope.userInfo = user;
@@ -23,10 +23,20 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
   })
 
   var cardTypes = [
-    { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg' },
-    { image: 'http://2k13.konaworld.com/images/bikes/hires/lanai.jpg' },
-    { image: 'http://ccticketnotifier.com/images/tickets.png' },
+    { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg',
+      location: 'New York'},
+    { image: 'http://2k13.konaworld.com/images/bikes/hires/lanai.jpg',
+      location: 'New York' },
+    { image: 'http://ccticketnotifier.com/images/tickets.png',
+      location: 'New York' },
   ];
+
+  // get card from DB 
+
+  productFactory.getData().then(function(data){
+    $scope.cardfromDb = data;
+  })
+
 
   $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
@@ -42,6 +52,8 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
     // $scope.cards.push(angular.extend({}, newCard));
   };
   
+
+
     // console.log('single CARD CTRL');
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');

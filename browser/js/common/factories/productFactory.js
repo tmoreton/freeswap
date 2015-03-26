@@ -12,6 +12,12 @@ app.factory('productFactory', function($http){
 			return $http.post('/api/products/addproduct', item).then(function(response){
 				return response.data;
 			});
+		},
+
+		getData: function(){
+			return $http.get('/api/products/getproduct').then(function(response){
+				return response.data;
+			});
 		}
 	}
 })
