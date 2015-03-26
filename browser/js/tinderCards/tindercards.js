@@ -19,7 +19,7 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
 
   user.info().then(function(user) {
     $scope.userInfo = user;
-    console.log(user);
+    console.log('User Information',user);
   })
 
   var cardTypes = [
@@ -46,7 +46,9 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.currentCard = $scope.addCard();
-    swipe.dislike($scope.currentCard.id,$scope.userInfo._id)
+    swipe.dislike($scope.currentCard.id,$scope.userInfo._id).then(function(response) {
+      console.log(response);
+    })
   };
 
   $scope.cardSwipedRight = function(index) {

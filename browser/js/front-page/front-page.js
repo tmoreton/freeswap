@@ -14,6 +14,7 @@ app.controller('FrontPageCtrl', function($scope, AuthService, Session, AUTH_EVEN
 
     console.log('User authenticated?', $rootScope.isAuthenticated);
 
+    // Make a factory for this
     $http.post('api/users', newUser).then(function(data) {
       AuthService.login(newUser).then(function() {
         $rootScope.isAuthenticated = AuthService.isAuthenticated();
@@ -22,7 +23,7 @@ app.controller('FrontPageCtrl', function($scope, AuthService, Session, AUTH_EVEN
       });
     });
   }
-
+  // Make a factory for this
   $scope.login = function(credentials) {
     AuthService.login(credentials).then(function(response) {
       console.log('Logged in user',response);

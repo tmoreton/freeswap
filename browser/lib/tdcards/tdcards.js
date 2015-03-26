@@ -211,7 +211,7 @@
       var width = this.el.offsetWidth;
       var point = window.innerWidth / 2 + this.rotationDirection * (width / 2)
       var distance = Math.abs(point - e.gesture.touches[0].pageX);// - window.innerWidth/2);
-      console.log(distance);
+      // console.log(distance);
 
       this.touchDistance = distance * 10;
     },
@@ -350,7 +350,7 @@
 
         var sortCards = function() {
           existingCards = $element[0].querySelectorAll('td-card');
-          console.log('Existing', existingCards);
+          console.log('Current Cards', existingCards);
 
           for(i = 0; i < existingCards.length; i++) {
             card = existingCards[i];
