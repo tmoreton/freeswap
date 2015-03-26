@@ -19,7 +19,7 @@ var schema = new mongoose.Schema({
         default: new Date() // if older than 30 days, delete from db
     },
     location: {
-        type: Array
+        type: [Number,Number]
     },
     seller: {
         type: mongoose.Schema.Types.ObjectId,
@@ -30,6 +30,7 @@ var schema = new mongoose.Schema({
     }
 });
 
+//Add Schema Method for calls on "find all given products", "find all liked history" etc.
 
 var Product = mongoose.model('Product', schema);
 module.exports = {Product: Product};

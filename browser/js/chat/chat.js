@@ -11,13 +11,13 @@ app.config(function($stateProvider) {
 });
 
 
-app.controller('ChatCtrl', function($scope, chatFactory) {
+app.controller('ChatCtrl', function($scope, chat) {
 
     $scope.user = "Guest"+Math.round(Math.random() *100);
     // $scope.room = Math.round(Math.random() *10000000);
 
     // we add chatMessages array to the scope to be used in our ng-repeat
-    $scope.messages = chatFactory;
+    $scope.messages = chat;
 
     // a method to create new messages; called by ng-submit
     $scope.addMessage = function() {
