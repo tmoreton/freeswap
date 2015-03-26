@@ -1,0 +1,28 @@
+<ion-view view-title="Chat Room">
+      <ion-header-bar class="bar-default">
+        <h1 class="title">Chat Room</h1>
+      </ion-header-bar>
+<br>
+<br>
+    <ul class="chatbox">
+        <!-- <div class="chat-bubble left"> -->
+            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
+<!--         </div>
+        <div class="chat-bubble right">
+            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
+        </div> -->
+
+    </ul>
+
+    <div class="bar bar-footer">
+        <div class="bar bar-header item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" ng-model="message" placeholder="Enter Message">
+          </label>
+          <button class="button button-clear" type="submit" ng-click="addMessage()">
+            Send
+          </button>
+        </div>
+    </div>
+</ion-view>
+
