@@ -1,4 +1,4 @@
-app.factory('user', function(AuthService, $http) {
+app.factory('user', function(AuthService, $http, platformFactory) {
 	return {
 		info: function() {
 			return AuthService.getLoggedInUser().then(function(user) {
@@ -6,7 +6,7 @@ app.factory('user', function(AuthService, $http) {
 			});
 		},
 		createUser: function(newUser) {
-			return $http.post('api/users', newUser).then(function(data) {
+			return $http.post(platformFactory.platform(), newUser).then(function(data) {
 	      return AuthService.login(newUser).then()
 	    });
 		},
