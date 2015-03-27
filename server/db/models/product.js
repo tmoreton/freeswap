@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 var schema = new mongoose.Schema({
     title: String,
-    photoUrl: {
+    photoUrls: {
         type: String
     },
     photo: {

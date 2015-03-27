@@ -99,6 +99,7 @@ router.get('/rss', function(req, res){
 	getData(function(err, object){
 		if(err){
 			console.log(err)
+			// res.json(object)
 		}
 	})
 
@@ -116,35 +117,9 @@ router.get('/rss', function(req, res){
 				Promise.all(promises).then( function(databaseData) {
 					// res.json(databaseData);
 				}, console.warn)
-			// 	// console.log("-------------------new Data", newData);
-
-			// 	if (newData.length < 1){
-			// 		console.log("there is no change")
-			// 	} else {
-			// 		for (var i = 0; i < newData.length; i++){
-			// 			mongoose.model('Product').find({title: newData[i].title}, function(err, product){
-			// 				console.log("This is the find: ", product.length)
-			// 				if (product.length != 0){
-			// 					console.log('product already in DB')
-			// 				} else {
-			// 					mongoose.model('Product').create({
-			// 						title: newData[i].title,
-			// 						description: newData[i].description,
-			// 						date: newData[i].date,
-			// 						location: newData[i].location,
-			// 						photoUrls: newData[i].photoUrls
-			// 					}, function (err, product){
-			// 						if(err) console.log(err);
-			// 						console.log("saved in DB")
-			// 						res.json(product);
-			// 					});
-			// 				} // end of nested else 
-			// 			})
-			// 		} // for 
-			// 	} // else 
 			} // end of else 
 		}) // getData function 
-	}, 300000) // end of setInterval function 
+	}, 5000) // end of setInterval function 
 })
 
 

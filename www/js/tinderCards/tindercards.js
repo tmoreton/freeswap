@@ -15,20 +15,46 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe, user) {
+app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe, user, productFactory) {
 
   user.info().then(function(user) {
     $scope.userInfo = user;
     console.log('User Information',user);
   })
 
+
+// get data, push it to cardTypes, set it as cards, 
+// in html, call it with {{card.image}} / {{ card.location}} 
+// {{ card.title }} // {{ card.description }}
+  
   var cardTypes = [
-    { image: 'http://www.midsouth.com/files/MAC_computer_sales_service_midsouth.com---4-.jpg' },
+    { image: 'http://images.craigslist.org/00R0R_jAy9qRyxuR6_300x300.jpg' },
     { image: 'http://2k13.konaworld.com/images/bikes/hires/lanai.jpg' },
     { image: 'http://ccticketnotifier.com/images/tickets.png' },
+    { image: 'http://images.craigslist.org/00R0R_jAy9qRyxuR6_300x300.jpg' },
+    { image: 'http://images.craigslist.org/00y0y_aT3GSujAQOX_300x300.jpg' }
   ];
 
-  $scope.cards = Array.prototype.slice.call(cardTypes, 0);
+  // $scope.cards = Array.prototype.slice.call(cardTypes, 0);
+
+  // get Card from DB
+  var photoArr = [];
+  productFactory.getData().then(function(data){
+    $scope.cards = data;
+
+    // data.forEach(function(item){
+    //   photoArr.push(item.photoUrls);
+    // })
+    // $scope.cardUrl = photoArr; 
+    // for (var i = 0; i < photoArr; i++){
+    //   var obj = {
+    //     image: photoArr[i]
+    //   }
+    //   cardTypes.push(obj);
+    // }
+
+  });
+
 
   $scope.cardDestroyed = function(index) {
     $scope.cards.splice(index, 1);
