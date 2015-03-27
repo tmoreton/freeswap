@@ -6,7 +6,8 @@ var _ = require('lodash');
 var schema = new mongoose.Schema({
     title: String,
     photoUrls: {
-        type: String
+        type: String,
+        default: 'http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046'
     },
     photo: {
         data: Buffer, // maybe we can upload to seperate server and grab imageUrl
