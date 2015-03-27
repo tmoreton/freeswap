@@ -1,7 +1,7 @@
 'use strict';
 app.factory('swipe', function ($http) {
     return {
-        dislike: function (productId, userId) { // Left Swipe
+        addToUserLike: function (productId, userId) { // Left Swipe
         		var bodyObj = {
         			productId: productId
         		};
