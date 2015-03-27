@@ -1,4 +1,4 @@
-app.factory('user', function(AuthService, $http) {
+app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $location) {
 	return {
 		info: function() {
 			return AuthService.getLoggedInUser().then(function(user) {
@@ -7,15 +7,31 @@ app.factory('user', function(AuthService, $http) {
 		},
 		createUser: function(newUser) {
 			return $http.post('/api/users', newUser).then(function(data) {
-	      return AuthService.login(newUser).then()
+	      return AuthService.login(newUser).then(function(newUser) {
+	      	console.log(newUser);
+	      	$state.go('app.swap');
+	      })
 	    });
 		},
-		login: function(credentials) { // Fix this... It is not obtaining our users from database
-			return AuthService.login(credentials).then(function(user) {
+		login: function(credentials) {
+			return AuthService.login(credentials).then(
+				function(user) { // Success Handler
+				console.log(user);
 				return user;
-	    }).catch(function() {
-	    	alert('Try again')
+	    }, 
+	    function(err) { // Error Handler
+	    	console.log(err);
+			  var alertPopup = $ionicPopup.alert({
+			    title: 'Access Denied',
+			    template: 'Incorrect username/password. Please try again.'
+			  })
+			  alertPopup.then(function(response) {
+			    console.log('Access Denied')
+			  })
 	    })
+		},
+		loginSocial: function(platform) {
+			$window.location.href = '/auth/' + platform;
 		},
 		logout: function() {
 			return AuthService.logout();
