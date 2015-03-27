@@ -64,6 +64,8 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.currentCard = $scope.addCard();
+
+
     swipe.dislike($scope.currentCard.id,$scope.userInfo._id).then(function(response) {
       console.log(response);
     })
@@ -72,8 +74,16 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
     $scope.currentCard = $scope.addCard();
+
     swipe.like($scope.currentCard.id, $scope.currentCard.sellerId, $scope.userInfo._id).then(function(response) {
       console.log(response);
     })
+
+    // find the way to grap userID from sessionstorage 
+    // productID from product(tinderCard)
+    swipe.addToUserLike(productId, userId).then(function(response){
+      console.log(response);
+    })
+
   };
 })

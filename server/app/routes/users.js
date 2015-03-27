@@ -19,7 +19,7 @@ router.put('/:userId', function(req,res,next) {
 	console.log('productId',req.body);
 	console.log('UserId',req.params.userId);
 	User.
-		findByIdAndUpdate(req.params.userId, { $push: { dislikes: req.body.productId } }, function(err, user) {
+		findByIdAndUpdate(req.params.userId, { $push: { likes: req.body.productId } }, function(err, user) {
 			console.log(user);
 			res.json(user);
 		})
