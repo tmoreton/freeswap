@@ -51,6 +51,9 @@ router.get('/rss', function(req, res){
 				items = result['rdf:RDF'].item;
 				// res.json(items)
 				
+				// when there's no image it returns undefined
+				// in that case, push default img urls directly
+
 				items.forEach(function(item){
 					if (item['enc:enclosure'] !== undefined){
 						title.push(item.title[0]);
@@ -61,7 +64,7 @@ router.get('/rss', function(req, res){
 						title.push(item.title[0]);
 						description.push(item.description[0]);
 						date.push(item['dc:date']);	
-						photoUrls.push(null);
+						photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
 					}
 				})
 

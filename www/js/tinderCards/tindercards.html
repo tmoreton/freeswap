@@ -6,9 +6,12 @@
       </ion-header-bar>
 
       <td-cards>
-    
-  <br><br><br>
+
      <!--  {{ cardUrl }} -->
+   <!--   <br><br><br>
+     {{ cards }} -->
+
+    <!--  took out  class="card-{{$index}}"  -->
         <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
           <div class="image">
             <div class="no-text">NOPE</div>
@@ -22,6 +25,7 @@
 
             <div class="yes-text">LIKE</div>
           </div>
+
         </td-card>
       </td-cards>
     </ion-pane>

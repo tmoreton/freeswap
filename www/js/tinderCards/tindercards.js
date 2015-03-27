@@ -37,22 +37,11 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
 
   // $scope.cards = Array.prototype.slice.call(cardTypes, 0);
 
+
   // get Card from DB
-  var photoArr = [];
+ 
   productFactory.getData().then(function(data){
     $scope.cards = data;
-
-    // data.forEach(function(item){
-    //   photoArr.push(item.photoUrls);
-    // })
-    // $scope.cardUrl = photoArr; 
-    // for (var i = 0; i < photoArr; i++){
-    //   var obj = {
-    //     image: photoArr[i]
-    //   }
-    //   cardTypes.push(obj);
-    // }
-
   });
 
 
@@ -60,6 +49,7 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
     $scope.cards.splice(index, 1);
   };
 
+  // I assume addcCard function doesn't do anything? - Sehwan
   $scope.addCard = function() {
     var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
     newCard.id = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
@@ -69,6 +59,8 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
   };
   
     // console.log('single CARD CTRL');
+
+
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
     $scope.currentCard = $scope.addCard();
@@ -84,5 +76,4 @@ app.controller('CardsCtrl', function($scope, TDCardDelegate, AuthService, swipe,
       console.log(response);
     })
   };
-
 })
