@@ -29,12 +29,9 @@ module.exports = function (app) {
             if (err) return next(err);
 
             if (!user) {
-                //From Joe Generator, disabled because we wanted a custom error
-
-                // var error = new Error('Invalid login credentials');
-                // error.status = 401;
-                // return next(error); 
-                return res.json();
+                var error = new Error('Invalid login credentials');
+                error.status = 401;
+                return next(error); 
             }
 
             // req.logIn will establish our session.

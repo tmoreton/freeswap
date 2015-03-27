@@ -14,21 +14,20 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 	    });
 		},
 		login: function(credentials) {
-			return AuthService.login(credentials).then(function(user) {
-				if (user) {
-					console.log(user);
-					return user;
-				}
-				else {
-					console.log(user);
-				  var alertPopup = $ionicPopup.alert({
-				    title: 'Access Denied',
-				    template: 'Incorrect username/password. Please try again.'
-				  })
-				  alertPopup.then(function(response) {
-				    console.log('Access Denied')
-				  })
-				} 
+			return AuthService.login(credentials).then(
+				function(user) { // Success Handler
+				console.log(user);
+				return user;
+	    }, 
+	    function(err) { // Error Handler
+	    	console.log(err);
+			  var alertPopup = $ionicPopup.alert({
+			    title: 'Access Denied',
+			    template: 'Incorrect username/password. Please try again.'
+			  })
+			  alertPopup.then(function(response) {
+			    console.log('Access Denied')
+			  })
 	    })
 		},
 		loginSocial: function(platform) {
