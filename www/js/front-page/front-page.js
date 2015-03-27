@@ -28,11 +28,9 @@ app.controller('FrontPageCtrl', function($scope, $window, $location, $state, use
     $state.go(page);
   }
 
-  // Login not working... get this fixed
   $scope.login = function(credentials) {
     user.login(credentials).then(function(user) {
       if (user) {
-        console.log('Logged in user',user);
         $scope.user = {};
         $state.go('app.swap');
       }
