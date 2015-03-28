@@ -5,8 +5,14 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 			  return user;
 			});
 		},
+		// history: function() {
+		// 	return $http.get("/api/history", userHistory).then(function(data) {
+	 //      console.log("user history", userHistory)
+	 //      console.log(data)
+	 //    });
+		// },
 		createUser: function(newUser) {
-			return $http.post('/api/users', newUser).then(function(data) {
+			return $http.post("/api/users", newUser).then(function(data) {
 	      return AuthService.login(newUser).then(function(newUser) {
 	      	console.log(newUser);
 	      	$state.go('app.swap');
@@ -18,7 +24,7 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 				function(user) { // Success Handler
 				console.log(user);
 				return user;
-	    }, 
+	    },
 	    function(err) { // Error Handler
 	    	console.log(err);
 			  var alertPopup = $ionicPopup.alert({
