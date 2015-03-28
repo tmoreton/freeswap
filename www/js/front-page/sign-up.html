@@ -1,29 +1,13 @@
-<ion-view>
+<ion-nav-view>
   <ion-header-bar>
-    <h1 class="title">Sign-In</h1>
+    <h1 class="title">Sign-Up</h1>
   </ion-header-bar>
+  <ion-nav-bar class="bar-positive">
+    <ion-nav-back-button class="button-clear">
+        <i class="ion-arrow-left-c"></i> Back
+      </ion-nav-back-button>
+  </ion-nav-bar>
   <ion-content>
-    <form>
-      <div class="list">
-
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="user.username">
-        </label>
-
-
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="user.password">
-        </label>
-
-
-        <label class="item">
-          <button class="button button-block button-positive" ng-click="login(user)">Log in</button>
-        </label>
-        <button ng-click="loginPlatform('facebook')">Facebook Login</button>
-      </div>
-    </form>
 
     <h1>Sign Up</h1>
 
@@ -44,5 +28,7 @@
         <button class="button button-block button-positive" ng-click="signUp(newUser)">Sign Up</button>
       </label>
     </form>
+    <button ng-click="goTo('front-page')">Login</button>
+
   </ion-content>
-</ion-view>
+</ion-nav-view>

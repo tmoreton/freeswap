@@ -8,9 +8,9 @@ var UserModel = mongoose.model('User');
 module.exports = function (app) {
 
     // When passport.authenticate('local') is used, this function will receive
-    // the email and password to run the actual authentication logic.
-    var strategyFn = function (email, password, done) {
-        UserModel.findOne({ email: email }, function (err, user) {
+    // the username and password to run the actual authentication logic.
+    var strategyFn = function (username, password, done) {
+        UserModel.findOne({ username: username }, function (err, user) {
             if (err) return done(err);
             // user.correctPassword is a method from our UserModel schema.
             if (!user || !user.correctPassword(password)) return done(null, false);
@@ -19,7 +19,7 @@ module.exports = function (app) {
         });
     };
 
-    passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, strategyFn));
+    passport.use(new LocalStrategy({ usernameField: 'username', passwordField: 'password' }, strategyFn));
 
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
@@ -31,13 +31,13 @@ module.exports = function (app) {
             if (!user) {
                 var error = new Error('Invalid login credentials');
                 error.status = 401;
-                return next(error);
+                return next(error); 
             }
 
             // req.logIn will establish our session.
             req.logIn(user, function (err) {
                 if (err) return next(err);
-                // We respond with a reponse object that has user with _id and email.
+                // We respond with a reponse object that has user with _id and username.
                 res.status(200).send({ user: _.omit(user.toJSON(), ['password', 'salt']) });
             });
 

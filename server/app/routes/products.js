@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
+var Promise = require('bluebird');
 
 
 // install request
@@ -31,6 +32,7 @@ var items;
 // get RSS feed and update DB with new itemes (every 1 min)
 
 router.get('/rss', function(req, res){
+	res.sendStatus(200)
 	url = 'http://newyork.craigslist.org/search/zip?format=rss';
 
 	function getData(next){
@@ -49,6 +51,9 @@ router.get('/rss', function(req, res){
 				items = result['rdf:RDF'].item;
 				// res.json(items)
 				
+				// when there's no image it returns undefined
+				// in that case, push default img urls directly
+
 				items.forEach(function(item){
 					if (item['enc:enclosure'] !== undefined){
 						title.push(item.title[0]);
@@ -59,7 +64,7 @@ router.get('/rss', function(req, res){
 						title.push(item.title[0]);
 						description.push(item.description[0]);
 						date.push(item['dc:date']);	
-						photoUrls.push(null);
+						photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
 					}
 				})
 
@@ -97,49 +102,32 @@ router.get('/rss', function(req, res){
 	getData(function(err, object){
 		if(err){
 			console.log(err)
-		} else {
-			console.log("data: ", object);
-			res.json(object);
+			// res.json(object)
 		}
 	})
 
 	var dataInterval = setInterval(function(){
 		getData(function(err, newData){
+
+			console.log("newData -----------------: ", newData);
 			if(err){
 				console.log(err)
 			} else {
-				console.log("-------------------new Data", newData);
+				var promises = newData.map(function(data) {
+					return mongoose.model('Product').findOrCreate({title: data.title},data)
+				})
 
-				if (newData.length < 1){
-					console.log("there is no change")
-				} else {
-					for (var i = 0; i < newData.length; i++){
-						mongoose.model('Product').find({title: newData[i].title}, function(err, product){
-							if (product !== null){
-								console.log('product already in DB')
-							} else {
-								mongoose.model('Product').create({
-									title: newData[i].title,
-									description: newData[i].description,
-									date: newData[i].date,
-									location: newData[i].location,
-									photoUrls: newData[i].photoUrls
-								}, function (err, product){
-									console.log("saved in DB")
-									res.json(product);
-								});
-							} // end of nested else 
-						})
-					} // for 
-				} // else 
+				Promise.all(promises).then( function(databaseData) {
+					// res.json(databaseData);
+				}, console.warn)
 			} // end of else 
 		}) // getData function 
-	}, 600000) // end of setInterval function 
+	}, 5000) // end of setInterval function 
 })
 
 
 
-// product 
+// add product 
 router.post('/addproduct', function(req, res, next){
 	var title = req.body.title;
 	var description = req.body.description;
@@ -153,14 +141,19 @@ router.post('/addproduct', function(req, res, next){
 		description: description,
 		location: location
 	}, function (err, product){
+		if(err) console.log(err);
 		console.log("Product registered", product);
 		res.sendStatus(200);
 	})
 });
 
-
-
-
+// get product
+router.get('/getproduct', function(req, res, next){
+	mongoose.model('Product').find({}, function(err, products){
+		if(err) return next(err);
+		res.json(products);
+	});
+});
 
 
 
