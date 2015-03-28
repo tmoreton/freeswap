@@ -3,9 +3,7 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 // var unique = require('mongoose-unique-validator');
 
-
-
-// need method  
+// need method
 
 var schema = new mongoose.Schema({
     username: {
@@ -27,6 +25,11 @@ var schema = new mongoose.Schema({
     // Is there a better way to do this?
     likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
+
+// not sure how to do this?
+schema.methods.findLikes = function findLikes (cb) {
+    return this.model('Product').find({_id:this.likes[0]}, cb);
+};
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
