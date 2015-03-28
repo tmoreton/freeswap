@@ -6,7 +6,7 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 			});
 		},
 		createUser: function(newUser) {
-			return $http.post('/api/users', newUser).then(function(data) {
+			return $http.post("https://freeswap.herokuapp.com/#/api/users", newUser).then(function(data) {
 	      return AuthService.login(newUser).then(function(newUser) {
 	      	console.log(newUser);
 	      	$state.go('app.swap');
@@ -18,7 +18,7 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 				function(user) { // Success Handler
 				console.log(user);
 				return user;
-	    }, 
+	    },
 	    function(err) { // Error Handler
 	    	console.log(err);
 			  var alertPopup = $ionicPopup.alert({
