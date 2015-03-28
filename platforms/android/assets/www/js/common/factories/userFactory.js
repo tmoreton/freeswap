@@ -1,4 +1,4 @@
-app.factory('user', function(AuthService, $http, platformFactory) {
+app.factory('user', function(AuthService, $http) {
 	return {
 		info: function() {
 			return AuthService.getLoggedInUser().then(function(user) {
@@ -6,7 +6,7 @@ app.factory('user', function(AuthService, $http, platformFactory) {
 			});
 		},
 		createUser: function(newUser) {
-			return $http.post(platformFactory.platform(), newUser).then(function(data) {
+			return $http.post("https://freeswap.herokuapp.com/#/api/users", newUser).then(function(data) {
 	      return AuthService.login(newUser).then()
 	    });
 		},
