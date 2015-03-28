@@ -6,11 +6,16 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 			});
 		},
 		createUser: function(newUser) {
+<<<<<<< HEAD
+			return $http.post("https://freeswap.herokuapp.com/#/api/users", newUser).then(function(data) {
+	      return AuthService.login(newUser).then()
+=======
 			return $http.post('api/users', newUser).then(function(data) {
 	      return AuthService.login(newUser).then(function(newUser) {
 	      	console.log(newUser);
 	      	$state.go('app.swap');
 	      })
+>>>>>>> master
 	    });
 		},
 		login: function(credentials) {
