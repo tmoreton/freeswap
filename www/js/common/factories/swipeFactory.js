@@ -2,15 +2,16 @@
 app.factory('swipe', function ($http) {
     return {
         addToUserLike: function (productId, userId) { // Left Swipe
-        		var bodyObj = {
-        			productId: productId
-        		};
+    		console.log("productId",productId)
+            var bodyObj = {
+    			productId: productId
+    		};
             return $http.put('/api/users/' + userId, bodyObj).then(function(response){
                 return response.data;
             });
         },
         like: function(productId, buyerId, sellerId) { // Right Swipe
-            // if no sellerId, use different route 
+            // if no sellerId, use different route
             // just provide link to craiglist product page
             if (sellerId){
             	var reqObj = {
@@ -22,6 +23,23 @@ app.factory('swipe', function ($http) {
             	return $http.post('api/matches',reqObj).then(function(response) {
             		return response.data;
             	});
+            } else {
+                return $http.get('api/productId', productId).then(function(response){
+                    return response.data;
+                })
+            }
+        },
+        dislike: function(productId, buyerId) { // Left Swipe
+            // if no buyerId, use different route
+            // just provide link to craiglist product page
+            if (buyerId){
+                var reqObj = {
+                    product: productId,
+                    buyer: buyerId
+                };
+                return $http.post('api/dislike',reqObj).then(function(response) {
+                    return response.data;
+                });
             } else {
                 return $http.get('api/productId', productId).then(function(response){
                     return response.data;

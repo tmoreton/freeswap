@@ -4,15 +4,11 @@
       </ion-header-bar>
 <br>
 <br>
-    <ul class="chatbox">
-        <!-- <div class="chat-bubble left"> -->
-            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
-<!--         </div>
-        <div class="chat-bubble right">
-            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
-        </div> -->
-
-    </ul>
+  <ion-scroll direction="y" style="height: 100%">
+    <ion-list>
+      <ion-item ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</ion-item>
+    </ion-list>
+  </ion-scroll>
 
     <div class="bar bar-footer">
         <div class="bar bar-header item-input-inset">
