@@ -3,12 +3,14 @@
   <ion-header-bar class="bar-default">
     <h1 class="title">Details</h1>
   </ion-header-bar>
-<br>
-<br>
-    <div class="image">
-        <div class="title">{{newCard.title}} <div>
-        <img class="url" ng-src="{{card.photoUrls}}">
-        <div class="description">{{card.description}} </div>
-    </div>
+
+<td-card ng-repeat="card in cards">
+  <div class="image">
+      <img class="url" ng-src="{{card.photoUrls}}">
+      <div class="title" style="font-weight: bolder; font-size: 18px; text-align: center">{{card.title}} <div>
+      <div class="description">{{card.description}} </div>
+  </div>
+
+</td-card>
 
 </ion-view>
