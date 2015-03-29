@@ -18,7 +18,7 @@ app.factory('productFactory', function($http){
 			var bodyObj = {
 				likesArr: userInfo.likes
 			};
-			console.log('bodyObj',bodyObj)
+			// console.log('bodyObj',bodyObj)
 			return $http.get('/api/products/getProducts', {params: bodyObj}).then(function(response){
 				return response.data;
 			});

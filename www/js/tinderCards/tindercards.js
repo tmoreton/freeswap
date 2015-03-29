@@ -33,7 +33,7 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
 
   $scope.addCard = function() {
     $scope.newCard = $scope.cards[Math.floor(Math.random() * $scope.cards.length)];
-    $scope.newCard.sellerId = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
+    // $scope.newCard.sellerId = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
     return $scope.newCard;
   };
 

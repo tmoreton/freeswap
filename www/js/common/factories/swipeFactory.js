@@ -11,8 +11,7 @@ app.factory('swipe', function ($http) {
             });
         },
         like: function(productId, buyerId, sellerId) { // Right Swipe
-            // if no sellerId, use different route
-            // just provide link to craiglist product page
+            // App item
             if (sellerId){
             	var reqObj = {
             		product: productId,
@@ -23,6 +22,7 @@ app.factory('swipe', function ($http) {
             	return $http.post('api/matches',reqObj).then(function(response) {
             		return response.data;
             	});
+            // Craiglist Item
             } else {
                 return $http.get('api/productId', productId).then(function(response){
                     return response.data;

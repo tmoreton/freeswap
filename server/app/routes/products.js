@@ -150,7 +150,6 @@ router.post('/addProduct', function(req, res, next){
 // get product
 router.get('/getProducts', function(req, res, next){
 	console.log('route /getProducts')
-	console.log('req.query',req.query);
 	console.log('req.query.likesArr',req.query.likesArr);
 
 	var userLikes;
@@ -172,10 +171,17 @@ router.get('/getProducts', function(req, res, next){
 		});
 	}
 
-	mongoose.model('Product').find({ _id: { $nin: userLikes }}, function(err, products){
-		if(err) return next(err);
-		res.json(products);
-	});
+	mongoose.model('Product')
+		.find({
+			$and: [{ 
+				_id: { $nin: userLikes }, 
+				swappedWith: { $exists: false } 
+			}]
+		})
+		.exec()
+		.then(function(products){
+			res.json(products);
+		});
 });
 
 
