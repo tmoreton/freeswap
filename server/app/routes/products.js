@@ -153,18 +153,15 @@ router.get('/getProducts', function(req, res, next){
 	console.log('req.query.likesArr',req.query.likesArr);
 
 	var userLikes;
-	// likesArr is empty
-	if (!req.query.likesArr) {
+	if (!req.query.likesArr) { // likesArr is empty
 		console.log('empty');
 		userLikes = [];
 	}
-	// likesArr has 1 Id - query converts array of 1 into a string
-	else if (typeof req.query.likesArr == 'string') {
+	else if (typeof req.query.likesArr == 'string') { // likesArr has 1 Id - query converts array of 1 into a string
 		console.log('1 Id');
 		userLikes = [mongoose.Types.ObjectId(req.query.likesArr)];
 	}
-	// likesArr has more than 1 Id
-	else {
+	else { // likesArr has more than 1 Id
 		console.log('More than 1 Id');
 		userLikes = req.query.likesArr.map(function(el) {
 			return mongoose.Types.ObjectId(el);
