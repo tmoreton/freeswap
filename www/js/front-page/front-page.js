@@ -14,7 +14,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 app.controller('FrontPageCtrl', function($scope, $window, $location, $state, user) {
-
   $scope.signUp = function(newUser) {
     user.createUser(newUser);
     $scope.newUser = {};

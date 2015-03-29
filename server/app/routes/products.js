@@ -128,7 +128,7 @@ router.get('/rss', function(req, res){
 
 
 // add product 
-router.post('/addproduct', function(req, res, next){
+router.post('/addProduct', function(req, res, next){
 	var title = req.body.title;
 	var description = req.body.description;
 	var location = req.body.location;
@@ -148,8 +148,31 @@ router.post('/addproduct', function(req, res, next){
 });
 
 // get product
-router.get('/getproduct', function(req, res, next){
-	mongoose.model('Product').find({}, function(err, products){
+router.get('/getProducts', function(req, res, next){
+	console.log('route /getProducts')
+	console.log('req.query',req.query);
+	console.log('req.query.likesArr',req.query.likesArr);
+
+	var userLikes;
+	// likesArr is empty
+	if (!req.query.likesArr) {
+		console.log('empty');
+		userLikes = [];
+	}
+	// likesArr has 1 Id - query converts array of 1 into a string
+	else if (typeof req.query.likesArr == 'string') {
+		console.log('1 Id');
+		userLikes = [mongoose.Types.ObjectId(req.query.likesArr)];
+	}
+	// likesArr has more than 1 Id
+	else {
+		console.log('More than 1 Id');
+		userLikes = req.query.likesArr.map(function(el) {
+			return mongoose.Types.ObjectId(el);
+		});
+	}
+
+	mongoose.model('Product').find({ _id: { $nin: userLikes }}, function(err, products){
 		if(err) return next(err);
 		res.json(products);
 	});
