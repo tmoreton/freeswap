@@ -9,11 +9,13 @@ var schema = new mongoose.Schema({
         type: String,
         default: 'http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046'
     },
-    photo: {
-        data: Buffer, // maybe we can upload to seperate server and grab imageUrl
-        contentType: String
+    // photo: {
+    //     data: Buffer, // store image s3 ->
+    //     contentType: String
+    // },
+    productUrl: {
+        type: String
     },
-    // store image s3 ->
     description: {
         type: String
     },
@@ -22,7 +24,7 @@ var schema = new mongoose.Schema({
         default: new Date() // if older than 30 days, delete from db
     },
     location: {
-        type: String
+        type: String // N
     },
     seller: {
         type: mongoose.Schema.Types.ObjectId,

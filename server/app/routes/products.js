@@ -31,7 +31,7 @@ var items;
 
 // get RSS feed and update DB with new itemes (every 1 min)
 
-router.get('/rss', function(req, res){
+router.get('/rss', function(req, res){ // DN - When is this route ever called upon in our front end?
 	res.sendStatus(200)
 	url = 'http://newyork.craigslist.org/search/zip?format=rss';
 
@@ -43,6 +43,7 @@ router.get('/rss', function(req, res){
 		var description = [];
 		var date = [];
 		var photoUrls = [];
+		var productUrl = []; // DN
 
 		request(url, function(error, response, body){
 			if(!error)
@@ -60,18 +61,32 @@ router.get('/rss', function(req, res){
 						description.push(item.description[0]);
 						date.push(item['dc:date']);
 						photoUrls.push(item['enc:enclosure'][0]['$'].resource);
+						// productUrl.push(item['dc:source']); // DN
 					} else {
 						title.push(item.title[0]);
 						description.push(item.description[0]);
 						date.push(item['dc:date']);	
 						photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
+						// productUrl.push(item['dc:source']); // DN
 					}
 				})
 
+				// DN - Can the abov be refactored to this?
+				// items.forEach(function(item){
+				// 	title.push(item.title[0]);
+				// 	description.push(item.description[0]);
+				// 	date.push(item['dc:date']);
+				// 	productUrl.push(item['dc:source']); // DN
+				// 	if (item['enc:enclosure'] !== undefined) photoUrls.push(item['enc:enclosure'][0]['$'].resource);
+				// 	else photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
+				// })
+				
+				// DN - What are these?
 				freeItems.push(title);
 				freeItems.push(description);
 				freeItems.push(date);
 				// freeItems.push(photoUrls);
+				// freeItems.push(productUrl); //DN
 			})
 
 			for (var i = 0; i < freeItems.length; i++){
@@ -82,14 +97,16 @@ router.get('/rss', function(req, res){
 						date: date[i][0],
 						location: regExp.exec(title[i])[1],
 						photoUrls: photoUrls[i]
+						// productUrl: productUrl[i] // DN
 					}
-				} else {
+				} else { // DN - This can be refactored
 					var freeItemObj = {
 						title: title[i],
 						description: description[i],
 						date: date[i][0],
-						location: "not set",
+						location: "not set", //DN - We can use a regular expression on the craigslist URL to grab the location
 						photoUrls: photoUrls[i]
+						// productUrl: productUrl[i] // DN
 					}
 				}
 				object.push(freeItemObj);
@@ -147,7 +164,7 @@ router.post('/addProduct', function(req, res, next){
 	})
 });
 
-// get product
+// Get all products excluding liked, and swapped
 router.get('/getProducts', function(req, res, next){
 	console.log('route /getProducts')
 	console.log('req.query.likesArr',req.query.likesArr);
@@ -176,9 +193,14 @@ router.get('/getProducts', function(req, res, next){
 			}]
 		})
 		.exec()
-		.then(function(products){
-			res.json(products);
-		});
+		.then(
+			function(products){
+				res.json(products);
+			},
+			function(err){
+				next(err);
+			}
+		);
 });
 
 

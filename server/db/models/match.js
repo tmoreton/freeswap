@@ -15,6 +15,9 @@ var matchSchema = new mongoose.Schema({
     	type: mongoose.Schema.Types.ObjectId,
     	ref: "User"
     },
+    productUrl: {
+        type: String
+    },
     firebase: {
     	type: String
     }

@@ -20,46 +20,62 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
   $scope.userInfo = userInfo;
   console.log('Current User Info',$scope.userInfo)
 
-
-  // get cards from DB that doesn't contain anything in "likes" array, and swapped
+  // get all cards excluding "likes" array, and swapped
   productFactory.getAvailableData($scope.userInfo).then(function(cards){
     $scope.cards = cards;
-    console.log('Current Cards',cards);
-  });  
+    $scope.currentCard = cards[cards.length-1]; // Cards displayed are indexed from end of Array
 
-  $scope.cardDestroyed = function(index) {
-    $scope.cards.splice(index, 1);
+    //DEVELOPMENT PURPOSES - TO BE REMOVED
+    if (!$scope.currentCard.productUrl) {
+      $scope.currentCard.productUrl = "http://newyork.craigslist.org/search/zip";
+    }
+
+    console.log('Retrieved Cards', cards);
+    console.log('Current Card', $scope.currentCard)
+  });
+
+
+  function destroyCurrentCard() {
+    $scope.cards.splice($scope.cards.length-1, 1);
   };
 
-  $scope.addCard = function() {
-    $scope.newCard = $scope.cards[Math.floor(Math.random() * $scope.cards.length)];
-    // $scope.newCard.sellerId = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
-    return $scope.newCard;
+  function addCard() {
+    destroyCurrentCard();
+    $scope.currentCard = $scope.cards[$scope.cards.length-1];
+    console.log('Current Card',$scope.currentCard)
   };
 
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
-    $scope.currentCard = $scope.addCard();
 
-    swipe.dislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
-      console.log(response);
-    })
+    // swipe.dislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
+    //   console.log(response);
+    // })
+    addCard();
   };
 
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
-    $scope.currentCard = $scope.addCard();
 
-    swipe.like($scope.currentCard._id, $scope.userInfo._id, $scope.newCard.sellerId).then(function(response) {
-      console.log(response);
-    })
-
-    // find the way to grap userID from sessionstorage
-    // productID from product(tinderCard)
     swipe.addToUserLike($scope.currentCard._id, $scope.userInfo._id).then(function(response){
       console.log(response);
     })
-    $window.location.href = ('#/app/chat');
+    // if ($scope.currentCard.seller) {
+    //   swipe.createMatch($scope.currentCard._id, $scope.userInfo._id, $scope.currentCard.seller)
+    //     .then(function(response) {
+    //       console.log(response);
+    //     })
+    // }
+    // else {
+    //   swipe.createMatch($scope.currentCard._id, $scope.userInfo._id)
+    //     .then(function(response) {
+    //       console.log(response);
+    //     })
+    // }
+    swipe.createMatch($scope.currentCard, $scope.userInfo)
+    addCard();
+
+    // $window.location.href = ('#/app/chat');
   };
 
   $scope.view = function() {
