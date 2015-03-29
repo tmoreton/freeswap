@@ -28,11 +28,8 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    swapped: {
-        type: String
-    },
     swappedWith: {
-        type: mongoose.Schema.Types.ObjectId, //Potentially take out swapped field?
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }
 });

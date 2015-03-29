@@ -1,25 +1,31 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.swap', {
     url: "/swap",
-    controller: 'CardsCtrl',
     views: {
       'menuContent': {
-        templateUrl: "js/tinderCards/tindercards.html"
+        templateUrl: "js/tinderCards/tindercards.html",
+        controller: 'CardsCtrl'
+      }
+    },
+    resolve: { 
+      userInfo: function(user) {
+        return user.info();
       }
     }
   })
 })
 
-app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory) {
-  // get Current User infor
-  user.info().then(function(user){
-    $scope.userInfo = user;
-  });
+app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo) {
+  // get Current User info
+  $scope.userInfo = userInfo;
+  console.log('Current User Info',$scope.userInfo)
 
-  // get Card from DB
-  productFactory.getData().then(function(data){
-    $scope.cards = data;
-  });
+
+  // get cards from DB that doesn't contain anything in "likes" array, and swapped
+  productFactory.getAvailableData($scope.userInfo).then(function(cards){
+    $scope.cards = cards;
+    console.log('Current Cards',cards);
+  });  
 
   $scope.cardDestroyed = function(index) {
     $scope.cards.splice(index, 1);
@@ -27,7 +33,7 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
 
   $scope.addCard = function() {
     $scope.newCard = $scope.cards[Math.floor(Math.random() * $scope.cards.length)];
-    $scope.newCard.sellerId = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
+    // $scope.newCard.sellerId = '5511b521a44a6ba7c7d360bf'; //TEMPORARY DEVELOPMENT PURPOSES
     return $scope.newCard;
   };
 

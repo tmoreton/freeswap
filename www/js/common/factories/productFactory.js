@@ -9,13 +9,17 @@ app.factory('productFactory', function($http){
 		},
 
 		addProduct: function (item){
-			return $http.post('/api/products/addproduct', item).then(function(response){
+			return $http.post('/api/products/addProduct', item).then(function(response){
 				return response.data;
 			});
 		},
 
-		getData: function(){
-			return $http.get('/api/products/getproduct').then(function(response){
+		getAvailableData: function(userInfo){
+			var bodyObj = {
+				likesArr: userInfo.likes
+			};
+			// console.log('bodyObj',bodyObj)
+			return $http.get('/api/products/getProducts', {params: bodyObj}).then(function(response){
 				return response.data;
 			});
 		}

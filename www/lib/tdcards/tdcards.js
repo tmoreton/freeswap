@@ -350,7 +350,7 @@
 
         var sortCards = function() {
           existingCards = $element[0].querySelectorAll('td-card');
-          console.log('Current Cards', existingCards);
+          // console.log('Current Cards', existingCards);
 
           for(i = 0; i < existingCards.length; i++) {
             card = existingCards[i];

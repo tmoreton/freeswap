@@ -4,7 +4,7 @@ app.config(function($stateProvider) {
     views: {
       'menuContent': {
         templateUrl: "js/view/view.html",
-        controller: 'CardsCtrl'
+        // controller: 'CardsCtrl'
       }
     }
   })

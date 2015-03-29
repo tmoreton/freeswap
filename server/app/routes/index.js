@@ -9,6 +9,5 @@ router.use('/matches', require('./matches.js'));
 // Make sure this is after all of
 // the registered routes!
 router.use(function (req, res) {
-		console.log('working?')
     res.status(404).end();
 });
