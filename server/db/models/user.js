@@ -23,7 +23,8 @@ var schema = new mongoose.Schema({
         id: String
     },
     // Is there a better way to do this?
-    likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
+    likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
+    dislikes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
 
 // not sure how to do this?

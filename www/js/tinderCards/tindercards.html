@@ -8,19 +8,19 @@
       <td-cards>
 
     <!--  took out  class="card-{{$index}}"  -->
-        <td-card ng-repeat="card in cards" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
+        <td-card ng-repeat="card in cards" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
           <div class="image">
             <div class="no-text">NOPE</div>
             <br>
-            <div ng-click="view()">
-              <img class="url" ng-src="{{card.photoUrls}}">
+            <div>
+              <img class="url" ng-src="{{card.photoUrls}}" ng-click="view()">
               <div class="title" style="font-weight: bolder; font-size: 18px; text-align: center">{{card.title}} <div>
               <!-- <div class="description">{{card.description}} </div> -->
             </div>
             <div class="yes-text">LIKE</div>
             <span>
-            <i class="fa fa-times fa-5x" style= "color: red" ng-click="cardSwipedLeft($index)"></i>
-            <i class="fa fa-check fa-5x" style= "color: green" ng-click="cardSwipedRight($index)"></i>
+            <i class="fa fa-times fa-5x" style= "color: red" ng-click="cardSwipedLeft()"></i>
+            <i class="fa fa-check fa-5x" style= "color: green" ng-click="cardSwipedRight()"></i>
             </span>
           </div>
 
