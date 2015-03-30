@@ -146,7 +146,7 @@ router.get('/rss', function(req, res){
 				}, console.warn)
 			} // end of else
 		}) // getData function
-	}, 5000) // end of setInterval function
+	}, 500000) // end of setInterval function
 })
 
 // add product
@@ -194,9 +194,9 @@ router.get('/getProducts', function(req, res, next){
 
 	mongoose.model('Product')
 		.find({
-			$and: [{ 
-				_id: { $nin: toExclude }, 
-				swappedWith: { $exists: false } 
+			$and: [{
+				_id: { $nin: toExclude },
+				swappedWith: { $exists: false }
 			}]
 		})
 		.limit(20)
