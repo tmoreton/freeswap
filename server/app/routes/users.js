@@ -13,26 +13,35 @@ router.route('/')
 	})
 })
 
-// Left Swipe - Dislike
+// Right Swipe - Add to Likes Array
 router.put('/:userId', function(req,res,next) {
 	console.log('productId',req.body);
 	console.log('UserId',req.params.userId);
 	User.
-		findByIdAndUpdate(req.params.userId, { $push: { likes: req.body.productId } }, function(err, user) {
-			console.log(user);
-			res.json(user);
-		})
+		findByIdAndUpdate(req.params.userId, 
+			{ $push: 
+				{ likes: req.body.productId } 
+			})
+		.exec()
+		.then(
+			function(user) {
+				console.log(user);
+				res.json(user);
+			},
+			function(err) {
+				next(err);
+			})
 })
 
-// Get History
-router.get('/:userId', function(req,res,next) {
-	console.log('productId',req.body);
-	console.log('UserId',req.params.userId);
-	User.
-		findByIdAndUpdate(req.params.userId, { $push: { likes: req.body.productId } }, function(err, user) {
-			console.log(user);
-			res.json(user);
-		})
-})
+// Get History (Where is this being used? Mongoose call is not correct)
+// router.get('/:userId', function(req,res,next) {
+// 	console.log('productId',req.body);
+// 	console.log('UserId',req.params.userId);
+// 	User.
+// 		findByIdAndUpdate(req.params.userId, { $push: { likes: req.body.productId } }, function(err, user) {
+// 			console.log(user);
+// 			res.json(user);
+// 		})
+// })
 
 module.exports = router;
