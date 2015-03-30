@@ -30,9 +30,8 @@
         <!-- <span class="input-label">title<span> -->
         <!-- <img src="about:blank" alt="" id="show-picture">
         <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" ng-model="product.photoUrl"> -->
-
-        <img src="{{imageUrl}}"></img>
-        <button class="button button-block button-positive" ng-click="createImage()">Upload Image</button>
+          <img src="{{imageUrl}}"></img>
+          <button class="button button-block button-positive" ng-click="createImage()">Upload Image</button>
       </label>
       <label class="item item-input">
         <span class="input-label">title<span>
@@ -43,15 +42,20 @@
         <input type="text" ng-model="product.description" required>
       </label>
       <label class="item item-input">
-        <span class="input-label">location<span>
-        <input type="text" ng-model="product.location" required>
+        <!-- <span class="input-label"><span> -->
+        <button ng-hide="coordinates == []" class="button button-positive" ng-click="getLocation()">Get Location</button>
+        <br>
+        <p>Longitude: {{long}}</p><br>
+        <p>Latitude: {{lat}}</p>
+        <!-- <input type="text" ng-model="product.location" required>
+        <p id="demo"></p> -->
       </label>
       <label class="item">
         <button class="button button-block button-positive" ng-click="newItem(product)">submit</button>
       </label>
     </form>
-
   </ion-content>
+
 </ion-view>
 
 <!-- <ion-view view-title="Post" >

@@ -119,7 +119,7 @@
 
     isUnderThreshold: function() {
       //return true;
-      // return Math.abs(this.thresholdAmount) < 0.4; // Original TD Cards 
+      // return Math.abs(this.thresholdAmount) < 0.4; // Original TD Cards
       return Math.abs(this.thresholdAmount) < 50; // DN Edit
     },
     /**
@@ -357,7 +357,7 @@
             card = existingCards[i];
             if(!card) continue;
             if(i > 0) {
-              card.style.transform = card.style.webkitTransform = 'translate3d(0, ' + (i * 4) + 'px, 0)';
+              card.style.transform = card.style.webkitTransform = 'translate3d(0, ' + 0 + 'px, 0)'; // 0 used to be (i*4)
             }
             card.style.zIndex = (existingCards.length - i);
           }

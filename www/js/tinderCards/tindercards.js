@@ -47,9 +47,9 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
   $scope.cardSwipedLeft = function() {
     console.log('LEFT SWIPE');
 
-    swipe.addToUserDislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
-      console.log('Item successfully added to user dislikes');
-    })
+    // swipe.addToUserDislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
+    //   console.log('Item successfully added to user dislikes');
+    // })
     addCard();
   };
 

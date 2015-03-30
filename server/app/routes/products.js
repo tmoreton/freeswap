@@ -149,7 +149,6 @@ router.get('/rss', function(req, res){
 	}, 500000) // end of setInterval function
 })
 
-
 // add product
 router.post('/addProduct', function(req, res, next){
 	var title = req.body.title;
@@ -195,9 +194,9 @@ router.get('/getProducts', function(req, res, next){
 
 	mongoose.model('Product')
 		.find({
-			$and: [{ 
-				_id: { $nin: toExclude }, 
-				swappedWith: { $exists: false } 
+			$and: [{
+				_id: { $nin: toExclude },
+				swappedWith: { $exists: false }
 			}]
 		})
 		.exec()
@@ -209,6 +208,21 @@ router.get('/getProducts', function(req, res, next){
 				next(err);
 			}
 		);
+});
+
+router.route('/getProducts/:productId')
+.get(function(req,res,next) {
+	console.log('req.params',req.params)
+	mongoose.model('Product')
+		.findOne({_id: req.params.productId})
+		.exec()
+		.then(function(product) {
+				console.log("Found product: ", product);
+				res.json(product);
+			},
+			function(err) {
+				next(err);
+			});
 });
 
 

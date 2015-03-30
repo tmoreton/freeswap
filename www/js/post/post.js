@@ -20,7 +20,17 @@ app.config(function($stateProvider) {
 app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
 
   $scope.userInfo = userInfo._id;
-  console.log('Current User Info',$scope.userInfo)
+  // $scope.location = getCurrentPosition();
+  // console.log('Current User location',$scope.location)
+  $scope.getLocation = function() {
+    navigator.geolocation.getCurrentPosition(show_map);
+    function show_map(position) {
+      $scope.long = position.coords.longitude;
+      $scope.lat = position.coords.latitude;
+      $scope.coordinates = [position.coords.longitude, position.coords.latitude];
+      console.log("coordinates", $scope.coordinates)
+    }
+  }
 
   $scope.createImage = function() {
     filepicker.setKey("ANpfvtihTTqf5AEXc2fv5z");
@@ -35,12 +45,14 @@ app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
     console.log("product", product)
     product.ImageUrls = $scope.imageUrl;
     product.seller = $scope.userInfo;
+    product.location = $scope.coordinates;
     console.log("product", product)
     productFactory.addProduct(product).then(function(data){
       console.log("hello in postCtrl: ", data)
       if(data !== null)
       $state.go('app.swap');
     })
+    $scope.product = {};
   }
 
 })
