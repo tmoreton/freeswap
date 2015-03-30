@@ -36,6 +36,7 @@ app.factory('swipe', function($http) {
 
       var reqObj;
       if (product.seller) { // APP item
+        console.log('Made match for APP item')
         reqObj = {
           product: product._id,
           buyer: user._id,
@@ -44,6 +45,7 @@ app.factory('swipe', function($http) {
         };
       }
       else { // Craigslist item
+        console.log('Made match for Craigslist Item')
         reqObj = {
           product: product._id,
           buyer: user._id,

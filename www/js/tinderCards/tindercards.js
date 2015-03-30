@@ -60,18 +60,6 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
     swipe.addToUserLike($scope.currentCard._id, $scope.userInfo._id).then(function(response){
       console.log(response);
     })
-    // if ($scope.currentCard.seller) {
-    //   swipe.createMatch($scope.currentCard._id, $scope.userInfo._id, $scope.currentCard.seller)
-    //     .then(function(response) {
-    //       console.log(response);
-    //     })
-    // }
-    // else {
-    //   swipe.createMatch($scope.currentCard._id, $scope.userInfo._id)
-    //     .then(function(response) {
-    //       console.log(response);
-    //     })
-    // }
     swipe.createMatch($scope.currentCard, $scope.userInfo)
     addCard();
 
