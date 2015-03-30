@@ -8,12 +8,18 @@ app.config(function($stateProvider) {
         templateUrl: "js/matches/matches.html",
         controller: 'MatchesCtrl'
       }
+    },
+    resolve: {
+      userInfo: function(user) {
+        return user.info();
+      }
     }
   })
 });
 
-
-app.controller('MatchesCtrl', function($scope) {
-
-
+app.controller('MatchesCtrl', function($scope, matchFactory, userInfo) {
+  $scope.userInfo = userInfo;
+  matchFactory.getMatchData($scope.userInfo).then(function(response){
+    $scope.matches = response;
+  })
 })

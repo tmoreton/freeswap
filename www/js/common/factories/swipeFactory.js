@@ -10,6 +10,7 @@ app.factory('swipe', function($http) {
         return response.data;
       });
     },
+
     addToUserDislike: function(productId, userId) { // Left Swipe - Dislike
       console.log("ProductId added to User Dislikes", productId);
       var reqObj = {
@@ -19,6 +20,7 @@ app.factory('swipe', function($http) {
         return response.data;
       });
     },
+    
     createMatch: function(product, user) {
       console.log('Product', product);
       console.log('User',user);

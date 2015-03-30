@@ -146,7 +146,7 @@ router.get('/rss', function(req, res){
 				}, console.warn)
 			} // end of else
 		}) // getData function
-	}, 5000) // end of setInterval function
+	}, 500000) // end of setInterval function
 })
 
 
