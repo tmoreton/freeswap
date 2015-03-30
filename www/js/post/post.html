@@ -27,6 +27,14 @@
  -->
     <form show-validation novalidate>
       <label class="item item-input">
+        <!-- <span class="input-label">title<span> -->
+        <!-- <img src="about:blank" alt="" id="show-picture">
+        <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" ng-model="product.photoUrl"> -->
+
+        <img src="{{imageUrl}}"></img>
+        <button class="button button-block button-positive" ng-click="createImage()">Upload Image</button>
+      </label>
+      <label class="item item-input">
         <span class="input-label">title<span>
         <input type="text" ng-model="product.title" required>
       </label>
