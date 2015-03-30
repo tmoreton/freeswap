@@ -119,7 +119,8 @@
 
     isUnderThreshold: function() {
       //return true;
-      return Math.abs(this.thresholdAmount) < 0.4;
+      // return Math.abs(this.thresholdAmount) < 0.4; // Original TD Cards 
+      return Math.abs(this.thresholdAmount) < 50; // DN Edit
     },
     /**
      * Fly the card out or animate back into resting position.
@@ -231,10 +232,10 @@
 
       this.thresholdAmount = (this.x / (this.parentWidth/2));
 
-      var self = this;
-      setTimeout(function() {
-        self.onPartialSwipe(self.thresholdAmount);
-      });
+      // var self = this;
+      // setTimeout(function() {
+      //   self.onPartialSwipe(self.thresholdAmount);
+      // });
     },
     _doDragEnd: function(e) {
       this.transitionOut(e);
@@ -253,7 +254,7 @@
       scope: {
         onSwipeLeft: '&',
         onSwipeRipe: '&',
-        onPartialSwipe: '&',
+        // onPartialSwipe: '&',
         onSnapBack: '&',
         onDestroy: '&'
       },
@@ -264,19 +265,19 @@
           // Instantiate our card view
           var swipeableCard = new SwipeableCardView({
             el: el,
-            onPartialSwipe: function(amt) {
-              swipeCards.partial(amt);
-              $timeout(function() {
-                $scope.leftTextOpacity = {
-                  'opacity': amt > 0 ? amt : 0
-                };
-                $scope.rightTextOpacity = {
-                  'opacity': amt < 0 ? Math.abs(amt) : 0
-                };
+            // onPartialSwipe: function(amt) {
+            //   swipeCards.partial(amt);
+            //   $timeout(function() {
+            //     $scope.leftTextOpacity = {
+            //       'opacity': amt > 0 ? amt : 0
+            //     };
+            //     $scope.rightTextOpacity = {
+            //       'opacity': amt < 0 ? Math.abs(amt) : 0
+            //     };
 
-                $scope.onPartialSwipe({amt: amt});
-              });
-            },
+            //     $scope.onPartialSwipe({amt: amt});
+            //   });
+            // },
             onSwipeRight: function() {
               $timeout(function() {
                 $scope.onSwipeRight();
