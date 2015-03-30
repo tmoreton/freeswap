@@ -82,9 +82,10 @@ router.get('/rss', function(req, res){
 				
 
 				freeItems.push(date); // To add length to the array
+				console.log(freeItems);
 			})
 
-			for (var i = 0; i < freeItems.length; i++){
+			for (var i = 0; i < freeItems[0].length; i++){
 				// if (regExp.exec(title[i]) !== null){
 				// 	var freeItemObj = {
 				// 		title: title[i],
@@ -92,31 +93,32 @@ router.get('/rss', function(req, res){
 				// 		date: date[i][0],
 				// 		location: regExp.exec(title[i])[1], // Location from Title
 				// 		photoUrls: photoUrls[i],
-				// 		productUrl: productUrl[i]
+				// 		productUrl: productUrl[i][0]
 				// 	}
 				// } else { // DN - This can be refactored
 				// 	var freeItemObj = {
 				// 		title: title[i],
 				// 		description: description[i],
 				// 		date: date[i][0],
-				// 		location: productUrl[i].split('/')[3], // Regional location from Url
+				// 		location: productUrl[i][0].split('/')[3], // Regional location from Url
 				// 		photoUrls: photoUrls[i],
-				// 		productUrl: productUrl[i]
+				// 		productUrl: productUrl[i][0]
 				// 	}
 				// }
+
 				var freeItemObj = {
 					title: title[i],
 					description: description[i],
 					date: date[i][0],
 					photoUrls: photoUrls[i],
-					productUrl: productUrl[i]
+					productUrl: productUrl[i][0]
 				}
-				freeItemObj.location = regExp.exec(title[i]) !== null ? regExp.exec(title[i])[1] : productUrl[i].split('/')[3];
-
+				freeItemObj.location = regExp.exec(title[i]) !== null ? regExp.exec(title[i])[1] : productUrl[i][0].split('/')[3];
+				
 
 				object.push(freeItemObj);
 			} // end of for 
-
+			console.log(object);
 			next(null, object);
 		}) // end of request 
 	}; // end of getData function 
