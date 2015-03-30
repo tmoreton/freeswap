@@ -119,7 +119,7 @@
 
     isUnderThreshold: function() {
       //return true;
-      // return Math.abs(this.thresholdAmount) < 0.4; // Original TD Cards 
+      // return Math.abs(this.thresholdAmount) < 0.4; // Original TD Cards
       return Math.abs(this.thresholdAmount) < 50; // DN Edit
     },
     /**

@@ -194,9 +194,9 @@ router.get('/getProducts', function(req, res, next){
 
 	mongoose.model('Product')
 		.find({
-			$and: [{ 
-				_id: { $nin: toExclude }, 
-				swappedWith: { $exists: false } 
+			$and: [{
+				_id: { $nin: toExclude },
+				swappedWith: { $exists: false }
 			}]
 		})
 		.exec()
