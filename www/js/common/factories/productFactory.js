@@ -9,6 +9,7 @@ app.factory('productFactory', function($http){
 		},
 
 		addProduct: function (item){
+			console.log(item)
 			return $http.post('/api/products/addProduct', item).then(function(response){
 				return response.data;
 			});

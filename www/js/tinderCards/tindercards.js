@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
         controller: 'CardsCtrl'
       }
     },
-    resolve: { 
+    resolve: {
       userInfo: function(user) {
         return user.info();
       },
@@ -21,7 +21,6 @@ app.config(function($stateProvider) {
 app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards) {
   // get Current User info
   $scope.userInfo = userInfo;
-  console.log('Current User Info',$scope.userInfo)
 
   // get all cards excluding "likes" array, and swapped
   $scope.cards = cards;
