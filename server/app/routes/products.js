@@ -172,32 +172,32 @@ router.post('/addProduct', function(req, res, next){
 	})
 });
 
-// Get all products excluding liked, and swapped
+// Get all products excluding liked, disliked and swapped
 router.get('/getProducts', function(req, res, next){
 	console.log('route /getProducts')
-	console.log('req.query.likesArr',req.query.likesArr);
+	console.log('req.query.productsToNotAdd',req.query.toExclude);
 
-	var userLikes;
-	if (!req.query.likesArr) { // likesArr is empty
+	var toExclude;
+	if (!req.query.toExclude) { // toExclude is empty
 		console.log('empty');
-		userLikes = [];
+		toExclude = [];
 	}
-	else if (typeof req.query.likesArr == 'string') { // likesArr has 1 Id - query converts array of 1 into a string
+	else if (typeof req.query.toExclude == 'string') { // toExclude has 1 Id - query converts array of 1 into a string
 		console.log('1 Id');
-		userLikes = [mongoose.Types.ObjectId(req.query.likesArr)];
+		toExclude = [mongoose.Types.ObjectId(req.query.toExclude)];
 	}
-	else { // likesArr has more than 1 Id
+	else { // toExclude has more than 1 Id
 		console.log('More than 1 Id');
-		userLikes = req.query.likesArr.map(function(el) {
+		toExclude = req.query.toExclude.map(function(el) {
 			return mongoose.Types.ObjectId(el);
 		});
 	}
 
 	mongoose.model('Product')
 		.find({
-			$and: [{
-				_id: { $nin: userLikes },
-				swappedWith: { $exists: false }
+			$and: [{ 
+				_id: { $nin: toExclude }, 
+				swappedWith: { $exists: false } 
 			}]
 		})
 		.exec()
