@@ -5,3 +5,5 @@ app.factory('chat', ["$firebaseArray",
     return $firebaseArray(ref);
   }
 ]);
+
+
