@@ -19,9 +19,9 @@ router.route('/:userId/likes')
 	console.log('productId',req.body);
 	console.log('UserId',req.params.userId);
 	User.
-		findByIdAndUpdate(req.params.userId, 
-			{ $push: 
-				{ likes: req.body.productId } 
+		findByIdAndUpdate(req.params.userId,
+			{ $push:
+				{ likes: req.body.productId }
 			})
 		.exec()
 		.then(
@@ -40,9 +40,9 @@ router.route('/:userId/dislikes')
 	console.log('productId', req.body);
 	console.log('UserId', req.params.userId);
 	User.
-		findByIdAndUpdate(req.params.userId, 
-			{ $push: 
-				{ dislikes: req.body.productId } 
+		findByIdAndUpdate(req.params.userId,
+			{ $push:
+				{ dislikes: req.body.productId }
 			})
 		.exec()
 		.then(
@@ -53,6 +53,22 @@ router.route('/:userId/dislikes')
 			function(err) {
 				next(err);
 			})
+})
+
+router.route('/:userId/history')
+.get(function(req, res, next){
+	User.findById(req.params.userId)
+	.populate('likes')
+	.exec(function(err, data){
+		if(err) {
+			console.log(err)
+			next(err)
+		}
+		else{
+			res.json(data)
+		}
+
+	})
 })
 
 // Get History (Where is this being used? Mongoose call is not correct)
