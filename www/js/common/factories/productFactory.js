@@ -23,6 +23,11 @@ app.factory('productFactory', function($http){
 			return $http.get('/api/products/getProducts', {params: queryObj}).then(function(response){
 				return response.data;
 			});
+		},
+		getProduct: function(productId) {
+			return $http.get('/api/products/getProducts/' + productId).then(function(response) {
+				return response.data;
+			})
 		}
 	}
 })

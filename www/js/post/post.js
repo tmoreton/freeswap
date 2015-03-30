@@ -41,6 +41,7 @@ app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
       if(data !== null)
       $state.go('app.swap');
     })
+    $scope.product = {};
   }
 
 })
