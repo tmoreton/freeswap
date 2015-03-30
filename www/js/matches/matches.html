@@ -9,22 +9,28 @@
   <ion-scroll>
       <div class="list">
 
-          <a class="item item-thumbnail-left" ui-sref="app.chat">
-            <img src="">
-            <h2>Pretty Hate Machine</h2>
-            <p>Nine Inch Nails</p>
-          </a>
-          <a class="item item-thumbnail-left" ui-sref="app.chat">
-            <img src="">
-            <h2>Pretty Hate Machine</h2>
-            <p>Nine Inch Nails</p>
-          </a>
-          <a class="item item-thumbnail-left" ui-sref="app.chat">
-            <img src="">
-            <h2>Pretty Hate Machine</h2>
-            <p>Nine Inch Nails</p>
-          </a>
+          <ion-item ng-repeat="match in matches">
+          {{ match }}
+          </ion-item>
+<!-- 
 
+          <a class="item item-thumbnail-left" ui-sref="app.chat">
+            <img src="">
+            <h2>Pretty Hate Machine</h2>
+            <p>Nine Inch Nails</p>
+          </a>
+          <a class="item item-thumbnail-left" ui-sref="app.chat">
+            <img src="">
+            <h2>Pretty Hate Machine</h2>
+            <p>Nine Inch Nails</p>
+          </a>
+          <a class="item item-thumbnail-left" ui-sref="app.chat">
+            <img src="">
+            <h2>Pretty Hate Machine</h2>
+            <p>Nine Inch Nails</p>
+          </a>
+ -->
+ 
       </div>
   </ion-scroll>
 </ion-view>

@@ -14,6 +14,19 @@ router.route('/')
 	});
 
 
+router.route('/user')
+	.get(function(req, res, next){
+		var userId = req.body.id; 
+		console.log("req.query: ", req.query)
+		Match.find({buyer: req.query._id}, function(err, matches){
+			if (err) next(err);
+			console.log(matches);
+			res.json(matches);
+		})
+	});
+
+
+
 
 
 
