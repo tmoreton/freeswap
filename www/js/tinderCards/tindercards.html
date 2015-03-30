@@ -13,7 +13,7 @@
             <div class="no-text">NOPE</div>
             <br>
             <div>
-              <img class="url" ng-src="{{card.photoUrls}}" ng-click="view()">
+              <img class="url" ng-src="{{card.photoUrls}}" ui-sref="app.product-detail({_id: card._id})">
               <div class="title" style="font-weight: bolder; font-size: 18px; text-align: center">{{card.title}} <div>
               <!-- <div class="description">{{card.description}} </div> -->
             </div>
