@@ -10,29 +10,27 @@ app.config(function($stateProvider) {
     resolve: { 
       userInfo: function(user) {
         return user.info();
+      },
+      cards: function(userInfo, productFactory) {
+        return productFactory.getAvailableData(userInfo);
       }
     }
   })
 })
 
-app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo) {
+app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards) {
   // get Current User info
   $scope.userInfo = userInfo;
   console.log('Current User Info',$scope.userInfo)
 
   // get all cards excluding "likes" array, and swapped
-  productFactory.getAvailableData($scope.userInfo).then(function(cards){
-    $scope.cards = cards;
-    $scope.currentCard = cards[cards.length-1]; // Cards displayed are indexed from end of Array
+  $scope.cards = cards;
+  $scope.currentCard = cards[cards.length-1]; // Cards displayed are indexed from end of Array
 
-    //DEVELOPMENT PURPOSES - TO BE REMOVED
-    if (!$scope.currentCard.productUrl) {
-      $scope.currentCard.productUrl = "http://newyork.craigslist.org/search/zip";
-    }
+  console.log('Retrieved Cards', cards);
+  console.log('Current Card', $scope.currentCard)
 
-    console.log('Retrieved Cards', cards);
-    console.log('Current Card', $scope.currentCard)
-  });
+
 
 
   function destroyCurrentCard() {
@@ -45,7 +43,7 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
     console.log('Current Card',$scope.currentCard)
   };
 
-  $scope.cardSwipedLeft = function(index) {
+  $scope.cardSwipedLeft = function() {
     console.log('LEFT SWIPE');
 
     // swipe.dislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
@@ -54,7 +52,7 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
     addCard();
   };
 
-  $scope.cardSwipedRight = function(index) {
+  $scope.cardSwipedRight = function() {
     console.log('RIGHT SWIPE');
 
     swipe.addToUserLike($scope.currentCard._id, $scope.userInfo._id).then(function(response){

@@ -10,26 +10,6 @@ app.factory('swipe', function($http) {
         return response.data;
       });
     },
-    // createMatch: function(productId, buyerId, sellerId) { // Right Swipe
-    //     // App item
-    //     if (sellerId){
-    //      var reqObj = {
-    //          product: productId,
-    //          buyer: buyerId,
-    //          seller: sellerId,
-    //          firebase: '1234' //TEMPORARY DEVELOPMENT
-    //      };
-    //      return $http.post('api/matches',reqObj).then(function(response) {
-    //          return response.data;
-    //      });
-    //     // Craiglist Item
-    //     } else {
-    //         return $http.post('api/matches', productId).then(function(response){
-    //             return response.data;
-    //         })
-    //     }
-
-    // },
     createMatch: function(product, user) {
       console.log('Product', product);
       console.log('User',user);

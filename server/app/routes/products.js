@@ -31,7 +31,7 @@ var items;
 
 // get RSS feed and update DB with new itemes (every 1 min)
 
-router.get('/rss', function(req, res){ // DN - When is this route ever called upon in our front end?
+router.get('/rss', function(req, res){
 	res.sendStatus(200)
 	url = 'http://newyork.craigslist.org/search/zip?format=rss';
 
@@ -43,7 +43,7 @@ router.get('/rss', function(req, res){ // DN - When is this route ever called up
 		var description = [];
 		var date = [];
 		var photoUrls = [];
-		var productUrl = []; // DN
+		var productUrl = [];
 
 		request(url, function(error, response, body){
 			if(!error)
@@ -55,60 +55,65 @@ router.get('/rss', function(req, res){ // DN - When is this route ever called up
 				// when there's no image it returns undefined
 				// in that case, push default img urls directly
 
-				items.forEach(function(item){
-					if (item['enc:enclosure'] !== undefined){
-						title.push(item.title[0]);
-						description.push(item.description[0]);
-						date.push(item['dc:date']);
-						photoUrls.push(item['enc:enclosure'][0]['$'].resource);
-						// productUrl.push(item['dc:source']); // DN
-					} else {
-						title.push(item.title[0]);
-						description.push(item.description[0]);
-						date.push(item['dc:date']);	
-						photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
-						// productUrl.push(item['dc:source']); // DN
-					}
-				})
-
-				// DN - Can the abov be refactored to this?
 				// items.forEach(function(item){
-				// 	title.push(item.title[0]);
-				// 	description.push(item.description[0]);
-				// 	date.push(item['dc:date']);
-				// 	productUrl.push(item['dc:source']); // DN
-				// 	if (item['enc:enclosure'] !== undefined) photoUrls.push(item['enc:enclosure'][0]['$'].resource);
-				// 	else photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
+				// 	if (item['enc:enclosure'] !== undefined){
+				// 		title.push(item.title[0]);
+				// 		description.push(item.description[0]);
+				// 		date.push(item['dc:date']);
+				// 		photoUrls.push(item['enc:enclosure'][0]['$'].resource);
+				// 		productUrl.push(item['dc:source']); // DN
+				// 	} else {
+				// 		title.push(item.title[0]);
+				// 		description.push(item.description[0]);
+				// 		date.push(item['dc:date']);	
+				// 		photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
+				// 		productUrl.push(item['dc:source']); // DN
+				// 	}
 				// })
+
+				items.forEach(function(item){
+					title.push(item.title[0]);
+					description.push(item.description[0]);
+					date.push(item['dc:date']);
+					productUrl.push(item['dc:source']); 
+					if (item['enc:enclosure'] !== undefined) photoUrls.push(item['enc:enclosure'][0]['$'].resource);
+					else photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
+				})
 				
-				// DN - What are these?
-				freeItems.push(title);
-				freeItems.push(description);
-				freeItems.push(date);
-				// freeItems.push(photoUrls);
-				// freeItems.push(productUrl); //DN
+
+				freeItems.push(date); // To add length to the array
 			})
 
 			for (var i = 0; i < freeItems.length; i++){
-				if (regExp.exec(title[i]) !== null){
-					var freeItemObj = {
-						title: title[i],
-						description: description[i],
-						date: date[i][0],
-						location: regExp.exec(title[i])[1],
-						photoUrls: photoUrls[i]
-						// productUrl: productUrl[i] // DN
-					}
-				} else { // DN - This can be refactored
-					var freeItemObj = {
-						title: title[i],
-						description: description[i],
-						date: date[i][0],
-						location: "not set", //DN - We can use a regular expression on the craigslist URL to grab the location
-						photoUrls: photoUrls[i]
-						// productUrl: productUrl[i] // DN
-					}
+				// if (regExp.exec(title[i]) !== null){
+				// 	var freeItemObj = {
+				// 		title: title[i],
+				// 		description: description[i],
+				// 		date: date[i][0],
+				// 		location: regExp.exec(title[i])[1], // Location from Title
+				// 		photoUrls: photoUrls[i],
+				// 		productUrl: productUrl[i]
+				// 	}
+				// } else { // DN - This can be refactored
+				// 	var freeItemObj = {
+				// 		title: title[i],
+				// 		description: description[i],
+				// 		date: date[i][0],
+				// 		location: productUrl[i].split('/')[3], // Regional location from Url
+				// 		photoUrls: photoUrls[i],
+				// 		productUrl: productUrl[i]
+				// 	}
+				// }
+				var freeItemObj = {
+					title: title[i],
+					description: description[i],
+					date: date[i][0],
+					photoUrls: photoUrls[i],
+					productUrl: productUrl[i]
 				}
+				freeItemObj.location = regExp.exec(title[i]) !== null ? regExp.exec(title[i])[1] : productUrl[i].split('/')[3];
+
+
 				object.push(freeItemObj);
 			} // end of for 
 
