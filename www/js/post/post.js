@@ -6,130 +6,41 @@ app.config(function($stateProvider) {
         templateUrl: "js/post/post.html",
         controller: 'postCtrl'
       }
+    },
+    resolve: {
+      userInfo: function(user) {
+        return user.info();
+      }
     }
   });
 });
 
-// removed $cordovaCamera, $localstorage, $ionicLoading from controller 
+// removed $cordovaCamera, $localstorage, $ionicLoading from controller
 
-app.controller('postCtrl', function ($scope, $state, productFactory) {
+app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
+
+  $scope.userInfo = userInfo._id;
+  console.log('Current User Info',$scope.userInfo)
+
+  $scope.createImage = function() {
+    filepicker.setKey("ANpfvtihTTqf5AEXc2fv5z");
+    filepicker.pickAndStore({mimetype:"image/*"},{},
+      function(InkBlobs){
+        $scope.imageUrl = InkBlobs[0].url
+        console.log(InkBlobs[0]);
+    });
+  }
 
   $scope.newItem = function(product){
+    console.log("product", product)
+    product.ImageUrls = $scope.imageUrl;
+    product.seller = $scope.userInfo;
+    console.log("product", product)
     productFactory.addProduct(product).then(function(data){
       console.log("hello in postCtrl: ", data)
       if(data !== null)
       $state.go('app.swap');
-    }) 
+    })
   }
-
-
-
-  // posting input 
-
-
-
-  // camera -> should be a factory 
-  
-  // $scope.data = { "ImageURI" :  "Select Image" };
-  //   $scope.takePicture = function() {
-  //   var options = {
-  //       quality: 50,
-  //       destinationType: Camera.DestinationType.FILE_URL,
-  //       sourceType: Camera.PictureSourceType.CAMERA
-  //     };
-  //   $cordovaCamera.getPicture(options).then(
-  //   function(imageData) {
-  //     $scope.picData = imageData;
-  //     $scope.ftLoad = true;
-  //     $localstorage.set('fotoUp', imageData);
-  //     $ionicLoading.show({template: 'Foto acquisita...', duration:500});
-  //   },
-
-  //   function(err){
-  //     $ionicLoading.show({template: 'Errore di caricamento...', duration:500});
-  //     })
-  //   }
-
-  //   $scope.selectPicture = function() {
-  //   var options = {
-  //     quality: 50,
-  //     destinationType: Camera.DestinationType.FILE_URI,
-  //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY
-  //   };
-
-  //   $cordovaCamera.getPicture(options).then(
-  //   function(imageURI) {
-  //     window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
-  //       $scope.picData = fileEntry.nativeURL;
-  //       $scope.ftLoad = true;
-  //       var image = document.getElementById('myImage');
-  //       image.src = fileEntry.nativeURL;
-  //       });
-  //     $ionicLoading.show({template: 'Foto acquisita...', duration:500});
-  //   },
-  //   function(err){
-  //     $ionicLoading.show({template: 'Errore di caricamento...', duration:500});
-  //   })
-  // };
-
-  //   $scope.uploadPicture = function() {
-  //   $ionicLoading.show({template: 'Sto inviando la foto...'});
-  //   var fileURL = $scope.picData;
-  //   var options = new FileUploadOptions();
-  //   options.fileKey = "file";
-  //   options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-  //   options.mimeType = "image/jpeg";
-  //   options.chunkedMode = true;
-
-  //   var params = {};
-  //   params.value1 = "someparams";
-  //       params.value2 = "otherparams";
-
-  //   options.params = params;
-
-  //   var ft = new FileTransfer();
-  //   ft.upload(fileURL, encodeURI("http://www.yourdomain.com/upload.php"), viewUploadedPictures, function(error) {$ionicLoading.show({template: 'Errore di connessione...'});
-  //   $ionicLoading.hide();}, options);
-  //   }
-
-  // var viewUploadedPictures = function() {
-  //   $ionicLoading.show({template: 'Sto cercando le tue foto...'});
-  //       server = "http://www.yourdomain.com/upload.php";
-  //       if (server) {
-  //           var xmlhttp = new XMLHttpRequest();
-  //           xmlhttp.onreadystatechange=function(){
-  //           if(xmlhttp.readyState === 4){
-  //                   if (xmlhttp.status === 200) {
-  //               document.getElementById('server_images').innerHTML = xmlhttp.responseText;
-  //                   }
-  //                   else { $ionicLoading.show({template: 'Errore durante il caricamento...', duration: 1000});
-  //         return false;
-  //                   }
-  //               }
-  //           };
-  //           xmlhttp.open("GET", server , true);
-  //           xmlhttp.send()} ;
-  //   $ionicLoading.hide();
-  //   }
-
-  // $scope.viewPictures = function() {
-  //   $ionicLoading.show({template: 'Sto cercando le tue foto...'});
-  //       server = "http://www.yourdomain.com/upload.php";
-  //       if (server) {
-  //           var xmlhttp = new XMLHttpRequest();
-  //           xmlhttp.onreadystatechange=function(){
-  //           if(xmlhttp.readyState === 4){
-  //                   if (xmlhttp.status === 200) {
-  //               document.getElementById('server_images').innerHTML = xmlhttp.responseText;
-  //                   }
-  //                   else { $ionicLoading.show({template: 'Errore durante il caricamento...', duration: 1000});
-  //         return false;
-  //                   }
-  //               }
-  //           };
-  //           xmlhttp.open("GET", server , true);
-  //           xmlhttp.send()} ;
-  //   $ionicLoading.hide();
-  //   }
 
 })
