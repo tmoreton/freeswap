@@ -199,6 +199,7 @@ router.get('/getProducts', function(req, res, next){
 				swappedWith: { $exists: false } 
 			}]
 		})
+		.limit(20)
 		.exec()
 		.then(
 			function(products){
