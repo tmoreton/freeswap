@@ -13,7 +13,7 @@ app.factory('swipe', function($http) {
     addToUserDislike: function(productId, userId) { // Left Swipe - Dislike
       console.log("ProductId added to User Dislikes", productId);
       var reqObj = {
-        product: productId
+        productId: productId
       };
       return $http.put('api/users/' + userId + '/dislikes', reqObj).then(function(response) {
         return response.data;

@@ -15,11 +15,11 @@ app.factory('productFactory', function($http){
 		},
 
 		getAvailableData: function(userInfo){
-			var bodyObj = {
-				likesArr: userInfo.likes
+			var queryObj = {
+				toExclude: userInfo.likes.concat(userInfo.dislikes) // Combines likes and dislikes array
 			};
-			// console.log('bodyObj',bodyObj)
-			return $http.get('/api/products/getProducts', {params: bodyObj}).then(function(response){
+			console.log('queryObj',queryObj)
+			return $http.get('/api/products/getProducts', {params: queryObj}).then(function(response){
 				return response.data;
 			});
 		}
