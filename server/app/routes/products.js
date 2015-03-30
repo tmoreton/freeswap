@@ -5,7 +5,7 @@ var Promise = require('bluebird');
 
 // install request
 // install cheerio
-// install xml2js 
+// install xml2js
 
 var request = require('request');
 var cheerio = require('cheerio');
@@ -13,20 +13,20 @@ var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
 var fs = require('fs');
 
-var regExp = /\(([^)]+)\)/; // to get text between parenthesis 
+var regExp = /\(([^)]+)\)/; // to get text between parenthesis
 var url;
-var items; 
+var items;
 
-// when using RSS 
-// Location is not available 
+// when using RSS
+// Location is not available
 // only displays ~ 20 items
 
 // when using scraping (from main page)
-// getting img src is tough 
+// getting img src is tough
 // description is not available
 
 // for both RSS and scraping
-// User email is not available 
+// User email is not available
 
 
 // get RSS feed and update DB with new itemes (every 1 min)
@@ -48,10 +48,10 @@ router.get('/rss', function(req, res){ // DN - When is this route ever called up
 		request(url, function(error, response, body){
 			if(!error)
 			parser.parseString(body, function(err, result){
-		
+
 				items = result['rdf:RDF'].item;
 				// res.json(items)
-				
+
 				// when there's no image it returns undefined
 				// in that case, push default img urls directly
 
@@ -65,7 +65,7 @@ router.get('/rss', function(req, res){ // DN - When is this route ever called up
 					} else {
 						title.push(item.title[0]);
 						description.push(item.description[0]);
-						date.push(item['dc:date']);	
+						date.push(item['dc:date']);
 						photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
 						// productUrl.push(item['dc:source']); // DN
 					}
@@ -80,7 +80,7 @@ router.get('/rss', function(req, res){ // DN - When is this route ever called up
 				// 	if (item['enc:enclosure'] !== undefined) photoUrls.push(item['enc:enclosure'][0]['$'].resource);
 				// 	else photoUrls.push('http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046');
 				// })
-				
+
 				// DN - What are these?
 				freeItems.push(title);
 				freeItems.push(description);
@@ -110,11 +110,11 @@ router.get('/rss', function(req, res){ // DN - When is this route ever called up
 					}
 				}
 				object.push(freeItemObj);
-			} // end of for 
+			} // end of for
 
 			next(null, object);
-		}) // end of request 
-	}; // end of getData function 
+		}) // end of request
+	}; // end of getData function
 
 	getData(function(err, object){
 		if(err){
@@ -137,26 +137,28 @@ router.get('/rss', function(req, res){ // DN - When is this route ever called up
 				Promise.all(promises).then( function(databaseData) {
 					// res.json(databaseData);
 				}, console.warn)
-			} // end of else 
-		}) // getData function 
-	}, 5000) // end of setInterval function 
+			} // end of else
+		}) // getData function
+	}, 5000) // end of setInterval function
 })
 
 
 
-// add product 
+// add product
 router.post('/addProduct', function(req, res, next){
 	var title = req.body.title;
 	var description = req.body.description;
 	var location = req.body.location;
-
-	console.log("title: ", title);
-	console.log("description: ", description);
+	var photoUrls = req.body.ImageUrls;
+	var seller = req.body.seller;
+	console.log("req.body", req.body)
 
 	mongoose.model('Product').create({
 		title: title,
 		description: description,
-		location: location
+		location: location,
+		photoUrls: photoUrls,
+		seller: seller
 	}, function (err, product){
 		if(err) console.log(err);
 		console.log("Product registered", product);
@@ -187,9 +189,9 @@ router.get('/getProducts', function(req, res, next){
 
 	mongoose.model('Product')
 		.find({
-			$and: [{ 
-				_id: { $nin: userLikes }, 
-				swappedWith: { $exists: false } 
+			$and: [{
+				_id: { $nin: userLikes },
+				swappedWith: { $exists: false }
 			}]
 		})
 		.exec()
