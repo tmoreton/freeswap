@@ -1,12 +1,21 @@
 'use strict';
 app.factory('swipe', function($http) {
   return {
-    addToUserLike: function(productId, userId) { // Left Swipe
-      console.log("productId", productId)
+    addToUserLike: function(productId, userId) { // Right Swipe - Likes
+      console.log("productId added to User Likes", productId)
       var bodyObj = {
         productId: productId
       };
-      return $http.put('/api/users/' + userId, bodyObj).then(function(response) {
+      return $http.put('/api/users/' + userId + '/likes', bodyObj).then(function(response) {
+        return response.data;
+      });
+    },
+    addToUserDislike: function(productId, userId) { // Left Swipe - Dislike
+      console.log("ProductId added to User Dislikes", productId);
+      var reqObj = {
+        product: productId
+      };
+      return $http.put('api/users/' + userId + '/dislikes', reqObj).then(function(response) {
         return response.data;
       });
     },
@@ -36,23 +45,6 @@ app.factory('swipe', function($http) {
       return $http.post('api/matches', reqObj).then(function(response) {
         return response.data;
       })
-    },
-    dislike: function(productId, buyerId) { // Left Swipe
-      // if no buyerId, use different route
-      // just provide link to craiglist product page
-      if (buyerId) {
-        var reqObj = {
-          product: productId,
-          buyer: buyerId
-        };
-        return $http.post('api/dislike', reqObj).then(function(response) {
-          return response.data;
-        });
-      } else {
-        return $http.get('api/productId', productId).then(function(response) {
-          return response.data;
-        })
-      }
     }
   };
 });

@@ -14,13 +14,35 @@ router.route('/')
 })
 
 // Right Swipe - Add to Likes Array
-router.put('/:userId', function(req,res,next) {
+router.route('/:userId/likes')
+.put(function(req,res,next) {
 	console.log('productId',req.body);
 	console.log('UserId',req.params.userId);
 	User.
 		findByIdAndUpdate(req.params.userId, 
 			{ $push: 
 				{ likes: req.body.productId } 
+			})
+		.exec()
+		.then(
+			function(user) {
+				console.log(user);
+				res.json(user);
+			},
+			function(err) {
+				next(err);
+			})
+})
+
+// Left Swipe - Add to users dislikes
+router.route('/:userId/dislikes')
+.put(function(req,res,next) {
+	console.log('productId', req.body);
+	console.log('UserId', req.params.userId);
+	User.
+		findByIdAndUpdate(req.params.userId, 
+			{ $push: 
+				{ dislikes: req.body.productId } 
 			})
 		.exec()
 		.then(

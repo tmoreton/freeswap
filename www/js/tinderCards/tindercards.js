@@ -25,7 +25,7 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
 
   // get all cards excluding "likes" array, and swapped
   $scope.cards = cards;
-  $scope.currentCard = cards[cards.length-1]; // Cards displayed are indexed from end of Array
+  $scope.currentCard = cards[0];
 
   console.log('Retrieved Cards', cards);
   console.log('Current Card', $scope.currentCard)
@@ -34,21 +34,23 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
 
 
   function destroyCurrentCard() {
-    $scope.cards.splice($scope.cards.length-1, 1);
+    $scope.cards.splice(0, 1);
   };
 
   function addCard() {
     destroyCurrentCard();
-    $scope.currentCard = $scope.cards[$scope.cards.length-1];
+    $scope.currentCard = $scope.cards[0];
     console.log('Current Card',$scope.currentCard)
+    console.log('Remaining Cards', $scope.cards.length, $scope.cards)
+    console.log()
   };
 
   $scope.cardSwipedLeft = function() {
     console.log('LEFT SWIPE');
 
-    // swipe.dislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
-    //   console.log(response);
-    // })
+    swipe.addToUserDislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
+      console.log('Item successfully added to user dislikes');
+    })
     addCard();
   };
 
@@ -56,7 +58,7 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
     console.log('RIGHT SWIPE');
 
     swipe.addToUserLike($scope.currentCard._id, $scope.userInfo._id).then(function(response){
-      console.log(response);
+      console.log('Item successfully added to user likes');
     })
     swipe.createMatch($scope.currentCard, $scope.userInfo)
     addCard();
