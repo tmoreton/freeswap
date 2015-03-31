@@ -22,9 +22,11 @@ app.config(function($stateProvider) {
 
 app.controller('MatchSellerCtrl', function($scope, matchFactory, userInfo, user, productFactory) {
   $scope.userInfo = userInfo;
-  matchFactory.getMatchData($scope.userInfo).then(function(response){
+  
+  matchFactory.getMatchSellerData($scope.userInfo).then(function(response){
     $scope.matches = response;
   })
+
 
   $scope.detail = function (productId){
     // console.log(productId);
