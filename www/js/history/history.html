@@ -1,43 +1,24 @@
-<ion-view view-title="Your History" >
-
-      <ion-header-bar class="bar-default">
-        <h1 class="title">Your History</h1>
-
-      </ion-header-bar>
-<br>
-<br>
-
-<ion-scroll>
-<div class="list">
-  <ion-item ng-repeat="item in history.likes" class="item-thumbnail-left">
-      <img src="{{item.photoUrls}}">
-      <h2>{{item.title}}</h2>
-      <p>{{item.description}}</p>
-  </ion-item>
-</div>
-</ion-scroll>
-
-<!-- <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-  <ion-item ng-repeat="item in history"
-            class="item-thumbnail-left">
-
-    <img ng-src="{{item.img}}">
-    <h2>{{item.title}}</h2>
-    <p>{{item.description}}</p>
-    <ion-option-button class="button-positive"
-                       ng-click="share(item)">
-      Share
-    </ion-option-button>
-    <ion-option-button class="button-info"
-                       ng-click="edit(item)">
-      Edit
-    </ion-option-button>
-    <ion-delete-button class="ion-minus-circled"
-                       ng-click="items.splice($index, 1)">
-    </ion-delete-button>
-    <ion-reorder-button class="ion-navicon"
-                        on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-    </ion-reorder-button>
-
-  </ion-item>
-</ion-list> -->
+<ion-view view-title="Your History">
+  <ion-header-bar class="bar-default">
+    <h1 class="title">Your History</h1>
+  </ion-header-bar>
+  <br>
+  <br>
+  <br>
+  <ion-content>
+    <h2>Liked History</h2>
+    <div class="list">
+      <ion-item ng-repeat="item in buyerHistory" class="item-thumbnail-left">
+        <img src="{{item.photoUrls}}">
+        <h2>{{item.title}}</h2>
+        <p>{{item.description}}</p>
+      </ion-item>
+    </div>
+    <h2>Free Giveaways</h2>
+      <ion-item ng-repeat="item in sellerHistory" class="item-thumbnail-left">
+        <img src="{{item.photoUrls}}">
+        <h2>{{item.title}}</h2>
+        <p>{{item.description}}</p>
+      </ion-item>
+  </ion-content>
+</ion-view>

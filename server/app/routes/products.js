@@ -219,6 +219,20 @@ router.route('/getProducts/:productId')
 			});
 });
 
+router.route('/:userId/history')
+.get(function(req, res, next) {
+	mongoose.model('Product')
+		.find({ seller: req.params.userId })
+		.exec()
+		.then(function(products) {
+			console.log('Products giving away: ', products);
+			res.json(products);
+		},
+		function(err) {
+			next(err);
+		});
+});
+
 
 
 module.exports = router;
