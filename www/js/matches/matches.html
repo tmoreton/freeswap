@@ -14,9 +14,23 @@
       </ion-header-bar>
 
   <ion-content>
-
-      <div class="list">
-
+      <div class="bar bar-header">
+        <div class="bar bar-header item-input-inset">
+          <div class="tabs">
+            <a class="tab-item" ui-sref="app.matches">
+              As a buyer
+            </a>
+            <a class="tab-item" ui-sref="app.matchforseller">
+              As a seller
+            </a>
+          </div>
+        </div>
+      </div>
+    <br>
+    <br>
+    <br>
+    <ion-scroll direction="y" style="height: 100%">
+      <ion-list>
         <ion-item ng-repeat="item in matches" class="item-thumbnail-left" ng-class="{
           red: item.product.swappedWith !== 'null', green: item.product.swappedWith === userInfo._id
         }" ng-click="goToChat(item)">
@@ -26,15 +40,8 @@
           <p> By {{item.seller.username}}</p>
 
           <button class="More" ng-model="item.product._id" ng-click="detail(item.product._id)">More Info</button>
-      </div>
+      </ion-list>
+    </ion-scroll>
 
-      <div class="tabs">
-        <a class="tab-item" ui-sref="app.matches">
-          As a buyer
-        </a>
-        <a class="tab-item" ui-sref="app.matchforseller">
-          As a seller
-        </a>
-      </div>
   </ion-content>
 </ion-view>
