@@ -193,7 +193,7 @@ router.get('/getProducts', function(req, res, next){
 	}
 
 	mongoose.model('Product')
-		.findRemaining(toExclude, false, 20)
+		.findRemaining(toExclude, false, 1000)
 		.then(
 		  function(products){
 		    res.json(products);
@@ -232,6 +232,37 @@ router.route('/:userId/history')
 			next(err);
 		});
 });
+
+
+
+// for sellers only 
+
+router.route('/swapped')
+.put(function(req, res, next) {
+
+	console.log('req.body: ', req.body);
+	// console.log('UserId', req.params.userId);
+	var productId = req.body.productId;
+	var userId = req.body.userId;
+
+	mongoose.model('Product').findByIdAndUpdate(
+		productId, 
+		{
+			$push:
+			{
+				swappedWith: userId
+			}
+		})
+	.exec()
+	.then(
+		function(product){
+			console.log("in product route: ", product);
+			res.json(product);
+		}, 
+		function(err){
+			next(err);
+		})			
+})
 
 
 

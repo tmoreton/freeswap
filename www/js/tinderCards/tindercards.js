@@ -37,14 +37,14 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
       console.log('Current Card',$scope.currentCard)
       console.log($scope.cards.length, ' Remaining Cards', $scope.cards)
     }
-    else {
-      productFactory.getAvailableData(userInfo).then(function(newCards) {
-        $scope.cards = newCards;
-        $scope.currentCard = newCards[0];
-        console.log('Retrieved' + newCards.length+ ' cards', newCards);
-        console.log('Current Card', $scope.currentCard);
-      })
-    }
+    // else {
+    //   productFactory.getAvailableData(userInfo).then(function(newCards) {
+    //     $scope.cards = newCards;
+    //     $scope.currentCard = newCards[0];
+    //     console.log('Retrieved' + newCards.length+ ' cards', newCards);
+    //     console.log('Current Card', $scope.currentCard);
+    //   })
+    // }
   };
 
   $scope.cardSwipedLeft = function() {

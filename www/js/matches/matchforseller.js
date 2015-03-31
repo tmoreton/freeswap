@@ -1,34 +1,32 @@
 app.config(function($stateProvider) {
-  $stateProvider.state('app.matches', {
-    url: "/matches",
+  $stateProvider.state('app.matchforseller', {
+    url: "/matchforseller",
     // templateUrl: "js/matches/matches.html",
     // controller: 'MatchesCtrl',
     views: {
       'menuContent': {
-        templateUrl: "js/matches/matches.html",
-        controller: 'MatchesCtrl'
+        templateUrl: "js/matches/matchforseller.html",
+        controller: 'MatchSellerCtrl'
       }
     },
     resolve: {
       userInfo: function(user) {
         return user.info();
-      },
-      matches: function(matchFactory, userInfo) {
-        return matchFactory.getMatchData(userInfo);
       }
     }
   })
 });
 
-app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, matches, $state) {
+// user factory to get match items and delete it from db
+// product factory to got product detail from db 
+
+app.controller('MatchSellerCtrl', function($scope, matchFactory, userInfo, user, productFactory) {
   $scope.userInfo = userInfo;
-  $scope.matches = matches;
-  $scope.goToChat = function(match){
-    console.log("match", match)
-    $state.go('app.chat', {
-      '_id': match._id
-    })
-  };
+  
+  matchFactory.getMatchSellerData($scope.userInfo).then(function(response){
+    $scope.matches = response;
+  })
+
 
   $scope.detail = function (productId){
     // console.log(productId);
@@ -36,7 +34,7 @@ app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, matches, 
 
   $scope.delete = function (productId, buyerId){
     console.log("productId: ", productId);
-    console.log("buyerId: ", buyerId);
+    console.log("buyerId: ", buyerId); 
     $scope.productId = productId;
     $scope.buyerId = buyerId;
 
