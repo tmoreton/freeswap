@@ -193,20 +193,14 @@ router.get('/getProducts', function(req, res, next){
 	}
 
 	mongoose.model('Product')
-		.find({
-			$and: [{
-				_id: { $nin: toExclude },
-				swappedWith: { $exists: false }
-			}]
-		})
-		.exec()
+		.findRemaining(toExclude, false, 20)
 		.then(
-			function(products){
-				res.json(products);
-			},
-			function(err){
-				next(err);
-			}
+		  function(products){
+		    res.json(products);
+		  },
+		  function(err){
+		    next(err);
+		  }
 		);
 });
 
@@ -223,6 +217,20 @@ router.route('/getProducts/:productId')
 			function(err) {
 				next(err);
 			});
+});
+
+router.route('/:userId/history')
+.get(function(req, res, next) {
+	mongoose.model('Product')
+		.find({ seller: req.params.userId })
+		.exec()
+		.then(function(products) {
+			console.log('Products giving away: ', products);
+			res.json(products);
+		},
+		function(err) {
+			next(err);
+		});
 });
 
 

@@ -19,18 +19,12 @@ app.config(function($stateProvider) {
 })
 
 app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards) {
-  // get Current User info
   $scope.userInfo = userInfo;
-
-  // get all cards excluding "likes" array, and swapped
   $scope.cards = cards;
   $scope.currentCard = cards[0];
 
   console.log('Retrieved Cards', cards);
-  console.log('Current Card', $scope.currentCard)
-
-
-
+  console.log('Current Card', $scope.currentCard);
 
   function destroyCurrentCard() {
     $scope.cards.splice(0, 1);
@@ -38,10 +32,19 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
 
   function addCard() {
     destroyCurrentCard();
-    $scope.currentCard = $scope.cards[0];
-    console.log('Current Card',$scope.currentCard)
-    console.log('Remaining Cards', $scope.cards.length, $scope.cards)
-    console.log()
+    if ($scope.cards.length > 0) {
+      $scope.currentCard = $scope.cards[0];
+      console.log('Current Card',$scope.currentCard)
+      console.log($scope.cards.length, ' Remaining Cards', $scope.cards)
+    }
+    else {
+      productFactory.getAvailableData(userInfo).then(function(newCards) {
+        $scope.cards = newCards;
+        $scope.currentCard = newCards[0];
+        console.log('Retrieved' + newCards.length+ ' cards', newCards);
+        console.log('Current Card', $scope.currentCard);
+      })
+    }
   };
 
   $scope.cardSwipedLeft = function() {
