@@ -9,7 +9,7 @@
     <h2>Liked History</h2>
     <div class="list">
       <ion-item ng-repeat="item in buyerHistory" class="item-thumbnail-left">
-        <img src="{{item.photoUrls}}">
+        <img src="{{item.product.photoUrls}}">
         <h2>{{item.title}}</h2>
         <p>{{item.description}}</p>
       </ion-item>
