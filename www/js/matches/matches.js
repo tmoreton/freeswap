@@ -12,19 +12,23 @@ app.config(function($stateProvider) {
     resolve: {
       userInfo: function(user) {
         return user.info();
+      },
+      matches: function(matchFactory, userInfo) {
+        return matchFactory.getMatchData(userInfo);
       }
     }
   })
 });
 
-// user factory to get match items and delete it from db
-// product factory to got product detail from db 
-
-app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, user, productFactory) {
+app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, matches, $state) {
   $scope.userInfo = userInfo;
-  matchFactory.getMatchData($scope.userInfo).then(function(response){
-    $scope.matches = response;
-  })
+  $scope.matches = matches;
+  $scope.goToChat = function(match){
+    console.log("match", match)
+    $state.go('app.chat', {
+      '_id': match._id
+    })
+  };
 
   $scope.detail = function (productId){
     // console.log(productId);
@@ -32,7 +36,7 @@ app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, user, pro
 
   $scope.delete = function (productId, buyerId){
     console.log("productId: ", productId);
-    console.log("buyerId: ", buyerId); 
+    console.log("buyerId: ", buyerId);
     $scope.productId = productId;
     $scope.buyerId = buyerId;
 

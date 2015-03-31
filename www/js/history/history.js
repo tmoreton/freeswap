@@ -16,7 +16,7 @@ app.config(function($stateProvider) {
       },
       getSellerHistory: function(userInfo, user) {
         return user.getSellerHistory(userInfo._id);
-      } 
+      }
     }
   })
 })

@@ -6,7 +6,7 @@
 <br>
   <ion-scroll direction="y" style="height: 100%">
     <ion-list>
-      <ion-item ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</ion-item>
+      <ion-item ng-repeat="message in firebase">{{ message.from }}: {{ message.content }}</ion-item>
     </ion-list>
   </ion-scroll>
 
