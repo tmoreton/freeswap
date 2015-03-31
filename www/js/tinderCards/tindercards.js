@@ -18,7 +18,7 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards) {
+app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards, chat) {
   $scope.userInfo = userInfo;
   $scope.cards = cards;
   $scope.currentCard = cards[0];
@@ -62,8 +62,12 @@ app.controller('CardsCtrl', function($scope, $window, TDCardDelegate, AuthServic
     swipe.addToUserLike($scope.currentCard._id, $scope.userInfo._id).then(function(response){
       console.log('Item successfully added to user likes');
     })
-    swipe.createMatch($scope.currentCard, $scope.userInfo)
+    swipe.createMatch($scope.currentCard, $scope.userInfo).then(function(response){
+      console.log("response",response);
+      // chat  response._id;
+    })
     addCard();
+
 
     // $window.location.href = ('#/app/chat');
   };

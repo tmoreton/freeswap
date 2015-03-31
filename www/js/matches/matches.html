@@ -9,10 +9,10 @@
   <ion-scroll>
       <div class="list">
 
-          <ion-item ng-repeat="match in matches">
+          <ion-item ng-repeat="match in matches" ng-click="goToChat(match)">
           {{ match }}
           </ion-item>
-<!-- 
+<!--
 
           <a class="item item-thumbnail-left" ui-sref="app.chat">
             <img src="">
@@ -30,7 +30,7 @@
             <p>Nine Inch Nails</p>
           </a>
  -->
- 
+
       </div>
   </ion-scroll>
 </ion-view>
