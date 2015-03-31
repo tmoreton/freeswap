@@ -75,22 +75,25 @@ router.route('/:userId/history')
 
 router.route('/likes')
 .put(function(req, res, next) {
-	console.log('productId', req.body);
-	console.log('UserId', req.params.userId);
-	// User.
-	// 	findByIdAndRemove(req.params.userId,
-	// 		{ $remove:
-	// 			{ likes: req.body.productId }
-	// 		})
-	// 	.exec()
-	// 	.then(
-	// 		function(user) {
-	// 			console.log(user);
-	// 			res.json(user);
-	// 		},
-	// 		function(err) {
-	// 			next(err);
-	// 		})
+	console.log('req.body: ', req.body);
+	// console.log('UserId', req.params.userId);
+	var productId = req.body.productId;
+	var userId = req.body.userId;
+
+	User.
+		findByIdAndRemove(req.params.userId,
+			{ $remove:
+				{ likes: req.body.productId }
+			})
+		.exec()
+		.then(
+			function(user) {
+				console.log(user);
+				res.json(user);
+			},
+			function(err) {
+				next(err);
+			})
 })
 
 

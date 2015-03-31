@@ -28,6 +28,18 @@ app.factory('productFactory', function($http){
 			return $http.get('/api/products/getProducts/' + productId).then(function(response) {
 				return response.data;
 			})
+		},
+
+		swapped: function(productId, userId){
+			console.log('userId in factory: ', userId);
+			var reqobj = {
+				productId: productId,
+				userId: userId
+			}
+
+			return $http.put('/api/products/swapped', reqobj).then(function(response){
+				return response.data;
+			})
 		}
 	}
 })

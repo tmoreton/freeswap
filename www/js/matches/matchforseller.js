@@ -1,12 +1,12 @@
 app.config(function($stateProvider) {
-  $stateProvider.state('app.matches', {
-    url: "/matches",
+  $stateProvider.state('app.matchforseller', {
+    url: "/matchforseller",
     // templateUrl: "js/matches/matches.html",
     // controller: 'MatchesCtrl',
     views: {
       'menuContent': {
-        templateUrl: "js/matches/matches.html",
-        controller: 'MatchesCtrl'
+        templateUrl: "js/matches/matchforseller.html",
+        controller: 'MatchSellerCtrl'
       }
     },
     resolve: {
@@ -20,7 +20,7 @@ app.config(function($stateProvider) {
 // user factory to get match items and delete it from db
 // product factory to got product detail from db 
 
-app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, user, productFactory) {
+app.controller('MatchSellerCtrl', function($scope, matchFactory, userInfo, user, productFactory) {
   $scope.userInfo = userInfo;
   matchFactory.getMatchData($scope.userInfo).then(function(response){
     $scope.matches = response;
