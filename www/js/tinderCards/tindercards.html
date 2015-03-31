@@ -1,20 +1,17 @@
-<ion-view view-title="Swap" >
-
-    <ion-pane>
-      <ion-header-bar class="bar-default">
-        <h1 class="title">Swap</h1>
-      </ion-header-bar>
-
-      <td-cards>
-
+<ion-view view-title="Swap">
+  <ion-header-bar class="bar-default">
+    <h1 class="title">Swap</h1>
+  </ion-header-bar>
+  <td-cards>
     <!--  took out  class="card-{{$index}}"  -->
-        <td-card ng-repeat="card in cards" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
-          <div class="image">
-            <div class="no-text">NOPE</div>
-            <br>
+    <td-card ng-repeat="card in cards" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
+      <div class="image">
+        <div class="no-text">NOPE</div>
+        <br>
+        <div>
+          <img class="url" ng-src="{{card.photoUrls}}" ui-sref="app.product-detail({_id: card._id})">
+          <div class="title" style="font-weight: bolder; font-size: 18px; text-align: center">{{card.title}}
             <div>
-              <img class="url" ng-src="{{card.photoUrls}}" ui-sref="app.product-detail({_id: card._id})">
-              <div class="title" style="font-weight: bolder; font-size: 18px; text-align: center">{{card.title}} <div>
               <!-- <div class="description">{{card.description}} </div> -->
             </div>
             <div class="yes-text">LIKE</div>
@@ -23,9 +20,9 @@
             <i class="fa fa-check fa-5x" style= "color: green" ng-click="cardSwipedRight()"></i>
             </span>
           </div>
-
-        </td-card>
-      </td-cards>
-    </ion-pane>
-
+        </div>
+      </div>
+    </td-card>
+  </td-cards>
+  <ion-spinner icon="ripple" ng-show="cards.length == 0"></ion-spinner>
 </ion-view>
