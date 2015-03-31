@@ -19,7 +19,7 @@ app.factory('productFactory', function($http){
 			var queryObj = {
 				toExclude: userInfo.likes.concat(userInfo.dislikes) // Combines likes and dislikes array
 			};
-			console.log('queryObj',queryObj)
+			// console.log('queryObj',queryObj)
 			return $http.get('/api/products/getProducts', {params: queryObj}).then(function(response){
 				return response.data;
 			});
