@@ -6,19 +6,20 @@
   <br>
   <br>
   <ion-content>
-    <h2>Liked History</h2>
-    <div class="list">
-      <ion-item ng-repeat="item in buyerHistory" class="item-thumbnail-left">
-        <img src="{{item.photoUrls}}">
-        <h2>{{item.title}}</h2>
-        <p>{{item.description}}</p>
-      </ion-item>
-    </div>
     <h2>Free Giveaways</h2>
       <ion-item ng-repeat="item in sellerHistory" class="item-thumbnail-left">
         <img src="{{item.photoUrls}}">
         <h2>{{item.title}}</h2>
         <p>{{item.description}}</p>
       </ion-item>
+    <h2>Liked History</h2>
+<div class="list">
+  <ion-item ng-repeat="item in buyerHistory" class="item-thumbnail-left">
+    <img src="{{item.photoUrls}}">
+    <h2>{{item.title}}</h2>
+    <p>{{item.description}}</p>
+  </ion-item>
+</div>
+
   </ion-content>
 </ion-view>
