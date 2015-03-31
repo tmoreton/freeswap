@@ -42,9 +42,10 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 			return AuthService.logout();
 		},
 		getBuyerHistory: function(userId) {
-			return $http.get('/api/users/' + userId + '/history').then(function(response){
-				return response.data;
-			})
+			return $http.get('/api/users/' + userId + '/history');
+			// .then(function(response){
+			// 	return response.data;
+			// })
 		},
 		getSellerHistory: function(userId) {
 			return $http.get('/api/products/' + userId + '/history').then(function(response) {

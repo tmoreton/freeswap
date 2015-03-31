@@ -193,7 +193,7 @@ router.get('/getProducts', function(req, res, next){
 	}
 
 	mongoose.model('Product')
-		.findRemaining(toExclude, false, 20)
+		.findRemaining(toExclude, false, 1000)
 		.then(
 		  function(products){
 		    res.json(products);
