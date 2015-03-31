@@ -235,4 +235,35 @@ router.route('/:userId/history')
 
 
 
+// for sellers only 
+
+router.route('/swapped')
+.put(function(req, res, next) {
+
+	console.log('req.body: ', req.body);
+	// console.log('UserId', req.params.userId);
+	var productId = req.body.productId;
+	var userId = req.body.userId;
+
+	mongoose.model('Product').findByIdAndUpdate(
+		productId, 
+		{
+			$push:
+			{
+				swappedWith: userId
+			}
+		})
+	.exec()
+	.then(
+		function(product){
+			console.log("in product route: ", product);
+			res.json(product);
+		}, 
+		function(err){
+			next(err);
+		})			
+})
+
+
+
 module.exports = router;

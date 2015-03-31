@@ -1,0 +1,49 @@
+
+<ion-view view-title="Matches" >
+
+      <ion-header-bar class="bar-default">
+        <h1 class="title">Matches as a seller</h1>
+        <style>
+          .red {
+            color: red;
+          }
+          .green {
+            color: green;
+          }
+        </style>
+      </ion-header-bar>
+
+  <ion-content>
+<!--   <br>
+<br><br>
+  {{ userInfo }} -->
+      <div class="list">
+
+        <ion-item ng-repeat="item in matches" class="item-thumbnail-left" ng-class="{
+          red: item.product.swappedWith !== 'null', green: item.product.swappedWith === userInfo._id
+        }">
+          <img src="{{item.product.photoUrls}}">
+          <h2>{{item.product.title}}</h2>
+          <p>{{item.product.location}}</p>
+          <p> Liked By {{item.seller.username}}</p>
+
+          <button class="More" ng-model="item.product._id" ng-click="detail(item.product._id)">More Info</button>
+          <button class="delete" ng-model="item.buyer._id" ng-click="delete(item.product._id, item.buyer._id)">Delete</button>
+
+     <!--      // for sellers page only -->
+          <button class="traded" ng-click="traded(item.product._id, item.buyer._id)">Traded</button>
+        </ion-item>
+ 
+      </div>
+
+      <br><br><br>
+      <div class="tabs">
+        <a class="tab-item" ui-sref="app.matches">
+          As a buyer
+        </a>
+        <a class="tab-item" ui-sref="app.matchforseller">
+          As a seller
+        </a>
+      </div>
+  </ion-content>
+</ion-view>

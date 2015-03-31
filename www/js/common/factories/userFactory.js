@@ -35,6 +35,7 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 			  })
 	    })
 		},
+
 		loginSocial: function(platform) {
 			$window.location.href = '/auth/' + platform;
 		},
@@ -50,6 +51,17 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 		getSellerHistory: function(userId) {
 			return $http.get('/api/products/' + userId + '/history').then(function(response) {
 				return response.data;
+			})
+		},
+		findAndDelete: function (productId, userId){
+			console.log("ProductId: ", productId)
+			console.log("userId: ", userId)
+			var reqObj = {
+		        productId: productId,
+		        userId: userId 
+		      };
+			return $http.put('/api/users/likes', reqObj).then(function(response){
+				return response.data; 
 			})
 		}
 	}

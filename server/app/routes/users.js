@@ -71,6 +71,34 @@ router.route('/:userId/history')
 	})
 })
 
+// Delete item in likes array when user hit the delete button in match page
+
+router.route('/likes')
+.put(function(req, res, next) {
+	console.log('req.body: ', req.body);
+	// console.log('UserId', req.params.userId);
+	var productId = req.body.productId;
+	var userId = req.body.userId;
+
+	User.
+		findByIdAndRemove(req.params.userId,
+			{ $remove:
+				{ likes: req.body.productId }
+			})
+		.exec()
+		.then(
+			function(user) {
+				console.log(user);
+				res.json(user);
+			},
+			function(err) {
+				next(err);
+			})
+})
+
+
+
+
 // Get History (Where is this being used? Mongoose call is not correct)
 // router.get('/:userId', function(req,res,next) {
 // 	console.log('productId',req.body);

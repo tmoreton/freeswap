@@ -18,15 +18,24 @@ router.route('/user')
 	.get(function(req, res, next){
 		var userId = req.body.id; 
 		console.log("req.query: ", req.query)
-		Match.find({buyer: req.query._id}, function(err, matches){
+		Match.find({buyer: req.query._id}).populate("product buyer seller").exec( function(err, matches){
 			if (err) next(err);
 			console.log(matches);
 			res.json(matches);
-		})
+		})	
 	});
 
-
-
+// getting items as a seller 
+router.route('/seller')
+	.get(function(req, res, next){
+		var userId = req.body.id; 
+		console.log("req.query: ", req.query)
+		Match.find({seller: req.query._id}).populate("product buyer seller").exec( function(err, matches){
+			if (err) next(err);
+			console.log(matches);
+			res.json(matches);
+		})	
+	});
 
 
 

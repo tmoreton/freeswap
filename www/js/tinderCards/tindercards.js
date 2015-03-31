@@ -42,7 +42,6 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
     //   productFactory.getAvailableData(userInfo).then(function(newCards) {
     //     $scope.cards = newCards;
     //     $scope.currentCard = newCards[0];
-    //     $digest();
     //     console.log('Retrieved' + newCards.length+ ' cards', newCards);
     //     console.log('Current Card', $scope.currentCard);
     //   })
