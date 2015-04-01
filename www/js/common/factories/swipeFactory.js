@@ -31,8 +31,7 @@ app.factory('swipe', function($http) {
         reqObj = {
           product: product._id,
           buyer: user._id,
-          seller: product.seller,
-          firebase: '1234' //TEMPORARY DEVELOPMENT
+          seller: product.seller
         };
       }
       else { // Craigslist item
@@ -40,8 +39,7 @@ app.factory('swipe', function($http) {
         reqObj = {
           product: product._id,
           buyer: user._id,
-          productUrl: product.productUrl,
-          firebase: '1234' //TEMPORARY DEVELOPMENT
+          productUrl: product.productUrl
         }
       }
       return $http.post('api/matches', reqObj).then(function(response) {

@@ -1,12 +1,13 @@
-app.factory('chat', function($firebaseObject) {
+
+app.factory('chat', function($firebaseObject, $firebaseArray) {
 	var ref = new Firebase("https://free-swap.firebaseio.com/");
 
 	return {
-    createRoom: $firebaseObject(ref.child('rooms')),
+    createRoom: $firebaseObject(ref),
     createMessages: function(roomId) {
-    	return $firebaseObject(ref.child('rooms').child(roomId));
+    	return $firebaseArray(ref.child(roomId));
     }
-  }
+	}
 });
 
 
