@@ -17,12 +17,8 @@ var matchSchema = new mongoose.Schema({
     },
     productUrl: {
         type: String
-    },
-    firebase: {
-    	type: String
     }
 });
-
 
 var Match = mongoose.model('Match', matchSchema);
 module.exports = {Match: Match};

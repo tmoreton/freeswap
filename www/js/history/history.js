@@ -12,9 +12,11 @@ app.config(function($stateProvider) {
         return user.info();
       },
       getBuyerHistory: function(userInfo, user) {
-        return user.getBuyerHistory(userInfo._id)
+        return user.getBuyerHistory(userInfo._id).then(function(response) {
+          return response.data;
+        })
       },
-      getSellerHistory: function(userInfo, user) {
+      getSellerHistory: function(userInfo, user) { 
         return user.getSellerHistory(userInfo._id);
       }
     }
@@ -24,7 +26,7 @@ app.config(function($stateProvider) {
 
 app.controller('HistoryCtrl', function($scope, AuthService, $state, user, getBuyerHistory, getSellerHistory) {
   $scope.buyerHistory = getBuyerHistory.likes;
-  console.log(getBuyerHistory)
+  console.log("AM I LOGGING?", getBuyerHistory)
   $scope.sellerHistory = getSellerHistory;
 
 })

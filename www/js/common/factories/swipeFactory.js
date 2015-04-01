@@ -22,8 +22,8 @@ app.factory('swipe', function($http) {
     },
     
     createMatch: function(product, user) {
-      console.log('Product', product);
-      console.log('User',user);
+      // console.log('Product', product);
+      // console.log('User',user);
 
       var reqObj;
       if (product.seller) { // APP item
@@ -31,8 +31,7 @@ app.factory('swipe', function($http) {
         reqObj = {
           product: product._id,
           buyer: user._id,
-          seller: product.seller,
-          firebase: '1234' //TEMPORARY DEVELOPMENT
+          seller: product.seller
         };
       }
       else { // Craigslist item
@@ -40,11 +39,11 @@ app.factory('swipe', function($http) {
         reqObj = {
           product: product._id,
           buyer: user._id,
-          productUrl: product.productUrl,
-          firebase: '1234' //TEMPORARY DEVELOPMENT
+          productUrl: product.productUrl
         }
       }
       return $http.post('api/matches', reqObj).then(function(response) {
+        console.log('Match made: ', response.data)
         return response.data;
       })
     }
