@@ -87,13 +87,13 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
               text: '<b>Send</b>',
               type: 'button-positive',
               onTap: function(e) {
-                // if (!$scope.message) {
-                //   //don't allow the user to close unless they write something
-                //   e.preventDefault();
-                // } else {
+                if (!$scope.data.message) {
+                  //don't allow the user to close unless they write something
+                  e.preventDefault();
+                } else {
                   $scope.data.from = $scope.userInfo.username;
                   return $scope.data;
-                // }
+                }
               }
             }]
           });
@@ -126,13 +126,13 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
             }]
           });
           myPopup.then(function(data) {
-            if (data) $window.location.href = data
+            if (data) $window.open(data)
           })
         })();
       };
+    addCard();
     });
 
-    addCard();
   };
 
 

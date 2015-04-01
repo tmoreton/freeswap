@@ -41,7 +41,7 @@ app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, m
   };
 
   $scope.goToUrl = function(url) {
-    $window.location.href = url
+    $window.open(url);
   }
 
   $scope.detail = function (productId){
