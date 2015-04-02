@@ -7,10 +7,12 @@
     <div ng-repeat="card in cards" class="polaroid">
     <td-card on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
       <div class="image">
-        <div class="no-text">NOPE</div>
+        <div class="no-text ">NOPE</div>
         <br>
         <div>
-          <img class="url" ng-src="{{card.photoUrls}}" ng-click="openModal()">
+          <div class="cropTop">
+            <img class="url" ng-src="{{card.photoUrls}}" ng-click="openModal()">
+          </div>
           <div class="title" style="font-weight: bolder; font-size: 18px; text-align: center">{{card.title}}
             <div>
               <!-- <div class="description">{{card.description}} </div> -->
