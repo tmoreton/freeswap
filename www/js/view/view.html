@@ -1,19 +1,19 @@
 <ion-modal-view view-title="Details">
-  <ion-header-bar class="bar-default">
+  <ion-header-bar class="bar-dark">
     <h1 class="title">Product Details</h1>
   </ion-header-bar>
-  <ion-content ng-controller="CardsCtrl">
+  <ion-content>
     <div class="list card">
       <br>
       <div class="item item-avatar">
         <img ng-src="{{product.photoUrls}}">
-        <h2>{{ product.location }}</h2>
-        <p>Expiry Date: {{ product.expiration }}</p>
+        <h2>{{ currentCard.location }}</h2>
+        <p>Expiry Date: {{ currentCard.expiration }}</p>
       </div>
       <div class="item item-body">
-        <img class="full-image" ng-src="{{product.photoUrls}}">
+        <img class="full-image" ng-src="{{currentCard.photoUrls}}">
         <p>
-          {{ product.description }}
+          {{ currentCard.description }}
         </p>
       </div>
       <button ng-click="closeModal()"></button>

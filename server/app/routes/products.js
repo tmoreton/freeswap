@@ -153,7 +153,7 @@ router.get('/rss', function(req, res){
 router.post('/addProduct', function(req, res, next){
 	var title = req.body.title;
 	var description = req.body.description;
-	var location = req.body.location;
+	var coordinates = req.body.coordinates;
 	var photoUrls = req.body.ImageUrls;
 	var seller = req.body.seller;
 	console.log("req.body", req.body)
@@ -161,7 +161,7 @@ router.post('/addProduct', function(req, res, next){
 	mongoose.model('Product').create({
 		title: title,
 		description: description,
-		location: location,
+		coordinates: coordinates,
 		photoUrls: photoUrls,
 		seller: seller
 	}, function (err, product){

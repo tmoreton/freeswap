@@ -20,13 +20,13 @@ app.run(function($ionicPlatform, $state, $rootScope, AuthService) {
     }
   })
 
-  $rootScope.$on("$stateChangeStart",
-      function(event, toState, toParams, fromState, fromParams) {
-          if (toState.authenticate && !AuthService.isAuthenticated) {
-              $state.go('front-page');
-              event.preventDefault();
-          }
-      });
+  // $rootScope.$on("$stateChangeStart",
+  //     function(event, toState, toParams, fromState, fromParams) {
+  //         if (toState.authenticate && !AuthService.isAuthenticated()) {
+  //           $state.go('front-page');
+  //           event.preventDefault();
+  //         }
+  //     });
 })
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {

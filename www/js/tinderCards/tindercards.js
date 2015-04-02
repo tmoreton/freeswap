@@ -26,6 +26,7 @@ app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegat
   $scope.cards = cards;
   $scope.currentCard = cards[0];
 
+  console.log('Current User', userInfo)
   console.log('Retrieved Cards', cards);
   console.log('Current Card', $scope.currentCard);
 
@@ -139,7 +140,8 @@ app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegat
 
   $ionicModal.fromTemplateUrl('js/view/view.html', {
     scope: $scope,
-    animation: 'slide-in-up'
+    animation: 'slide-in-up',
+    controller: 'CardsCtrl'
   }).then(function(modal) {
     $scope.modal = modal;
   });

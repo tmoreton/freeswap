@@ -18,13 +18,14 @@ module.exports = function (app) {
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
 
         UserModel.findOne({ 'google.id': profile.id }, function (err, user) {
-
+            console.log(user);
             if (err) return done(err);
 
             if (user) {
                 done(null, user);
             } else {
                 UserModel.create({
+                    name: profile.displayName,
                     google: {
                         id: profile.id
                     }
