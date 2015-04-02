@@ -9,16 +9,26 @@ td-card {
   margin-bottom: 40px;
   margin-left: -150px;
   width: 300px;
-  height: 500px;
+  height: 275px;
   background-color: white;
   border: 1px solid #999;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 6px;
 }
 
-
-/*
 td-card.card-0 {
+  -webkit-transform: rotate(-2deg)
+}
+td-card.card-1 {
+  -webkit-transform: rotate(2deg)
+}
+td-card.card-2 {
+  -webkit-transform: rotate(-4deg)
+}
+td-card.card-3 {
+  -webkit-transform: rotate(4deg)
+}
+
+/*td-card.card-0 {
   -webkit-transform: translate3d(0, 0px, 0);
   transform: translate3d(0, 0px, 0);
   top: 0px;
@@ -33,21 +43,18 @@ td-card.card-2 {
   -webkit-transform: translate3d(0, 8px, 0);
   transform: translate3d(0, 8px, 0);
   z-index: 8;
-}
-*/
+}*/
+
 
 td-card .image {
-
   position: absolute;
-  left: 7.5%;
-
+  left: 4%;
 }
 
 td-card img {
   max-width: 100%;
-  border-radius: 6px;
-  height: 300px;
-  width: 250px;
+  max-height: 300px;
+  max-width: 275px;
 }
 
 /*
@@ -137,4 +144,56 @@ td-card img {
 
 ul {
   overflow: scroll;
+}
+/*
+.ion-view {
+  font-family: 'Pacifico', cursive;
+}*/
+
+* {
+  font-family: 'Rancho', cursive;
+  font-size: 16px;
+}
+
+ion-view {
+    background-image: url("../img/freeswapMap.png");
+}
+
+.button-stable {
+  border-radius: 100%;
+  border:2px solid #cfdcec;
+  box-shadow: 0 0 3px gray;
+  width: 100px;
+  height: 100px;
+}
+
+img {
+  box-shadow: 0 0 3px gray;
+}
+
+.input-label {
+  font-size: 16px;
+}
+
+.tinderButtons {
+  text-align: center;
+  margin-top: 300px;
+}
+
+.crop{
+  float:left;
+  margin:.5em 10px .5em 0;
+  overflow:hidden; /* this is important */
+  position:relative; /* this is important too */
+  width:385px;
+  height:200px;
+}
+.crop img{
+  position:absolute;
+  top:-20px;
+  left:-55px;
+}
+
+h1 {
+  font-size: 36px;
 }

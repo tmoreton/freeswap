@@ -26,12 +26,8 @@
     </div>
  -->
     <form show-validation novalidate>
-      <label class="item item-input">
-        <!-- <span class="input-label">title<span> -->
-        <!-- <img src="about:blank" alt="" id="show-picture">
-        <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" ng-model="product.photoUrl"> -->
-          <img src="{{imageUrl}}"></img>
-          <button class="button button-block button-positive" ng-click="createImage()">Upload Image</button>
+      <label class="item">
+          <button class="button button-block button-calm" ng-click="createImage()">Upload Image</button>
       </label>
       <label class="item item-input">
         <span class="input-label">title<span>
@@ -41,19 +37,20 @@
         <span class="input-label">description<span>
         <input type="text" ng-model="product.description" required>
       </label>
-      <label class="item item-input">
-        <!-- <span class="input-label"><span> -->
+<!--       <label class="item item-input">
         <button ng-hide="coordinates == []" class="button button-positive" ng-click="getLocation()">Get Location</button>
         <br>
         <p>Longitude: {{long}}</p><br>
         <p>Latitude: {{lat}}</p>
-        <!-- <input type="text" ng-model="product.location" required>
-        <p id="demo"></p> -->
-      </label>
+      </label> -->
       <label class="item">
-        <button class="button button-block button-positive" ng-click="newItem(product)">submit</button>
+        <button class="button button-block button-calm" ng-click="newItem(product)">submit</button>
       </label>
     </form>
+    <div class="crop">
+      <!-- <img src="http://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA17011_ip.jpg"></img> -->
+      <img src="{{imageUrl}}"></img>
+    </div>
   </ion-content>
 
 </ion-view>
