@@ -19,8 +19,11 @@ var schema = new mongoose.Schema({
     type: Date,
     default: new Date() // if older than 30 days, delete from db
   },
+  coordinates: {
+    type: Array
+  },
   location: {
-    type: Array // N
+    type: String
   },
   seller: {
     type: mongoose.Schema.Types.ObjectId,

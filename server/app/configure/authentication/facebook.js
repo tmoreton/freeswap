@@ -44,7 +44,6 @@ module.exports = function (app) {
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));
 
     app.get('/auth/facebook', function(req,res,next){
-        console.log('here?')
         next();
     }, passport.authenticate('facebook'));
 
