@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.swap', {
     url: "/swap",
+    authenticate: true,
     views: {
       'menuContent': {
         templateUrl: "js/tinderCards/tindercards.html",

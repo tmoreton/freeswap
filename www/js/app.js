@@ -7,7 +7,7 @@
 
 var app = angular.module('myApp', ['ionic', 'ionic.contrib.ui.tinderCards', 'firebase']);
 
-app.run(function($ionicPlatform, $state, $rootScope) {
+app.run(function($ionicPlatform, $state, $rootScope, AuthService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,16 +20,17 @@ app.run(function($ionicPlatform, $state, $rootScope) {
     }
   })
 
-  // $rootScope.$on('$stateChangeStart', function(event, toState) {
-  //   if (!$rootScope.isAuthenticated) {
-  //       event.preventDefault();
-  //       $state.go('front-page');
-  //   }
-  // })
+  $rootScope.$on("$stateChangeStart",
+      function(event, toState, toParams, fromState, fromParams) {
+          if (toState.authenticate && !AuthService.isAuthenticated) {
+              $state.go('front-page');
+              event.preventDefault();
+          }
+      });
 })
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-  $urlRouterProvider.otherwise('/front-page');
+  $urlRouterProvider.otherwise('/app/swap');
 
   $stateProvider.state('app', {
     url: "/app",

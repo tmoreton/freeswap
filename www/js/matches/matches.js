@@ -1,8 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.matches', {
     url: "/matches",
-    // templateUrl: "js/matches/matches.html",
-    // controller: 'MatchesCtrl',
+    authenticate: true,
     views: {
       'menuContent': {
         templateUrl: "js/matches/matches.html",

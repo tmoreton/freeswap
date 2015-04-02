@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.history', {
     url: "/history",
+    authenticate: true,
     views: {
       'menuContent': {
         templateUrl: "js/history/history.html",
