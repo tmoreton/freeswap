@@ -153,12 +153,16 @@ ul {
 
 * {
   font-family: 'Rancho', cursive;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 ion-view {
-    background-image: url("../img/freeswapMap.png");
+    background-image: url("../img/random.png");
 }
+ion-content {
+    background-image: url("../img/random.png");
+}
+
 
 .button-stable {
   border-radius: 100%;
