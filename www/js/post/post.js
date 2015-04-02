@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.post', {
     url: '/post',
+    authenticate: true,
     views: {
       'menuContent': {
         templateUrl: "js/post/post.html",

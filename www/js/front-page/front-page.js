@@ -4,12 +4,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('front-page', {
     url: '/front-page',
     templateUrl: "/js/front-page/front-page.html",
-    controller: 'FrontPageCtrl'
+    controller: 'FrontPageCtrl',
+    authenticate: false
   })
   .state('sign-up', {
     url: '/front-page/signup',
     templateUrl: "/js/front-page/sign-up.html",
-    controller: 'FrontPageCtrl'
+    controller: 'FrontPageCtrl',
+    authenticate: false
   })  
 });
 

@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.product-detail', {
     url: "/product-detail/:_id",
+    authenticate: true,
     views: {
       'menuContent': {
         templateUrl: "js/view/view.html",

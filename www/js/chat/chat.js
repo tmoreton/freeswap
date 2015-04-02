@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.chat', {
     url: "/chat/:_id",
+    authenticate: true,
     views: {
       'menuContent': {
         templateUrl: "js/chat/chat.html",

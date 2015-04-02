@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('app.settings', {
     url: "/settings",
+    authenticate: true,
     views: {
       'menuContent': {
         templateUrl: "js/settings/settings.html",
