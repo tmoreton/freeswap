@@ -159,9 +159,9 @@ ul {
 ion-view {
     background-image: url("../img/random.png");
 }
-ion-content {
+/*ion-content {
     background-image: url("../img/random.png");
-}
+}*/
 
 
 .button-stable {
@@ -204,3 +204,12 @@ h1 {
   font-size: 36px;
 }
 
+h2.ng-binding{
+  font-family: 'Rancho', cursive;
+  font-size: 26px;
+}
+
+h2 {
+  font-family: 'Rancho', cursive;
+  font-size: 36px;
+}

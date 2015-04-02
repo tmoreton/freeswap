@@ -1,0 +1,32 @@
+<ion-modal-view view-title="Details">
+  <ion-header-bar class="bar-default">
+    <h1 class="title">Product Details</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list card">
+      <br>
+      <div class="item item-avatar">
+        <img ng-src="{{product.photoUrls}}">
+        <h2>{{ product.location }}</h2>
+        <p>Expiry Date: {{ product.expiration }}</p>
+      </div>
+      <div class="item item-body">
+        <img class="full-image" ng-src="{{product.photoUrls}}">
+        <p>
+          {{ product.description }}
+        </p>
+      </div>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i> Like
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i> Comment
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-share"></i> Share
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
