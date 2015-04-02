@@ -2,7 +2,7 @@
   <ion-header-bar class="bar-default">
     <h1 class="title">Product Details</h1>
   </ion-header-bar>
-  <ion-content>
+  <ion-content ng-controller="CardsCtrl">
     <div class="list card">
       <br>
       <div class="item item-avatar">
@@ -16,17 +16,7 @@
           {{ product.description }}
         </p>
       </div>
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#">
-          <i class="icon ion-thumbsup"></i> Like
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i> Comment
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i> Share
-        </a>
-      </div>
+      <button ng-click="closeModal()"></button>
     </div>
   </ion-content>
 </ion-modal-view>
