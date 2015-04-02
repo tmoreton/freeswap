@@ -15,23 +15,15 @@ app.config(function($stateProvider) {
       },
       matches: function(matchFactory, userInfo) {
         return matchFactory.getMatchData(userInfo);
-      },
-      craigslistMatches: function(matchFactory, userInfo) {
-        return matchFactory.getCraigslistData(userInfo);
-      },
-      appMatches: function(matchFactory, userInfo) {
-        return matchFactory.getAppData(userInfo);
-      },
+      }
     }
   })
 });
 
-app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, matches, craigslistMatches, appMatches, $window, $location) {
+app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, matches, $window, $location) {
   $scope.userInfo = userInfo;
-  $scope.matches = matches;
-  $scope.craigslistMatches = craigslistMatches;
-  $scope.appMatches = appMatches;
-  console.log(appMatches)
+  $scope.craigslistMatches = matches.craigslistData;
+  $scope.appMatches = matches.appData;
 
   $scope.goToChat = function(match){
     console.log("match", match)
