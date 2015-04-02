@@ -4,7 +4,8 @@
   </ion-header-bar>
   <td-cards>
     <!--  took out  class="card-{{$index}}"  -->
-    <td-card ng-repeat="card in cards" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
+    <div ng-repeat="card in cards" class="polaroid">
+    <td-card on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
       <div class="image">
         <div class="no-text">NOPE</div>
         <br>
@@ -15,14 +16,24 @@
               <!-- <div class="description">{{card.description}} </div> -->
             </div>
             <div class="yes-text">LIKE</div>
-            <span>
-            <i class="fa fa-times fa-5x" style= "color: red" ng-click="cardSwipedLeft()"></i>
-            <i class="fa fa-check fa-5x" style= "color: green" ng-click="cardSwipedRight()"></i>
-            </span>
+
           </div>
         </div>
       </div>
     </td-card>
+    </div>
+    <span>
   </td-cards>
+  <br>
+  <br>
+  <div class="tinderButtons">
+      <button class="button button-stable" ng-click="cardSwipedLeft()">
+        <i class="fa fa-times fa-5x" style= "color: red"></i>
+      </button>
+      <button class="button button-stable" ng-click="cardSwipedRight()">
+        <i class="fa fa-check fa-5x" style= "color: green"></i>
+      </button>
+    </span>
+  </div>
   <ion-spinner icon="ripple" ng-show="cards.length == 0"></ion-spinner>
 </ion-view>
