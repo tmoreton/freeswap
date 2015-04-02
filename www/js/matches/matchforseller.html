@@ -21,7 +21,7 @@
 
         <ion-item ng-repeat="item in matches" class="item-thumbnail-left" ng-class="{
           red: item.product.swappedWith !== 'null', green: item.product.swappedWith === userInfo._id
-        }">
+        }" ng-click="goToChat(item)">
           <img src="{{item.product.photoUrls}}">
           <h2>{{item.product.title}}</h2>
           <p>{{item.product.location}}</p>

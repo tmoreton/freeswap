@@ -19,7 +19,7 @@ app.config(function($stateProvider) {
 })
 
 
-app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards, chat, $firebaseObject, $ionicPopup) {
+app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards, chat, $firebaseObject, $ionicPopup) {
   $scope.createRoom = chat.createRoom;
   $scope.userInfo = userInfo;
   $scope.cards = cards;
@@ -66,7 +66,8 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
     })
 
     swipe.createMatch($scope.currentCard, $scope.userInfo).then(function(matchResponse) {
-      if ($scope.currentCard.seller) {
+      var swipedCard = $scope.currentCard;
+      if (swipedCard.seller) {
         (function() {
           $scope.data = {}
           $scope.data.message = 'Hi! I\'m interested in your product! Can we meet?'
@@ -105,7 +106,7 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
             return $scope.createRoom.$save().then(function(fbResponse) {
               console.log('Saved to Firebase');
             }).catch(function(err) {
-              console.log(err)
+              console.log('Firebase error',err)
             });
           });
         })();
@@ -113,7 +114,7 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
         (function() {
           var myPopup = $ionicPopup.show({
             title: 'Craigslist Url',
-            subTitle: $scope.currentCard.productUrl,
+            subTitle: 'Note: This will take you to an external link',
             scope: $scope,
             buttons: [{
               text: 'Try Later'
@@ -121,7 +122,7 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
               text: '<b>Go!</b>',
               type: 'button-positive',
               onTap: function(e) {
-                return $scope.currentCard.productUrl;
+                return swipedCard.productUrl;
               }
             }]
           });
@@ -135,34 +136,28 @@ app.controller('CardsCtrl', function($scope, $window, $ionicPopover, TDCardDeleg
 
   };
 
-
-  // $scope.view = function() {
-  //   $window.location.href = ('#/app/view');
-  // };
-
-  // $ionicPopover.fromTemplateUrl('js/view/view.html', {
-  //     scope: $scope
-  //   }).then(function(popover) {
-  //     $scope.popover = popover;
-  //   });
-
-
-  //   $scope.openPopover = function($event) {
-  //     $scope.popover.show($event);
-  //   };
-  //   $scope.closePopover = function() {
-  //     $scope.popover.hide();
-  //   };
-  //   //Cleanup the popover when we're done with it!
-  //   $scope.$on('$destroy', function() {
-  //     $scope.popover.remove();
-  //   });
-  //   // Execute action on hide popover
-  //   $scope.$on('popover.hidden', function() {
-  //     // Execute action
-  //   });
-  //   // Execute action on remove popover
-  //   $scope.$on('popover.removed', function() {
-  //     // Execute action
-  //   });
+  $ionicModal.fromTemplateUrl('js/view/view.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 })
