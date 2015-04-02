@@ -22,7 +22,8 @@ app.controller('FrontPageCtrl', function($scope, $window, $location, $state, use
   };
 
   $scope.loginPlatform = function(platform) {
-    user.loginSocial(platform);
+    // user.loginSocial(platform);
+    $window.location.href = 'auth/' + platform;
   }
 
   $scope.goTo = function(page) {

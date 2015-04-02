@@ -37,6 +37,7 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 		},
 
 		loginSocial: function(platform) {
+			console.log(platform)
 			$window.location.href = '/auth/' + platform;
 		},
 		logout: function() {
