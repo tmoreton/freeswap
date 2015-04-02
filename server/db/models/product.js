@@ -9,10 +9,6 @@ var schema = new mongoose.Schema({
     type: String,
     default: 'http://vignette2.wikia.nocookie.net/horrormovies/images/e/e3/No_Image.png/revision/latest?cb=20140329231046'
   },
-  // photo: {
-  //     data: Buffer, // store image s3 ->
-  //     contentType: String
-  // },
   productUrl: {
     type: String
   },

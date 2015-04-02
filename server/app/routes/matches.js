@@ -21,8 +21,21 @@ router.route('/user')
       buyer: req.query._id
     }).populate("product buyer seller").exec(function(err, matches) {
       if (err) next(err);
-      // console.log(matches);
-      res.json(matches);
+
+      var organizedMatches = {
+	      craigsListData: [],
+	      appData: []
+	    };
+      matches.forEach(function(el) {
+      	if (el.product.productUrl) {
+      		organizedMatches.craigslistData.push(el);
+      	}
+      	else {
+      		organizedMatches.appData.push(el);
+      	}
+      })
+
+      res.json(organizedMatches);
     })
   });
 
@@ -38,41 +51,5 @@ router.route('/seller')
       res.json(matches);
     })
   });
-
-// getting all craigslist items
-router.route('/buyer/craigslist')
-.get(function(req, res, next) {
-
-  Match
-    .find({
-      $and: [{
-        buyer: req.query._id,
-        productUrl: { $exists: true }
-      }]
-    })
-    .populate("product buyer seller").exec(function(err, matches) {
-      if (err) next(err);
-      console.log('returned matches', matches);
-      res.json(matches);
-    })
-});
-
-// getting all app items
-router.route('/buyer/app')
-.get(function(req, res, next) {
-
-  Match
-    .find({
-      $and: [{
-        buyer: req.query._id,
-        seller: { $exists: true }
-      }]
-    })
-    .populate("product buyer seller").exec(function(err, matches) {
-      if (err) next(err);
-      console.log('returned matches', matches);
-      res.json(matches);
-    })
-});
 
 module.exports = router;
