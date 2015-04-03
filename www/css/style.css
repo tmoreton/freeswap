@@ -228,3 +228,10 @@ h2 {
   font-family: 'Rancho', cursive;
 }
 
+.fa-facebook {
+  padding-right: 20px;
+}
+
+.item-content{
+  font-size: 24px;
+}
