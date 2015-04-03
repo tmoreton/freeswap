@@ -30,7 +30,7 @@ app.run(function($ionicPlatform, $state, $rootScope, AuthService) {
 })
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-  $urlRouterProvider.otherwise('/front-page');
+  $urlRouterProvider.otherwise('/app/swap');
 
   $stateProvider.state('app', {
     url: "/app",

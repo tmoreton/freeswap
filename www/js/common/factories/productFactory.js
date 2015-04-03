@@ -15,12 +15,11 @@ app.factory('productFactory', function($http){
 			});
 		},
 
-		getAvailableData: function(userInfo){ // REFACTOR THIS LATER
+		getAvailableData: function(userInfo){
 			var queryObj = {
-				toExclude: userInfo.likes.concat(userInfo.dislikes),
-				userInfoId: userInfo._id
+				toExclude: userInfo.likes.concat(userInfo.dislikes)
 			};
-			// console.log('queryObj',queryObj)
+			console.log('queryObj',queryObj)
 			return $http.get('/api/products/getProducts', {params: queryObj}).then(function(response){
 				return response.data;
 			});
