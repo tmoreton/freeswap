@@ -31,7 +31,8 @@ var schema = new mongoose.Schema({
   },
   swappedWith: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+    default: null
   }
 });
 
