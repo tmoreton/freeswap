@@ -173,9 +173,7 @@ router.post('/addProduct', function(req, res, next){
 
 // Get all products excluding liked, disliked and swapped
 router.get('/getProducts', function(req, res, next){
-	console.log('req.query',req.query.userInfoId);
-
-	var sellerId = [req.query.userInfoId];
+	console.log('req.query',req.query.toExclude);
 
 	var toExclude;
 	if (!req.query.toExclude) { // toExclude is empty
@@ -194,9 +192,10 @@ router.get('/getProducts', function(req, res, next){
 	}
 
 	mongoose.model('Product')
-		.findRemaining(toExclude, sellerId, 100)
+		.findRemaining(toExclude, false, 100)
 		.then(
 		  function(products){
+		  	// console.log(products)
 		    res.json(products);
 		  },
 		  function(err){
