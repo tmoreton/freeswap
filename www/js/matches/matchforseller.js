@@ -25,6 +25,7 @@ app.config(function($stateProvider) {
 
 app.controller('MatchSellerCtrl', function($scope, $state, matchFactory, userInfo, matchSellerData, user, productFactory) {
   $scope.userInfo = userInfo;  
+  console.log("matchSellerData: ", matchSellerData);
   $scope.matches = matchSellerData;
 
 
