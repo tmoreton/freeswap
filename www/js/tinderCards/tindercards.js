@@ -54,10 +54,16 @@ app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegat
   $scope.cardSwipedLeft = function() {
     console.log('LEFT SWIPE');
 
-    // swipe.addToUserDislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
-    //   console.log('Item successfully added to user dislikes');
-    // })
+    swipe.addToUserDislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
+      console.log('Item successfully added to user dislikes');
+    })
     addCard();
+  };
+
+  $scope.skipCard = function() {
+    destroyCurrentCard();
+    $scope.currentCard = $scope.cards[0];
+    console.log('Current Card', $scope.currentCard)
   };
 
   $scope.cardSwipedRight = function() {
@@ -77,7 +83,7 @@ app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegat
           var myPopup = $ionicPopup.show({
             template: '<textarea ng-model="data.message">',
             title: 'Send Message',
-            subTitle: 'You can also message them later!',
+            subTitle: 'You can also a message them later!',
             scope: $scope,
             buttons: [{
               text: 'Message Later',

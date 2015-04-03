@@ -22,12 +22,11 @@ var schema = new mongoose.Schema({
     facebook: {
         id: String
     },
-    // Is there a better way to do this?
     likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
     dislikes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
 
-// not sure how to do this?
+
 schema.methods.findLikes = function findLikes (cb) {
     return this.model('Product').find({_id:this.likes[0]}, cb);
 };

@@ -156,12 +156,16 @@ ul {
   font-size: 24px;
 }
 
-ion-view {
-    background-image: url("../img/random.png");
-}
-/*ion-content {
+/*ion-view {
     background-image: url("../img/random.png");
 }*/
+ion-content {
+  background-image: url("../img/random.png");
+}
+
+#side-menu {
+  background-color: #7F7F7F;
+}
 
 
 .button-stable {
@@ -178,7 +182,10 @@ img {
 
 .input-label {
   font-size: 18px;
-  width: 10%;
+  width: 90px;
+}
+.item-input input {
+  max-width: 90%;
 }
 
 .tinderButtons {
@@ -201,7 +208,9 @@ img {
 }
 
 h1 {
+  font-family: 'Rancho', cursive;
   font-size: 36px;
+  text-align: center;
 }
 
 h2.ng-binding{

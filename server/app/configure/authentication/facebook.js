@@ -19,7 +19,7 @@ module.exports = function (app) {
         console.log(profile);
 
         UserModel.findOne({ 'facebook.id': profile.id }, function (err, user) {
-
+            console.log(profile)
             if (err) return done(err);
 
             if (user) {
