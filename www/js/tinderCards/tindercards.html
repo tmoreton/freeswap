@@ -4,7 +4,6 @@
   </ion-header-bar>
   <ion-content>
   <td-cards>
-    <span style="text-align: center">Cards Remaining: {{ cards.length }}</span>
     <div ng-repeat="card in cards" class="polaroid">
     <td-card on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
       <div class="image">
@@ -29,20 +28,23 @@
     <!-- <span> -->
   </td-cards>
   <br>
-  <br>
-  <br>
-  <br>
   <div class="tinderButtons">
       <button class="button button-stable" ng-click="cardSwipedLeft()">
         <i class="fa fa-times fa-5x" style= "color: red"></i>
       </button>
-      <button class="button button-stable" style="height: 60px; width: 60px; top: 15px" ng-click="skipCard()">
-        <i class="fa fa-share fa-2x" style="margin: auto"></i>
-      </button>
+        <button class="button button-stable" style="height: 60px; width: 60px;" ng-click="skipCard()">
+          <i class="fa fa-share fa-2x" style="margin: auto"></i>
+        </button>
       <button class="button button-stable" ng-click="cardSwipedRight()">
         <i class="fa fa-check fa-5x" style= "color: green"></i>
       </button>
+        <!-- <button class="button button-stable" style="height: 60px; width: 60px; top: 15px;">
+          <i class="fa fa-crosshairs fa-2x"></i>
+        </button> -->
     </span>
+    <div>
+      <span style="text-align: center">Cards Remaining: {{ cards.length }}</span>
+    </div>
   </div>
   <!-- <ion-spinner icon="ripple" ng-show="cards.length == 0"></ion-spinner> -->
   </ion-content>

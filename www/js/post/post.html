@@ -35,7 +35,7 @@
       </label>
       <label class="item item-input">
         <span class="input-label">description</span>
-        <input type="text" ng-model="product.description" required>
+        <textarea type="text" ng-model="product.description" style="height: 100px" required></textarea>
       </label>
 <!--       <label class="item item-input">
         <button ng-hide="coordinates == []" class="button button-positive" ng-click="getLocation()">Get Location</button>
@@ -43,6 +43,10 @@
         <p>Longitude: {{long}}</p><br>
         <p>Latitude: {{lat}}</p>
       </label> -->
+      <label class="item item-input">
+        <span class="input-label">Location</span>
+        <input type="text" ng-model="product.location" required>
+      </label>
       <label class="item">
         <button class="button button-block button-calm" ng-click="newItem(product)">submit</button>
       </label>

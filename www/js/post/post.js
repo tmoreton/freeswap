@@ -46,6 +46,7 @@ app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
     console.log("product", product)
     product.ImageUrls = $scope.imageUrl;
     product.seller = $scope.userInfo;
+    product.location = $scope.location;
     product.coordinates = $scope.coordinates;
     console.log("product", product)
     productFactory.addProduct(product).then(function(data){
