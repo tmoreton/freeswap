@@ -15,9 +15,10 @@ app.factory('productFactory', function($http){
 			});
 		},
 
-		getAvailableData: function(userInfo){
+		getAvailableData: function(userInfo){ // REFACTOR THIS LATER
 			var queryObj = {
-				toExclude: userInfo.likes.concat(userInfo.dislikes) // Combines likes and dislikes array
+				toExclude: userInfo.likes.concat(userInfo.dislikes),
+				userInfoId: userInfo._id
 			};
 			// console.log('queryObj',queryObj)
 			return $http.get('/api/products/getProducts', {params: queryObj}).then(function(response){
@@ -29,7 +30,6 @@ app.factory('productFactory', function($http){
 				return response.data;
 			})
 		},
-
 		swapped: function(productId, userId){
 			console.log('userId in factory: ', userId);
 			var reqobj = {
