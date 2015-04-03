@@ -16,8 +16,15 @@
           <span class="input-label">Password:</span>
           <input type="password" ng-model="user.password">
         </label>
-        <button class="button button-block button-calm" ng-click="login(user)">Log in</button>
-        <button class="button button-block button-calm" ng-click="loginPlatform('facebook')">Facebook</button>
+        <div class="row">
+          <div class="col col-50">
+           <button class="button button-block button-calm" ng-click="login(user)">Log in</button>
+          </div>
+          <div class="col col-50">
+           <button class="button button-block button-calm" ng-click="loginPlatform('facebook')" style="background-color: #3b5998"><i class="fa fa-facebook"></i>Facebook</button>
+          </div>
+        </div>
+
         <!-- <button ng-click="loginFacebook()">Facebook Login</button> -->
       </div>
 
