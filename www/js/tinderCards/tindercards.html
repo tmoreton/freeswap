@@ -2,8 +2,9 @@
   <ion-header-bar class="bar-default">
     <h1 class="title"></h1>
   </ion-header-bar>
+  <ion-content>
   <td-cards>
-    <!--  took out  class="card-{{$index}}"  -->
+    <span style="text-align: center">Cards Remaining: {{ cards.length }}</span>
     <div ng-repeat="card in cards" class="polaroid">
     <td-card on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
       <div class="image">
@@ -13,10 +14,11 @@
           <div class="cropTop">
             <img class="url" ng-src="{{card.photoUrls}}" ng-click="openModal()">
           </div>
-          <div class="title" style="font-weight: bolder; font-size: 18px; text-align: center">{{card.title}}
-            <div>
+          <hr style="margin-top: 1px;margin-bottom: 5px">
+          <div class="title" style="font-weight: bolder; font-size: 30px; text-align: center">{{card.title}}
+            <!-- <div> -->
               <!-- <div class="description">{{card.description}} </div> -->
-            </div>
+            <!-- </div> -->
             <div class="yes-text">LIKE</div>
 
           </div>
@@ -24,7 +26,7 @@
       </div>
     </td-card>
     </div>
-    <span>
+    <!-- <span> -->
   </td-cards>
   <br>
   <br>
@@ -34,11 +36,15 @@
       <button class="button button-stable" ng-click="cardSwipedLeft()">
         <i class="fa fa-times fa-5x" style= "color: red"></i>
       </button>
+      <button class="button button-stable" style="height: 60px; width: 60px; top: 15px" ng-click="skipCard()">
+        <i class="fa fa-share fa-2x" style="margin: auto"></i>
+      </button>
       <button class="button button-stable" ng-click="cardSwipedRight()">
         <i class="fa fa-check fa-5x" style= "color: green"></i>
       </button>
     </span>
   </div>
   <!-- <ion-spinner icon="ripple" ng-show="cards.length == 0"></ion-spinner> -->
+  </ion-content>
 </ion-view>
 <!-- ui-sref="app.product-detail({_id: card._id})" -->
