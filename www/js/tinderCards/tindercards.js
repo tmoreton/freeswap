@@ -153,6 +153,10 @@ app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegat
   });
   $scope.openModal = function() {
     $scope.modal.show();
+    productFactory.getProduct($scope.currentCard._id).then(function(product) {
+      $scope.productDetails = product;
+      console.log(product);
+    })
   };
   $scope.closeModal = function() {
     $scope.modal.hide();

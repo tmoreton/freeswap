@@ -50,12 +50,13 @@ schema.statics.findOrCreate = function(query, defaults) {
     })
 }
 
-schema.statics.findRemaining = function(exclude, swapped, limit) {
+schema.statics.findRemaining = function(exclude, sellerId, limit) {
   return this
     .find({
       $and: [{
         _id: { $nin: exclude },
-        swappedWith: { $exists: swapped }
+        seller: { $nin: sellerId },
+        swappedWith: { $exists: false }
       }]
     })
     .limit(limit)

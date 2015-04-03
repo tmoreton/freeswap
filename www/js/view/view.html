@@ -4,28 +4,34 @@
   </ion-header-bar>
   <ion-content>
     <div class="list card">
-      <i class="fa fa-times-circle-o pull-right" style="color: #D90208; margin-top: -5px; margin-right: -5px; " class=""ng-click="closeModal()"></i>
+      <a href=#" " class="fa fa-times-circle-o pull-right" style="color: #D90208; text-decoration: none;" class=""ng-click="closeModal()"></a>
       <div style="text-align:center">
         <h1 style="">{{ currentCard.title }}</h1>
-        <h3 ng-show="currentCard.location">{{ currentCard.location }}</h3>
-        <h3 style="font-family: helvetica; font-style: italic; font-size: 16px; color: gray" ng-show="!currentCard.location">No location Specified</h3>
-        <p style="font-size: 14px; ">Expiry Date: {{ currentCard.expiration | date: 'MMM-dd-yy'}}</p>
+        <h2 ng-show="currentCard.seller">Seller: {{ productDetails.seller.username }}</h2>
+        <h3 ng-show="currentCard.productUrl">{{ currentCard.productUrl }}</h3>
+        <p class="view-location" ng-show="currentCard.location">{{ currentCard.location }}</p>
+        <div style="display:inline">
+          <p class="view-location" ng-show="!currentCard.location">No location Specified</p>
+          <p class="view-expiry">Expiry Date: {{ currentCard.expiration | date: 'MMM-dd-yy'}}</p>
+        </div>
       </div>
       <div class="item item-body">
+        <img style="max-width: 100%" ng-src="{{ currentCard.photoUrls }}">
+        <hr>
         <p style="font-family: helvetica">
           {{ currentCard.description }}
         </p>
       </div>
     </div>
     <div class="item tabs tabs-secondary tabs-icon-left">
-      <a class="tab-item" href="#">
+      <a class="tab-item" href="#" ng-click="cardSwipedLeft(); closeModal()">
         <i class="fa fa-times fa-5x" style= "color: red"></i>
       </a>
       <a class="tab-item" href="#">
-        <i class="fa fa-share fa-2x" style="margin: auto"></i>
+        <i class="fa fa-share fa-2x" style="margin: auto" ng-click="skipCard(); closeModal()"></i>
       </a>
       <a class="tab-item" href="#">
-        <i class="fa fa-check fa-5x" style= "color: green"></i>
+        <i class="fa fa-check fa-5x" style= "color: green" ng-click="cardSwipedRight(); closeModal()"></i>
       </a>
     </div>
   </ion-content>

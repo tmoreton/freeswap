@@ -2,7 +2,7 @@
   <ion-header-bar class="bar-default">
     <h1 class="title"></h1>
   </ion-header-bar>
-  <ion-content>
+  <ion-pane>
   <td-cards>
     <div ng-repeat="card in cards" class="polaroid">
     <td-card on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
@@ -25,7 +25,6 @@
       </div>
     </td-card>
     </div>
-    <!-- <span> -->
   </td-cards>
   <br>
   <div class="tinderButtons">
@@ -43,10 +42,12 @@
         </button> -->
     </span>
     <div>
-      <span style="text-align: center">Cards Remaining: {{ cards.length }}</span>
+      <span class="card-counter"> Cards Left </span>
+      <span class="card-counter-number"> {{ cards.length }} </span>
     </div>
   </div>
+  </ion-pane>
+
   <!-- <ion-spinner icon="ripple" ng-show="cards.length == 0"></ion-spinner> -->
-  </ion-content>
 </ion-view>
 <!-- ui-sref="app.product-detail({_id: card._id})" -->

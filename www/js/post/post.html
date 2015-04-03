@@ -1,4 +1,4 @@
-<ion-view title="PHOTO">
+<ion-view title="Post an Item">
 
 
   <ion-header-bar class="bar-default">
@@ -30,12 +30,12 @@
           <button class="button button-block button-calm" ng-click="createImage()">Upload Image</button>
       </label>
       <label class="item item-input">
-        <span class="input-label">title</span>
+        <span class="input-label">Title</span>
         <input type="text" ng-model="product.title" required>
       </label>
       <label class="item item-input">
-        <span class="input-label">description</span>
-        <textarea type="text" ng-model="product.description" style="height: 100px" required></textarea>
+        <span class="input-label">Description</span>
+        <textarea type="text" ng-model="product.description" style="height: 100px" placeholder="Try to be as descriptive as possible!" required></textarea>
       </label>
 <!--       <label class="item item-input">
         <button ng-hide="coordinates == []" class="button button-positive" ng-click="getLocation()">Get Location</button>

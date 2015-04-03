@@ -163,6 +163,11 @@ ion-content {
   background-image: url("../img/random.png");
 }
 
+ion-pane.pane {
+  top: 45px;
+  background-image: url("../img/random.png");
+}
+
 #side-menu {
   background-color: #7F7F7F;
 }
@@ -205,6 +210,7 @@ img {
   position:absolute;
   top:-20px;
   left:-55px;
+  max-width:400px;
 }
 
 h1 {
@@ -216,11 +222,13 @@ h1 {
 h2.ng-binding{
   font-family: 'Rancho', cursive;
   font-size: 26px;
+  text-align: center;
 }
 
 h2 {
   font-family: 'Rancho', cursive;
   font-size: 36px;
+  text-align: center;
 }
 
 .bar .title {
@@ -234,4 +242,33 @@ h2 {
 
 .item-content{
   font-size: 24px;
+}
+
+.view-location {
+  font-family: helvetica;
+  font-style: italic; 
+  font-size: 14px;
+  color: #676767;
+}
+
+.view-expiry {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.card-counter {
+  background-color: #FFD600;
+  border: 2px solid #AF9301;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: inline;
+  text-align: center;
+}
+
+.card-counter-number {
+  background-color: white;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid #AF9301;
+  display: inline;
 }
