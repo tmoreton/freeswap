@@ -11,7 +11,7 @@
           .green {
             background-color: #76e176;
           }
-        </style> 
+        </style>
       </ion-header-bar>
   <ion-content>
     <div class="list">
@@ -25,36 +25,33 @@
       </div>
       <br>
       <br>
-      <h2>Free Swap</h2>
-    
-
-
+      <!-- <h2>Free Swap</h2> -->
       <ion-item ng-repeat="appItem in appMatches" class="item-thumbnail-left" ng-class="{
           white: !appItem.product.swappedWith
         , red: appItem.product.swappedWith && appItem.product.swappedWith !== userInfo._id, green: appItem.product.swappedWith === userInfo._id
         }">
 
         <img src="{{appItem.product.photoUrls}}">
-        <h2>{{appItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right">  Chat</i>
+        <h2 style="text-align: left">{{appItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right">  Chat</i>
         <!-- <p>{{appItem.product.location}}</p> -->
         <p> From: {{appItem.seller.username}}</p>
         <button class="More" ng-model="appItem.product._id" ng-click="detail(appItem.product._id)">More Info</button>
-        
+
       </ion-item>
 
-      <h2>Craigslist</h2>
+      <!-- <h2>Craigslist</h2> -->
       <ion-list>
         <ion-item ng-repeat="cgItem in craigslistMatches" class="item-thumbnail-left" ng-class="{
           red: cgItem.product.swappedWith !== 'null', green: cgItem.product.swappedWith === userInfo._id
         }">
           <img src="{{cgItem.product.photoUrls}}">
-          <h2>{{cgItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right">  Chat</i>
+          <h2 style="text-align: left">{{cgItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right">  Chat</i>
           <!-- <p>{{cgItem.product.location}}</p> -->
 
           <p style="cursor: pointer" ng-click="goToUrl(cgItem.productUrl)">Ext. Link: {{cgItem.productUrl}}</p>
           <button class="More" ng-model="cgItem.product._id" ng-click="detail(cgItem.product._id)">More Info</button>
           <ion-reorder-button class="ion-navicon"></ion-reorder-button>
-              <button class="More" ng-model="appItem.product._id" ng-click="detail(appItem.product._id)">More Info</button> 
+              <button class="More" ng-model="appItem.product._id" ng-click="detail(appItem.product._id)">More Info</button>
         </ion-item>
       </ion-list>
 

@@ -9,7 +9,7 @@
     .green {
       background-color: #76e176;
     }
-    </style> 
+    </style>
   </ion-header-bar>
   <ion-content>
     <div class="bar bar-header" >
@@ -26,11 +26,11 @@
     <br>
     <div class="list">
       <ion-item ng-repeat="item in matches" class="item-thumbnail-left" ng-class="{
-          green: item.product.swappedWith == item.buyer._id 
+          green: item.product.swappedWith == item.buyer._id
         }" >
 
         <img src="{{item.product.photoUrls}}">
-        <h2>{{item.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(item)" style="font-size:40px; float: right">  Chat</i>
+        <h2 style="text-align: left">{{item.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(item)" style="font-size:40px; float: right">  Chat</i>
 
         <!-- <p>{{item.product.location}}</p> -->
         <p> Liked By {{item.buyer.username}}</p>
