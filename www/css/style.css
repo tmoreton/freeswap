@@ -222,7 +222,7 @@ h1 {
 h2.ng-binding{
   font-family: 'Rancho', cursive;
   font-size: 26px;
-  text-align: center;
+  text-align: left;
 }
 
 h2 {
@@ -246,7 +246,7 @@ h2 {
 
 .view-location {
   font-family: helvetica;
-  font-style: italic; 
+  font-style: italic;
   font-size: 14px;
   color: #676767;
 }
