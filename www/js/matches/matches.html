@@ -32,7 +32,7 @@
         }">
 
         <img src="{{appItem.product.photoUrls}}">
-        <h2 style="text-align: left">{{appItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right">  Chat</i>
+        <h2 style="text-align: left">{{appItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right"></i>
         <!-- <p>{{appItem.product.location}}</p> -->
         <p> From: {{appItem.seller.username}}</p>
         <button class="More" ng-model="appItem.product._id" ng-click="detail(appItem.product._id)">More Info</button>
@@ -45,7 +45,7 @@
           red: cgItem.product.swappedWith !== 'null', green: cgItem.product.swappedWith === userInfo._id
         }">
           <img src="{{cgItem.product.photoUrls}}">
-          <h2 style="text-align: left">{{cgItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right">  Chat</i>
+          <h2 style="text-align: left">{{cgItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right"></i>
           <!-- <p>{{cgItem.product.location}}</p> -->
 
           <p style="cursor: pointer" ng-click="goToUrl(cgItem.productUrl)">Ext. Link: {{cgItem.productUrl}}</p>
@@ -66,7 +66,7 @@
             red: cgItem.product.swappedWith !== 'null', green: cgItem.product.swappedWith === userInfo._id
           }">
             <img src="{{cgItem.product.photoUrls}}">
-            <h2>{{cgItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right">  Chat</i>
+            <h2>{{cgItem.product.title}}</h2><i class="icon ion-chatbubbles item-icon-right" ng-click="goToChat(appItem)" style="font-size:40px; float: right"></i>
             <!-- <p>{{cgItem.product.location}}</p> -->
             <p style="cursor: pointer" ng-click="goToUrl(cgItem.productUrl)">Ext. Link: {{cgItem.productUrl}}</p>
             <button class="More" ng-model="cgItem.product._id" ng-click="detail(cgItem.product._id)">More Info</button>

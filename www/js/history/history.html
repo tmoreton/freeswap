@@ -1,4 +1,10 @@
-<ion-view view-title="Your History">
+<!-- <div ng-show="show">
+<ion-view view-title="Giving Away">
+</div>
+<div ng-show="show">
+<ion-view view-title="Liked">
+</div> -->
+<ion-view view-title="History">
   <ion-header-bar class="bar-default">
     <h1 class="title">Your History</h1>
   </ion-header-bar>
@@ -6,21 +12,26 @@
   <br>
   <br>
   <ion-content>
-    <h2 style="color: #E38C00">Stuff You're Giving Away</h2>
-      <ion-item ng-repeat="item in sellerHistory" class="item-thumbnail-left">
-        <img ng-src="{{item.photoUrls}}">
-        <h2>{{item.title}}</h2>
-        <p>{{item.description}}</p>
-      </ion-item>
-<div class="list">
-  <h2 style="color: #E38C00">Stuff You Liked</h2>
-  <ion-item ng-repeat="item in buyerHistory" class="item-thumbnail-left">
-    <img ng-src="{{item.photoUrls}}">
-    <h2>{{item.title}}</h2>
-    <p>{{item.description}}</p>
-
-  </ion-item>
-</div>
+  <div ng-show="show">
+    <!-- <h2 style="color: #E38C00">Stuff You're Giving Away</h2> -->
+    <ion-item ng-repeat="item in sellerHistory" class="item-thumbnail-left">
+      <img ng-src="{{item.photoUrls}}">
+      <h2>{{item.title}}</h2>
+      <p>{{item.description}}</p>
+    </ion-item>
+  </div>
+  <div ng-show="!show">
+    <!-- <h2 style="color: #E38C00">Stuff You Liked</h2> -->
+    <ion-item ng-repeat="item in buyerHistory" class="item-thumbnail-left">
+      <img ng-src="{{item.photoUrls}}">
+      <h2>{{item.title}}</h2>
+      <p>{{item.description}}</p>
+    </ion-item>
+  </div>
 
   </ion-content>
+    <div class="bar bar-footer bar-dark">
+      <button class="button button-clear" ng-click="show=true">Giving Away</button>
+      <button class="button button-clear" ng-click="show=false">Liked</button>
+    </div>
 </ion-view>

@@ -18,8 +18,7 @@ app.config(function($stateProvider) {
 
 // removed $cordovaCamera, $localstorage, $ionicLoading from controller
 
-app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
-
+app.controller('postCtrl', function ($scope, $state, $rootScope, productFactory, userInfo) {
   $scope.userInfo = userInfo._id;
   // $scope.location = getCurrentPosition();
   // console.log('Current User location',$scope.location)
@@ -28,8 +27,8 @@ app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
     function show_map(position) {
       $scope.long = position.coords.longitude;
       $scope.lat = position.coords.latitude;
-      $scope.coordinates = [position.coords.longitude, position.coords.latitude];
-      console.log("coordinates", $scope.coordinates)
+      $rootScope.coordinates = [position.coords.longitude, position.coords.latitude];
+      console.log("coordinates", $rootScope.coordinates)
     }
   }
 
