@@ -277,3 +277,9 @@ h2 {
   text-align: center;
 }
 
+#location {
+  padding-left: 10px;
+  text-align: center;
+  bottom: 50px;
+  position: absolute;
+}
