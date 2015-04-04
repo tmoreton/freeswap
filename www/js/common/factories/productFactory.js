@@ -20,7 +20,6 @@ app.factory('productFactory', function($http){
 				swipedItems: userInfo.likes.concat(userInfo.dislikes),
 				sellerId: userInfo._id
 			};
-			console.log(queryObj)
 			return $http.get('/api/products/getProducts', {params: queryObj}).then(returnData);
 		},
 		getProduct: function(productId) {
