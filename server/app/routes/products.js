@@ -173,18 +173,18 @@ router.post('/addProduct', function(req, res, next){
 
 // Get all products excluding liked, disliked and swapped
 router.get('/getProducts', function(req, res, next){
-	console.log('req.query',req.query.toExclude);
+	console.log('req.query',req.query);
 
 	var toExclude;
-	if (!req.query.toExclude) { // toExclude is empty
+	if (!req.query.toExclude) {
 		console.log('empty');
 		toExclude = [];
 	}
-	else if (typeof req.query.toExclude == 'string') { // toExclude has 1 Id - query converts array of 1 into a string
+	else if (typeof req.query.toExclude == 'string') {
 		console.log('1 Id');
 		toExclude = [mongoose.Types.ObjectId(req.query.toExclude)];
 	}
-	else { // toExclude has more than 1 Id
+	else {
 		console.log('More than 1 Id');
 		toExclude = req.query.toExclude.map(function(el) {
 			return mongoose.Types.ObjectId(el);
@@ -192,10 +192,10 @@ router.get('/getProducts', function(req, res, next){
 	}
 
 	mongoose.model('Product')
-		.findRemaining(toExclude, false, 100)
+		.findRemaining(toExclude, req.query.sellerId, 100)
 		.then(
 		  function(products){
-		  	// console.log(products)
+		  	console.log(products)
 		    res.json(products);
 		  },
 		  function(err){
