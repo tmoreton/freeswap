@@ -12,12 +12,20 @@ app.config(function($stateProvider) {
 })
 
 
-app.controller('SettingsCtrl', function($scope, AuthService, $state, user) {
+app.controller('SettingsCtrl', function($scope, AuthService, $state, user, $rootScope) {
 
 	$scope.logout = function() {
 		user.logout();
     $state.go('front-page')
 	};
-
+  $scope.getLocation = function() {
+    navigator.geolocation.getCurrentPosition(show_map);
+    function show_map(position) {
+      $scope.long = position.coords.longitude;
+      $scope.lat = position.coords.latitude;
+      $rootScope.coordinates = [position.coords.longitude, position.coords.latitude];
+      console.log("coordinates", $rootScope.coordinates)
+    }
+  }
 })
 
