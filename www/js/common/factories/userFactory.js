@@ -1,4 +1,8 @@
 app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $location) {
+	function returnData (response) {
+		return response.data;
+	};
+
 	return {
 		info: function() {
 			return AuthService.getLoggedInUser().then(function(user) {
@@ -13,10 +17,15 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 		// },
 		createUser: function(newUser) {
 			return $http.post("/api/users", newUser).then(function(data) {
-	      return AuthService.login(newUser).then(function(newUser) {
-	      	console.log(newUser);
-	      	$state.go('app.swap');
-	      })
+	      return AuthService.login(newUser);
+	    }, function(err) {
+	    	var alertPopup = $ionicPopup.alert({
+	    	  title: 'Sign Up Error',
+	    	  template: 'That username/email already exists.'
+	    	})
+	    	alertPopup.then(function(response) {
+	    	  console.log('Sign Up Error', err)
+	    	})
 	    });
 		},
 		login: function(credentials) {
@@ -50,9 +59,7 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 			// })
 		},
 		getSellerHistory: function(userId) {
-			return $http.get('/api/products/' + userId + '/history').then(function(response) {
-				return response.data;
-			})
+			return $http.get('/api/products/' + userId + '/history').then(returnData)
 		},
 		findAndDelete: function (productId, userId){
 			console.log("ProductId: ", productId)
@@ -61,9 +68,7 @@ app.factory('user', function(AuthService, $http, $state, $ionicPopup, $window, $
 		        productId: productId,
 		        userId: userId 
 		      };
-			return $http.put('/api/users/likes', reqObj).then(function(response){
-				return response.data; 
-			})
+			return $http.put('/api/users/likes', reqObj).then(returnData)
 		}
 	}
 })
