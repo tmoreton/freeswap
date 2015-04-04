@@ -35,7 +35,7 @@ app.controller('ChatCtrl', function($scope, chat, userInfo, matches, $stateParam
           from: $scope.user.username,
           content: $scope.message
       });
-
+      console.log($scope.firebase)
       // reset the message input
       $scope.message = "";
     };

@@ -50,7 +50,6 @@ app.controller('postCtrl', function ($scope, $state, productFactory, userInfo) {
     product.coordinates = $scope.coordinates;
     console.log("product", product)
     productFactory.addProduct(product).then(function(data){
-      console.log("hello in postCtrl: ", data)
       if(data !== null)
       $state.go('app.swap');
     })
