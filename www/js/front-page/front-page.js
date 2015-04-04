@@ -17,8 +17,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('FrontPageCtrl', function($scope, $window, $location, $state, user) {
   $scope.signUp = function(newUser) {
-    user.createUser(newUser);
-    $scope.newUser = {};
+    user.createUser(newUser).then(function(response) {
+      $scope.newUser = {};
+      $state.go('app.swap');
+    });
   };
 
   $scope.loginPlatform = function(platform) {

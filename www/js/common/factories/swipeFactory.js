@@ -1,14 +1,16 @@
 'use strict';
 app.factory('swipe', function($http) {
+  function returnData (response) {
+    return response.data;
+  };
+
   return {
     addToUserLike: function(productId, userId) { // Right Swipe - Likes
       console.log("productId added to User Likes", productId)
       var bodyObj = {
         productId: productId
       };
-      return $http.put('/api/users/' + userId + '/likes', bodyObj).then(function(response) {
-        return response.data;
-      });
+      return $http.put('/api/users/' + userId + '/likes', bodyObj).then(returnData)
     },
 
     addToUserDislike: function(productId, userId) { // Left Swipe - Dislike
@@ -16,15 +18,10 @@ app.factory('swipe', function($http) {
       var reqObj = {
         productId: productId
       };
-      return $http.put('api/users/' + userId + '/dislikes', reqObj).then(function(response) {
-        return response.data;
-      });
+      return $http.put('api/users/' + userId + '/dislikes', reqObj).then(returnData)
     },
     
     createMatch: function(product, user) {
-      // console.log('Product', product);
-      // console.log('User',user);
-
       var reqObj;
       if (product.seller) { // APP item
         console.log('Made match for APP item')
