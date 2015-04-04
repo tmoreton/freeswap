@@ -20,7 +20,7 @@ app.config(function($stateProvider) {
 })
 
 
-app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards, chat, $firebaseObject, $ionicPopup) {
+app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards, chat, $firebaseObject, $ionicPopup) {
   $scope.createRoom = chat.createRoom;
   $scope.userInfo = userInfo;
   $scope.cards = cards;
@@ -173,4 +173,14 @@ app.controller('CardsCtrl', function($scope, $window, $ionicModal, TDCardDelegat
   $scope.$on('modal.removed', function() {
     // Execute action
   });
+
+  $scope.getLocation = function() {
+    navigator.geolocation.getCurrentPosition(show_map);
+    function show_map(position) {
+      $scope.long = position.coords.longitude;
+      $scope.lat = position.coords.latitude;
+      $rootScope.coordinates = [position.coords.longitude, position.coords.latitude];
+      console.log("coordinates", $rootScope.coordinates)
+    }
+  }
 })

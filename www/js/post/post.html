@@ -45,10 +45,13 @@
       </label> -->
       <label class="item item-input">
         <span class="input-label">Location</span>
-        <input type="text" ng-model="product.location" required>
+        <span ng-click="getLocation(); showme=true">
+          <button class="button button-small button-assertive"><i class="icon ion-pinpoint" styling="padding-right: 20px;"></i>Get Location</button>
+        </span>
+        <span ng-show="showme" style="padding-left: 20px;">Your location is now attached to this item</span>
       </label>
       <label class="item">
-        <button class="button button-block button-calm" ng-click="newItem(product)">submit</button>
+        <button class="button button-block button-calm" ng-click="newItem(product); showme=false">submit</button>
       </label>
     </form>
     <div class="crop">
