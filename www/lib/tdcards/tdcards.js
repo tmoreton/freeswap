@@ -316,8 +316,8 @@
               .on('step', function(v) {
                 //Have the element spring over 400px
                 el.style.transform = el.style.webkitTransform = 'translate3d(' + (startX - startX*v) + 'px, ' + (startY - startY*v) + 'px, 0) rotate(' + (startRotation - startRotation*v) + 'rad)';
-                rightText.style.opacity = Math.max(rightText.style.opacity - rightText.style.opacity * v, 0);
-                leftText.style.opacity = Math.max(leftText.style.opacity - leftText.style.opacity * v, 0);
+                // rightText.style.opacity = Math.max(rightText.style.opacity - rightText.style.opacity * v, 0);
+                // leftText.style.opacity = Math.max(leftText.style.opacity - leftText.style.opacity * v, 0);
               })
               .start();
               /*

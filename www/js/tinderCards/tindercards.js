@@ -23,7 +23,7 @@ app.config(function($stateProvider) {
 app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, TDCardDelegate, AuthService, swipe, user, productFactory, userInfo, cards, chat, $firebaseObject, $ionicPopup) {
   $scope.createRoom = chat.createRoom;
   $scope.userInfo = userInfo;
-  $scope.cards = cards;
+  $scope.cards = cards.reverse();
   $scope.currentCard = cards[0];
 
   console.log('Current User', userInfo)
