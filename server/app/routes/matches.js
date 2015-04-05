@@ -39,7 +39,7 @@ router.route('/user')
     })
   });
 
-// getting all items as a seller 
+// getting all items as a seller
 router.route('/seller')
   .get(function(req, res, next) {
     // console.log("req.query: ", req.query)
