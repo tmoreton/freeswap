@@ -241,18 +241,19 @@ router.route('/:userId/history')
 router.route('/swapped')
 .put(function(req, res, next) {
 
-	console.log('req.body: ', req.body);
+	console.log('req.body in route: ', req.body);
 	// console.log('UserId', req.params.userId);
+
 	var productId = req.body.productId;
+	console.log("productID in route: ", productId)
 	var userId = req.body.userId;
 
 	mongoose.model('Product').findByIdAndUpdate(
 		productId, 
 		{
-			$push:
-			{
+			
 				swappedWith: userId
-			}
+		
 		})
 	.exec()
 	.then(
