@@ -1,4 +1,4 @@
-<ion-view view-title="Matches" >
+<ion-view view-title="{{title}}" >
       <ion-header-bar class="bar-default">
         <h1 class="title">Matches as a buyer</h1>
         <style>
@@ -16,10 +16,10 @@
   <ion-content>
     <div class="list">
       <div class="tabs bar bar-header">
-        <a class="tab-item" ng-click="show=true">
+        <a class="tab-item" ng-click="show=true; titleBuyer()">
           As a buyer
         </a>
-        <a class="tab-item" ng-click="show=false">
+        <a class="tab-item" ng-click="show=false; titleSeller()">
           As a seller
         </a>
       </div>

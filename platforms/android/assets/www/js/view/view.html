@@ -1,32 +1,38 @@
 <ion-modal-view view-title="Details">
-  <ion-header-bar class="bar-default">
+  <ion-header-bar class="bar-dark">
     <h1 class="title">Product Details</h1>
   </ion-header-bar>
   <ion-content>
     <div class="list card">
-      <br>
-      <div class="item item-avatar">
-        <img ng-src="{{product.photoUrls}}">
-        <h2>{{ product.location }}</h2>
-        <p>Expiry Date: {{ product.expiration }}</p>
+      <a href=#" " class="fa fa-times-circle-o pull-right" style="color: #D90208; text-decoration: none;" class=""ng-click="closeModal()"></a>
+      <div style="text-align:center">
+        <h1 style="">{{ currentCard.title }}</h1>
+        <h2 ng-show="currentCard.seller">Seller: {{ productDetails.seller.username }}</h2>
+        <h3 ng-show="currentCard.productUrl">{{ currentCard.productUrl }}</h3>
+        <p class="view-location" ng-show="currentCard.location">{{ currentCard.location }}</p>
+        <div style="display:inline">
+          <p class="view-location" ng-show="!currentCard.location">No location Specified</p>
+          <p class="view-expiry">Expiry Date: {{ currentCard.expiration | date: 'MMM-dd-yy'}}</p>
+        </div>
       </div>
       <div class="item item-body">
-        <img class="full-image" ng-src="{{product.photoUrls}}">
-        <p>
-          {{ product.description }}
+        <img style="max-width: 100%" ng-src="{{ currentCard.photoUrls }}">
+        <hr>
+        <p style="font-family: helvetica">
+          {{ currentCard.description }}
         </p>
       </div>
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#">
-          <i class="icon ion-thumbsup"></i> Like
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i> Comment
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i> Share
-        </a>
-      </div>
+    </div>
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" href="#" ng-click="cardSwipedLeft(); closeModal()">
+        <i class="fa fa-times fa-5x" style= "color: red"></i>
+      </a>
+      <a class="tab-item" href="#">
+        <i class="fa fa-share fa-2x" style="margin: auto" ng-click="skipCard(); closeModal()"></i>
+      </a>
+      <a class="tab-item" href="#">
+        <i class="fa fa-check fa-5x" style= "color: green" ng-click="cardSwipedRight(); closeModal()"></i>
+      </a>
     </div>
   </ion-content>
 </ion-modal-view>

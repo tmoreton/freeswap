@@ -1,20 +1,46 @@
-<ion-view view-title="Swap" >
-
-    <ion-pane>
-      <ion-header-bar class="bar-default">
-        <h1 class="title">Swap</h1>
-      </ion-header-bar>
-
-      <td-cards>
-        {{ cardfromDb }}
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
-          <div class="image">
-            <div class="no-text">NOPE</div>
-            <img ng-src="{{card.image}}">
-            <div class="yes-text">LIKE</div>
+<ion-view view-title="Swap">
+  <ion-header-bar class="bar-default">
+    <h1 class="title"></h1>
+  </ion-header-bar>
+  <ion-pane>
+  <td-cards>
+    <div ng-repeat="card in cards" class="polaroid">
+    <td-card on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" class="card-{{$index}}">
+      <div class="image">
+        <br>
+        <div>
+          <div class="cropTop">
+            <img style="margin-left: auto; margin-right: auto; display: block;" class="url" ng-src="{{card.photoUrls}}" ng-click="openModal()">
           </div>
-        </td-card>
-      </td-cards>
-    </ion-pane>
+          <div class="title" style="font-weight: bolder; font-size: 20px; text-align: center">{{card.title | cut:true:40:' ...'}}
+          </div>
+        </div>
+      </div>
+    </td-card>
+    </div>
+  </td-cards>
+  <br>
 
+  <div class="tinderButtons">
+      <button class="button button-stable" ng-click="cardSwipedLeft()">
+        <i class="fa fa-times fa-5x" style= "color: red"></i>
+      </button>
+        <button class="button button-stable" style="height: 60px; width: 60px;" ng-click="skipCard()">
+          <i class="fa fa-share fa-2x" style="margin: auto"></i>
+        </button>
+      <button class="button button-stable" ng-click="cardSwipedRight()">
+        <i class="fa fa-check fa-5x" style= "color: green"></i>
+      </button>
+    </span>
+    <div>
+      <span class="card-counter"> Cards Left </span>
+      <span class="card-counter-number"> {{ cards.length }} </span>
+    </div>
+
+  </div>
+    <div id="location" ng-click="getLocation()"><i class="icon ion-pinpoint"></i>Get Location</div>
+  </ion-pane>
+
+  <!-- <ion-spinner icon="ripple" ng-show="cards.length == 0"></ion-spinner> -->
 </ion-view>
+<!-- ui-sref="app.product-detail({_id: card._id})" -->
