@@ -1,9 +1,3 @@
-<!-- <div ng-show="show">
-<ion-view view-title="Giving Away">
-</div>
-<div ng-show="show">
-<ion-view view-title="Liked">
-</div> -->
 <ion-view view-title="History">
   <ion-header-bar class="bar-default">
     <h1 class="title">Your History</h1>
@@ -12,7 +6,7 @@
   <br>
   <br>
   <ion-content>
-  <div ng-show="show">
+  <div ng-show="!show">
     <!-- <h2 style="color: #E38C00">Stuff You're Giving Away</h2> -->
     <ion-item ng-repeat="item in sellerHistory" class="item-thumbnail-left">
       <img ng-src="{{item.photoUrls}}">
@@ -20,7 +14,7 @@
       <p>{{item.description}}</p>
     </ion-item>
   </div>
-  <div ng-show="!show">
+  <div ng-show="show">
     <!-- <h2 style="color: #E38C00">Stuff You Liked</h2> -->
     <ion-item ng-repeat="item in buyerHistory" class="item-thumbnail-left">
       <img ng-src="{{item.photoUrls}}">
@@ -31,7 +25,7 @@
 
   </ion-content>
     <div class="bar bar-footer bar-dark">
-      <button class="button button-clear" ng-click="show=true">Giving Away</button>
-      <button class="button button-clear" ng-click="show=false">Liked</button>
+      <button class="button button-clear" ng-click="show=false">Giving Away</button>
+      <button class="button button-clear" ng-click="show=true">Liked</button>
     </div>
 </ion-view>
