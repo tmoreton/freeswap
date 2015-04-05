@@ -7,15 +7,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'loginCtrl',
     authenticate: false
   })
-  .state('sign-up', {
-    url: '/signup',
-    templateUrl: "/js/login/sign-up.html",
-    controller: 'loginCtrl',
-    authenticate: false
-  })  
 });
 
-app.controller('loginCtrl', function($scope, $window, $location, $state, user) {
+app.controller('loginCtrl', function($scope, $window, $location, $state, user, $rootScope) {
   $scope.signUp = function(newUser) {
     user.createUser(newUser).then(function(response) {
       $scope.newUser = {};
@@ -30,6 +24,16 @@ app.controller('loginCtrl', function($scope, $window, $location, $state, user) {
 
   $scope.goTo = function(page) {
     $state.go(page);
+  }
+
+  $scope.getLocation = function() {
+    navigator.geolocation.getCurrentPosition(show_map);
+    function show_map(position) {
+      $scope.long = position.coords.longitude;
+      $scope.lat = position.coords.latitude;
+      $rootScope.coordinates = [position.coords.longitude, position.coords.latitude];
+      console.log("coordinates", $rootScope.coordinates)
+    }
   }
 
   $scope.login = function(credentials) {

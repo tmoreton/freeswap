@@ -14,6 +14,8 @@
           </div>
           <div class="title" style="font-weight: bolder; font-size: 20px; text-align: center">{{card.title | cut:true:40:' ...'}}
           </div>
+            <div style="text-align: center; font-size:12px;">Posted on {{postDate}}
+          </div>
         </div>
       </div>
     </td-card>
@@ -26,7 +28,8 @@
         <i class="fa fa-times fa-5x" style= "color: red"></i>
       </button>
         <button class="button button-stable" style="height: 60px; width: 60px;" ng-click="skipCard()">
-          <i class="fa fa-share fa-2x" style="margin: auto"></i>
+          <i class="fa fa-share fa-2x" style="margin: auto"><p style="font-size:12px;">skip</p></i>
+
         </button>
       <button class="button button-stable" ng-click="cardSwipedRight()">
         <i class="fa fa-check fa-5x" style= "color: green"></i>
@@ -38,8 +41,8 @@
     </div>
 
   </div>
-    <div id="location" ng-click="getLocation()"><i class="icon ion-pinpoint"></i>Get Location</div>
-  </ion-pane>
+<!--     <div id="location" ng-click="getLocation()"><i class="icon ion-pinpoint"></i>Get Location</div>
+  </ion-pane> -->
 
   <!-- <ion-spinner icon="ripple" ng-show="cards.length == 0"></ion-spinner> -->
 </ion-view>
