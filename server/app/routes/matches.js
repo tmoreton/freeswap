@@ -34,7 +34,7 @@ router.route('/user')
       		organizedMatches.appData.push(el);
       	}
       })
-
+      console.log(organizedMatches)
       res.json(organizedMatches);
     })
   });

@@ -176,26 +176,26 @@ router.get('/getProducts', function(req, res, next){
 	console.log('req.query',req.query);
 
 	var toExclude;
-	if (!req.query.toExclude) {
+	if (!req.query.swipedItems) {
 		console.log('empty');
 		toExclude = [];
 	}
-	else if (typeof req.query.toExclude == 'string') {
+	else if (typeof req.query.swipedItems == 'string') {
 		console.log('1 Id');
 		toExclude = [mongoose.Types.ObjectId(req.query.toExclude)];
 	}
 	else {
 		console.log('More than 1 Id');
-		toExclude = req.query.toExclude.map(function(el) {
+		toExclude = req.query.swipedItems.map(function(el) {
 			return mongoose.Types.ObjectId(el);
 		});
 	}
-
+	console.log(toExclude);
 	mongoose.model('Product')
 		.findRemaining(toExclude, req.query.sellerId, 100)
 		.then(
 		  function(products){
-		  	console.log(products)
+		  	// console.log(products)
 		    res.json(products);
 		  },
 		  function(err){
