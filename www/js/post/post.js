@@ -51,9 +51,8 @@ app.controller('postCtrl', function ($scope, $state, $rootScope, productFactory,
     productFactory.addProduct(product).then(function(data){
       if(data !== null) {
         $scope.product = {};
-        $state.go('app.swap');
+        $state.go('app.history');
       }
     })
   }
-
 })
