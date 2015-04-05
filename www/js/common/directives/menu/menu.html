@@ -8,9 +8,10 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
-<!--       <ion-nav-buttons side="right" >
-        <button menu-toggle="right" class="button button-icon icon ion-chatboxes" ui-sref="app.chat"></button>
-      </ion-nav-buttons> -->
+      <ion-nav-buttons side="right" >
+        <button menu-toggle="right" class="button button-icon icon ion-pinpoint" ng-click="getLocation()"></button>
+      </ion-nav-buttons>
+<!--           <div id="location" ng-click="getLocation()"><i class="icon ion-pinpoint"></i>Get Location</div> -->
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>

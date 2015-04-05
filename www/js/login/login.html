@@ -4,7 +4,10 @@
   </ion-header-bar>
   <ion-nav-bar class="bar-dark"></ion-nav-bar>
   <ion-content>
-      <img style="box-shadow: none; max-height: 300px; margin-left: auto; margin-right: auto; display: block;" src="../../img/freeswaplogo.png">
+      <img style="box-shadow: none; max-height: 275px; margin-left: auto; margin-right: auto; display: block;" src="../../img/freeswaplogo.png">
+
+    <div ng-show="!show">
+      <!-- <h1>Sign In</h1> -->
       <div id="login" class="list list-inset">
         <label class="item item-input">
           <span class="input-label">Username:</span>
@@ -23,10 +26,34 @@
           </div>
         </div>
       </div>
-      
       <div class="register">
-        <button class="button button-energized" ng-click="goTo('sign-up')">Not registered? Click here to sign up <i class="fa fa-arrow-right"></i></button>
+        <button class="button button-energized" ng-click=" show=true">Not registered? Click here to sign up <i class="fa fa-arrow-right"></i></button>
       </div>
+    </div>
+
+    <div ng-show="show">
+      <!-- <h1>Sign Up</h1> -->
+      <div id="sign-up" class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Username:</span>
+          <input type="text" ng-model="newUser.username" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Email:</span>
+          <input type="email" ng-model="newUser.email" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password:</span>
+          <input type="password" ng-model="newUser.password" required>
+        </label>
+        <label class="item">
+          <button class="button button-block button-calm" ng-click="signUp(newUser); getLocation()">Sign Up</button>
+        </label>
+      </div>
+      <div class="register">
+        <button class="button button-energized" ng-click="show=false; getLocation()"><i class="fa fa-arrow-left"></i> Return To Login</button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
 

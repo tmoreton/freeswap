@@ -2,6 +2,11 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var Match = mongoose.model('Match');
 var Promise = require('bluebird');
+var http = require('http');
+
+setInterval(function(){
+  http.get("http://freeswap.herokuapp.com/#/");
+}, 300000)
 
 // route: /api/matches
 router.route('/')

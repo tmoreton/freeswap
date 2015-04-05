@@ -25,10 +25,24 @@ app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, T
   $scope.userInfo = userInfo;
   $scope.cards = cards.reverse();
   $scope.currentCard = cards[0];
+  $scope.postDate = $scope.cards[0].expiration.toString().split("T")[0];
+  $scope.cardDistance = $scope.cards[0].coordinates;
 
-  console.log('Current User', userInfo)
-  console.log('Retrieved Cards', cards);
-  console.log('Current Card', $scope.currentCard);
+  // if($scope.cardDistance[0] !== undefined){
+  //   if($scope.cardDistance[0] !== undefined){
+  //     var R = 6371000; // metres
+  //     var q = $rootScope.coordinates[1].toRadians();
+  //     var qq = $scope.cardDistance[1].toRadians();
+  //     var tq = ($scope.cardDistance[1]-$rootScope.coordinates[1]).toRadians();
+  //     var tt = ($scope.cardDistance[0]-$rootScope.coordinates[0]).toRadians();
+  //     var a = Math.sin(tq/2) * Math.sin(tq/2) +
+  //             Math.cos(q) * Math.cos(qq) *
+  //             Math.sin(tt/2) * Math.sin(tt/2);
+  //     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  //     var d = R * c;
+  //     console.log("distance", d)
+  //   }
+  // }
 
   function destroyCurrentCard() {
     $scope.cards.splice(0, 1);
@@ -38,8 +52,6 @@ app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, T
     destroyCurrentCard();
     // if ($scope.cards.length > 0) {
     $scope.currentCard = $scope.cards[0];
-    console.log('Current Card', $scope.currentCard)
-    console.log($scope.cards.length, ' Remaining Cards', $scope.cards)
       // }
       // else {
       //   productFactory.getAvailableData(userInfo).then(function(newCards) {
@@ -55,7 +67,6 @@ app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, T
     console.log('LEFT SWIPE');
 
     swipe.addToUserDislike($scope.currentCard._id, $scope.userInfo._id).then(function(response) {
-      console.log('Item successfully added to user dislikes');
     })
     addCard();
   };
@@ -63,7 +74,6 @@ app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, T
   $scope.skipCard = function() {
     destroyCurrentCard();
     $scope.currentCard = $scope.cards[0];
-    console.log('Current Card', $scope.currentCard)
   };
 
   $scope.cardSwipedRight = function() {
@@ -161,26 +171,20 @@ app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, T
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
+
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
+
   // Execute action on hide modal
   $scope.$on('modal.hidden', function() {
     // Execute action
   });
+
   // Execute action on remove modal
   $scope.$on('modal.removed', function() {
     // Execute action
   });
 
-  $scope.getLocation = function() {
-    navigator.geolocation.getCurrentPosition(show_map);
-    function show_map(position) {
-      $scope.long = position.coords.longitude;
-      $scope.lat = position.coords.latitude;
-      $rootScope.coordinates = [position.coords.longitude, position.coords.latitude];
-      console.log("coordinates", $rootScope.coordinates)
-    }
-  }
 })
