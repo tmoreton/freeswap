@@ -156,9 +156,9 @@ ul {
   font-size: 24px;
 }
 
-ion-view {
+/*ion-view {
     background-image: url("../img/random.png");
-}
+}*/
 ion-content {
   background-image: url("../img/random.png");
 }
