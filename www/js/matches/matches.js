@@ -14,16 +14,44 @@ app.config(function($stateProvider) {
       },
       matches: function(matchFactory, userInfo) {
         return matchFactory.getMatchData(userInfo);
+      },
+      matchSellerData: function(matchFactory, userInfo) {
+        return matchFactory.getMatchSellerData(userInfo);
       }
     }
   })
 });
 
-app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, matches, $window, $location) {
+app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, matches, $window, $location, matchSellerData, user, productFactory) {
   $scope.userInfo = userInfo;
+    console.log("matchSellerData: ", matchSellerData);
   $scope.craigsListMatches = matches.craigsListData;
   $scope.appMatches = matches.appData;
 
+    console.log("matchSellerData: ", matchSellerData);
+
+  var titlesArr = [];
+  matchSellerData.forEach(function(match) {
+    if (titlesArr.indexOf(match.product.title) === -1) titlesArr.push(match.product.title);
+  })
+
+  var imageArr = [];
+  matchSellerData.forEach(function(match) {
+    if (imageArr.indexOf(match.product.photoUrls) === -1) imageArr.push(match.product.photoUrls);
+  })
+
+  var matchesArr = [];
+  titlesArr.forEach(function(title) {
+    var resultsArr = [];
+    matchSellerData.forEach(function(match) {
+      if (match.product.title === title) resultsArr.push(match)
+    })
+    matchesArr.push(resultsArr);
+  })
+
+  $scope.titles = titlesArr;
+  $scope.matches = matchesArr;
+  
   $scope.goToChat = function(match){
     console.log("match", match)
     $state.go('app.chat', {

@@ -1,0 +1,22 @@
+<ion-view view-title="Craigslist" >
+      <ion-header-bar class="bar-default">
+        <h1 class="title">Matches as a buyer</h1>
+      </ion-header-bar>
+  <ion-content>
+    <div class="list">
+        <!-- <h2>Craigslist</h2> -->
+        <ion-list>
+          <ion-item ng-repeat="cgItem in craigsListMatches" class="item-thumbnail-left" ng-class="{
+            red: cgItem.product.swappedWith !== 'null', green: cgItem.product.swappedWith === userInfo._id
+          }">
+            <img src="{{cgItem.product.photoUrls}}">
+            <h2>{{cgItem.product.title}}</h2>
+            <!-- <p>{{cgItem.product.location}}</p> -->
+            <p style="cursor: pointer" ng-click="goToUrl(cgItem.productUrl)">Ext. Link: {{cgItem.productUrl}}</p>
+            <!-- <button class="More" ng-model="cgItem.product._id" ng-click="detail(cgItem.product._id)">More Info</button> -->
+            <ion-reorder-button class="ion-navicon"></ion-reorder-button>
+          </ion-item>
+        </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
