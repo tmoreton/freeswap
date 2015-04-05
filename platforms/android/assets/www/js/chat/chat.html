@@ -4,16 +4,26 @@
       </ion-header-bar>
 <br>
 <br>
-    <ul class="chatbox">
-        <!-- <div class="chat-bubble left"> -->
-            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
-<!--         </div>
-        <div class="chat-bubble right">
-            <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
-        </div> -->
+<!--   <ion-scroll direction="y" style="height: 100%">
+    <ion-list>
+      <ion-item class="chat-bubble" ng-repeat="message in firebase">{{ message.from }}: {{ message.content }}</ion-item>
+    </ion-list>
+  </ion-scroll> -->
 
-    </ul>
+  <ion-scroll direction="y" style="height: 100%; padding-bottom: 20px;">
+    <div ng-repeat="message in firebase" class="message-wrapper" >
+      <div class="chat-bubble left">
+          <div class="message">
+            {{ message.from }}: {{ message.content }}
+          </div>
+          <div class="message-detail">
+              <!-- <span am-time-ago="message.date"></span> -->
+          </div>
+      </div>
+    </div>
+  </ion-scroll>
 
+  <ion-footer-bar>
     <div class="bar bar-footer">
         <div class="bar bar-header item-input-inset">
           <label class="item-input-wrapper">
@@ -24,5 +34,8 @@
           </button>
         </div>
     </div>
+  </ion-footer-bar>
+
 </ion-view>
+
 

@@ -24,6 +24,7 @@ app.config(function($stateProvider) {
 
 app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, matches, $window, $location, matchSellerData, user, productFactory) {
   $scope.userInfo = userInfo;
+  $scope.title = "Seller Matches"
     console.log("matchSellerData: ", matchSellerData);
   $scope.craigsListMatches = matches.craigsListData;
   $scope.appMatches = matches.appData;
@@ -51,7 +52,15 @@ app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, m
 
   $scope.titles = titlesArr;
   $scope.matches = matchesArr;
+
+  $scope.titleSeller = function(){
+    $scope.title = "Seller Matches"
+  }
   
+  $scope.titleBuyer = function(){
+    $scope.title = "Buyer Matches"
+  }
+
   $scope.goToChat = function(match){
     console.log("match", match)
     $state.go('app.chat', {

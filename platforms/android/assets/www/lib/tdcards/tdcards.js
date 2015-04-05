@@ -119,7 +119,8 @@
 
     isUnderThreshold: function() {
       //return true;
-      return Math.abs(this.thresholdAmount) < 0.4;
+      // return Math.abs(this.thresholdAmount) < 0.4; // Original TD Cards
+      return Math.abs(this.thresholdAmount) < 50; // DN Edit
     },
     /**
      * Fly the card out or animate back into resting position.
@@ -231,10 +232,10 @@
 
       this.thresholdAmount = (this.x / (this.parentWidth/2));
 
-      var self = this;
-      setTimeout(function() {
-        self.onPartialSwipe(self.thresholdAmount);
-      });
+      // var self = this;
+      // setTimeout(function() {
+      //   self.onPartialSwipe(self.thresholdAmount);
+      // });
     },
     _doDragEnd: function(e) {
       this.transitionOut(e);
@@ -253,7 +254,7 @@
       scope: {
         onSwipeLeft: '&',
         onSwipeRipe: '&',
-        onPartialSwipe: '&',
+        // onPartialSwipe: '&',
         onSnapBack: '&',
         onDestroy: '&'
       },
@@ -264,19 +265,19 @@
           // Instantiate our card view
           var swipeableCard = new SwipeableCardView({
             el: el,
-            onPartialSwipe: function(amt) {
-              swipeCards.partial(amt);
-              $timeout(function() {
-                $scope.leftTextOpacity = {
-                  'opacity': amt > 0 ? amt : 0
-                };
-                $scope.rightTextOpacity = {
-                  'opacity': amt < 0 ? Math.abs(amt) : 0
-                };
+            // onPartialSwipe: function(amt) {
+            //   swipeCards.partial(amt);
+            //   $timeout(function() {
+            //     $scope.leftTextOpacity = {
+            //       'opacity': amt > 0 ? amt : 0
+            //     };
+            //     $scope.rightTextOpacity = {
+            //       'opacity': amt < 0 ? Math.abs(amt) : 0
+            //     };
 
-                $scope.onPartialSwipe({amt: amt});
-              });
-            },
+            //     $scope.onPartialSwipe({amt: amt});
+            //   });
+            // },
             onSwipeRight: function() {
               $timeout(function() {
                 $scope.onSwipeRight();
@@ -315,8 +316,8 @@
               .on('step', function(v) {
                 //Have the element spring over 400px
                 el.style.transform = el.style.webkitTransform = 'translate3d(' + (startX - startX*v) + 'px, ' + (startY - startY*v) + 'px, 0) rotate(' + (startRotation - startRotation*v) + 'rad)';
-                rightText.style.opacity = Math.max(rightText.style.opacity - rightText.style.opacity * v, 0);
-                leftText.style.opacity = Math.max(leftText.style.opacity - leftText.style.opacity * v, 0);
+                // rightText.style.opacity = Math.max(rightText.style.opacity - rightText.style.opacity * v, 0);
+                // leftText.style.opacity = Math.max(leftText.style.opacity - leftText.style.opacity * v, 0);
               })
               .start();
               /*
@@ -350,13 +351,13 @@
 
         var sortCards = function() {
           existingCards = $element[0].querySelectorAll('td-card');
-          console.log('Current Cards', existingCards);
+          // console.log('Current Cards', existingCards);
 
           for(i = 0; i < existingCards.length; i++) {
             card = existingCards[i];
             if(!card) continue;
             if(i > 0) {
-              card.style.transform = card.style.webkitTransform = 'translate3d(0, ' + (i * 4) + 'px, 0)';
+              card.style.transform = card.style.webkitTransform = 'translate3d(0, ' + 0 + 'px, 0)'; // 0 used to be (i*4)
             }
             card.style.zIndex = (existingCards.length - i);
           }

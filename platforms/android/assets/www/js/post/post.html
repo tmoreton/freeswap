@@ -1,4 +1,4 @@
-<ion-view title="PHOTO">
+<ion-view title="Post an Item">
 
 
   <ion-header-bar class="bar-default">
@@ -26,24 +26,40 @@
     </div>
  -->
     <form show-validation novalidate>
+      <label class="item">
+          <button class="button button-block button-calm" ng-click="createImage()">Upload Image</button>
+      </label>
       <label class="item item-input">
-        <span class="input-label">title<span>
+        <span class="input-label">Title</span>
         <input type="text" ng-model="product.title" required>
       </label>
       <label class="item item-input">
-        <span class="input-label">description<span>
-        <input type="text" ng-model="product.description" required>
+        <span class="input-label">Description</span>
+        <textarea type="text" ng-model="product.description" style="height: 100px" placeholder="Try to be as descriptive as possible!" required></textarea>
       </label>
+<!--       <label class="item item-input">
+        <button ng-hide="coordinates == []" class="button button-positive" ng-click="getLocation()">Get Location</button>
+        <br>
+        <p>Longitude: {{long}}</p><br>
+        <p>Latitude: {{lat}}</p>
+      </label> -->
       <label class="item item-input">
-        <span class="input-label">location<span>
-        <input type="text" ng-model="product.location" required>
+        <span class="input-label">Location</span>
+        <span ng-click="getLocation(); showme=true">
+          <button class="button button-small button-assertive"><i class="icon ion-pinpoint" styling="padding-right: 20px;"></i>Get Location</button>
+        </span>
+        <span ng-show="showme" style="padding-left: 20px;">Item Now Has a Location</span>
       </label>
       <label class="item">
-        <button class="button button-block button-positive" ng-click="newItem(product)">submit</button>
+        <button class="button button-block button-calm" ng-click="newItem(product); showme=false">submit</button>
       </label>
     </form>
-
+    <div class="crop">
+      <!-- <img src="http://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA17011_ip.jpg"></img> -->
+      <img src="{{imageUrl}}"></img>
+    </div>
   </ion-content>
+
 </ion-view>
 
 <!-- <ion-view view-title="Post" >
