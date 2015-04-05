@@ -25,8 +25,12 @@ app.controller('CardsCtrl', function($scope, $rootScope, $window, $ionicModal, T
   $scope.userInfo = userInfo;
   $scope.cards = cards.reverse();
   $scope.currentCard = cards[0];
-  $scope.postDate = $scope.cards[0].expiration.toString().split("T")[0];
-  $scope.cardDistance = $scope.cards[0].coordinates;
+
+  // $scope.postDate = $scope.cards[0].expiration.toString().split("T")[0];
+  // if ($scope.cards.length < 1){
+  //   $scope.postDate = ""
+  // }
+  // $scope.cardDistance = $scope.cards[0].coordinates;
 
   // if($scope.cardDistance[0] !== undefined){
   //   if($scope.cardDistance[0] !== undefined){
