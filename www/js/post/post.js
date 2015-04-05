@@ -49,10 +49,10 @@ app.controller('postCtrl', function ($scope, $state, $rootScope, productFactory,
     product.coordinates = $scope.coordinates;
     console.log("product", product)
     productFactory.addProduct(product).then(function(data){
-      if(data !== null)
-      $state.go('app.swap');
+      if(data !== null) {
+        $scope.product = {};
+        $state.go('app.history');
+      }
     })
-    $scope.product = {};
   }
-
 })
