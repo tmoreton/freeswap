@@ -28,13 +28,13 @@ router.route('/user')
 	    };
       matches.forEach(function(el) {
       	if (el.product.productUrl) {
-      		organizedMatches.craigslistData.push(el);
+      		organizedMatches.craigsListData.push(el);
       	}
       	else {
       		organizedMatches.appData.push(el);
       	}
       })
-
+      console.log(organizedMatches)
       res.json(organizedMatches);
     })
   });

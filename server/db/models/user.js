@@ -22,8 +22,8 @@ var schema = new mongoose.Schema({
     facebook: {
         id: String
     },
-    likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
-    dislikes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
+    likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product', unique: true}],
+    dislikes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product', unique: true}]
 });
 
 

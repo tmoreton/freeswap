@@ -62,7 +62,7 @@
       <div ng-show="showswap">
         <!-- <h2>Craigslist</h2> -->
         <ion-list>
-          <ion-item ng-repeat="cgItem in craigslistMatches" class="item-thumbnail-left" ng-class="{
+          <ion-item ng-repeat="cgItem in craigsListMatches" class="item-thumbnail-left" ng-class="{
             red: cgItem.product.swappedWith !== 'null', green: cgItem.product.swappedWith === userInfo._id
           }">
             <img src="{{cgItem.product.photoUrls}}">
