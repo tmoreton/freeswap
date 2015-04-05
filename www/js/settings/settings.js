@@ -16,7 +16,7 @@ app.controller('SettingsCtrl', function($scope, AuthService, $state, user, $root
 
 	$scope.logout = function() {
 		user.logout();
-    $state.go('front-page')
+    $state.go('login')
 	};
   $scope.getLocation = function() {
     navigator.geolocation.getCurrentPosition(show_map);

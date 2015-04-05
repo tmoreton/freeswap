@@ -23,14 +23,14 @@ app.run(function($ionicPlatform, $state, $rootScope, AuthService) {
   // $rootScope.$on("$stateChangeStart",
   //     function(event, toState, toParams, fromState, fromParams) {
   //         if (toState.authenticate && !AuthService.isAuthenticated()) {
-  //           $state.go('front-page');
+  //           $state.go('login');
   //           event.preventDefault();
   //         }
   //     });
 })
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-  $urlRouterProvider.otherwise('/app/swap');
+  $urlRouterProvider.otherwise('/login');
 
   $stateProvider.state('app', {
     url: "/app",

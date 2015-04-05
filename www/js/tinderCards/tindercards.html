@@ -10,14 +10,9 @@
         <br>
         <div>
           <div class="cropTop">
-            <img class="url" ng-src="{{card.photoUrls}}" ng-click="openModal()">
+            <img style="margin-left: auto; margin-right: auto; display: block;" class="url" ng-src="{{card.photoUrls}}" ng-click="openModal()">
           </div>
-          <hr style="margin-top: 1px;margin-bottom: 5px">
           <div class="title" style="font-weight: bolder; font-size: 20px; text-align: center">{{card.title | cut:true:40:' ...'}}
-            <!-- <div> -->
-              <!-- <div class="description">{{card.description}} </div> -->
-            <!-- </div> -->
-
           </div>
         </div>
       </div>
@@ -25,6 +20,7 @@
     </div>
   </td-cards>
   <br>
+
   <div class="tinderButtons">
       <button class="button button-stable" ng-click="cardSwipedLeft()">
         <i class="fa fa-times fa-5x" style= "color: red"></i>
@@ -35,15 +31,11 @@
       <button class="button button-stable" ng-click="cardSwipedRight()">
         <i class="fa fa-check fa-5x" style= "color: green"></i>
       </button>
-        <!-- <button class="button button-stable" style="height: 60px; width: 60px; top: 15px;">
-          <i class="fa fa-crosshairs fa-2x"></i>
-        </button> -->
     </span>
     <div>
       <span class="card-counter"> Cards Left </span>
       <span class="card-counter-number"> {{ cards.length }} </span>
     </div>
-
 
   </div>
     <div id="location" ng-click="getLocation()"><i class="icon ion-pinpoint"></i>Get Location</div>
