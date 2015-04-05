@@ -21,7 +21,7 @@ app.config(function($stateProvider) {
 
 app.controller('MatchesCtrl', function($scope, matchFactory, userInfo, $state, matches, $window, $location) {
   $scope.userInfo = userInfo;
-  $scope.craigslistMatches = matches.craigslistData;
+  $scope.craigsListMatches = matches.craigsListData;
   $scope.appMatches = matches.appData;
 
   $scope.goToChat = function(match){
