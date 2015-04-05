@@ -11,11 +11,11 @@
       <div id="login" class="list list-inset">
         <label class="item item-input">
           <span class="input-label">Username:</span>
-          <input type="text" ng-model="user.username">
+          <input type="text" required ng-minlength="1" ng-maxlength="25" ng-model="user.username">
         </label>
         <label class="item item-input">
           <span class="input-label">Password:</span>
-          <input type="password" ng-model="user.password">
+          <input type="password" required ng-minlength="1" ng-maxlength="25" ng-model="user.password">
         </label>
         <div class="row">
           <div class="col col-50">
@@ -36,15 +36,15 @@
       <div id="sign-up" class="list list-inset">
         <label class="item item-input">
           <span class="input-label">Username:</span>
-          <input type="text" ng-model="newUser.username" required>
+          <input type="text" required ng-minlength="5" ng-maxlength="25" ng-model="newUser.username" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Email:</span>
-          <input type="email" ng-model="newUser.email" required>
+          <input type="email" required ng-minlength="5" ng-maxlength="25" ng-model="newUser.email" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Password:</span>
-          <input type="password" ng-model="newUser.password" required>
+          <input type="password" required ng-minlength="5" ng-maxlength="25" ng-model="newUser.password" required>
         </label>
         <label class="item">
           <button class="button button-block button-calm" ng-click="signUp(newUser); getLocation()">Sign Up</button>
