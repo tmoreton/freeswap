@@ -31,8 +31,8 @@ var schema = new mongoose.Schema({
   },
   swappedWith: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    default: null
+    ref: "User"
+    // default: null
   }
 });
 
@@ -56,8 +56,8 @@ schema.statics.findRemaining = function(exclude, sellerId, limit) {
     .find({
       $and: [{
         _id: { $nin: exclude },
-        seller: { $ne: sellerId },
-        swappedWith: null
+        seller: { $ne: sellerId }
+        // swappedWith: null
       }]
     })
     .limit(limit)
