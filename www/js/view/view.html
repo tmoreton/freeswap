@@ -4,19 +4,19 @@
   </ion-header-bar>
   <ion-content>
     <div class="list card">
-      <a href=#" " class="fa fa-times-circle-o pull-right" style="color: #D90208; text-decoration: none;" class=""ng-click="closeModal()"></a>
+      <i class="fa fa-times-circle-o pull-right" style="color: #D90208; text-decoration: none;" ng-click="closeModal()"></i>
       <div style="text-align:center">
-        <h1 style="">{{ currentCard.title }}</h1>
-        <h2 ng-show="currentCard.seller">Seller: {{ productDetails.seller.username }}</h2>
-        <h3 ng-show="currentCard.productUrl">{{ currentCard.productUrl }}</h3>
+        <h2 style="text-align:center">{{ currentCard.title }}</h2>
+        <h3 ng-show="currentCard.seller" style="text-align:center">Seller: {{ productDetails.seller.username }}</h3>
+        <p ng-show="currentCard.productUrl" style="font-size: 16px;">{{ currentCard.productUrl }}</p>
         <p class="view-location" ng-show="currentCard.location">{{ currentCard.location }}</p>
         <div style="display:inline">
           <p class="view-location" ng-show="!currentCard.location">No location Specified</p>
-          <p class="view-expiry">Expiry Date: {{ currentCard.expiration | date: 'MMM-dd-yy'}}</p>
+          <p class="view-expiry">Posted On: {{ currentCard.expiration | date: 'MMM-dd-yy'}}</p>
         </div>
       </div>
       <div class="item item-body">
-        <img style="max-width: 100%" ng-src="{{ currentCard.photoUrls }}">
+        <img style="max-width: 100%; margin-left: auto; margin-right: auto; display: block;" ng-src="{{ currentCard.photoUrls }}">
         <hr>
         <p style="font-family: helvetica">
           {{ currentCard.description }}
