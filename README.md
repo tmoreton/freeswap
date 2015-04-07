@@ -23,7 +23,7 @@ See a live version of the app at [FreeSwap.NYC](http://www.freeswap.nyc).
 
 * __Dien Nguyen__ - [LinkedIn](https://www.linkedin.com/profile/view?id=186278626&authType=name&authToken=IM4n&trk=miniprofile-name-link) | [GitHub](https://github.com/CarpeDN)
 
-* __Sehwan Choi__ - [GitHub](https://github.com/sehwanchoi/sehwanchoi.github.io.sehwanchoi)
+* __Sehwan Choi__ - [GitHub](https://github.com/sehwanchoi)
 
 
 ## License
