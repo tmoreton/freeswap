@@ -10,7 +10,7 @@ See a live version of the app at [FreeSwap.NYC](https://www.freeswap.nyc).
 
 ### Screenshot
 
-![Sphynx Example](http://cloud.oddur.io/ZlkH/Screen%20Recording%202015-02-13%20at%2006.09%20AM.gif)
+![FreeSwap Example](https://www.filepicker.io/api/file/Kc8c3bN2Tiqk2E7ie010)
 
 ### Roadmap
 
