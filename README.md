@@ -12,16 +12,11 @@ See a live version of the app at [FreeSwap.NYC](https://www.freeswap.nyc).
 
 ![FreeSwap Example](https://www.filepicker.io/api/file/Kc8c3bN2Tiqk2E7ie010)
 
-### Roadmap
-
 #### Features
 
--	New bug tacking system
--	Upgrade to Angular 2.0
-
-#### Known bugs
-
-- 
+-	Geolocation tracking
+-	Live in app chat
+-	Mobile Based
 
 ## Contributors
 * __Tim Moreton__ - [LinkedIn](https://www.linkedin.com/in/timothymoretonjr) | [GitHub](https://github.com/tmoreton)
