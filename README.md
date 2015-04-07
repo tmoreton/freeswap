@@ -6,7 +6,7 @@
 
 ## Demo
 
-See a live version of the app at [FreeSwap.NYC](https://www.freeswap.nyc).
+See a live version of the app at [FreeSwap.NYC](http://www.freeswap.nyc).
 
 ### Screenshot
 
